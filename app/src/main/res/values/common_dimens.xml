@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--按钮圆角-->
+    <dimen name="common_btn_corners">@dimen/px10</dimen>
+    <!--内容边距-->
+    <dimen name="common_margin_px">@dimen/px30</dimen>
+    <!--item间距-->
+    <dimen name="common_item_margin_px">@dimen/px20</dimen>
+
+</resources>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--水平线-->
+    <style name="line_horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/px1</item>
+        <item name="android:background">@color/line_color</item>
+    </style>
+    <!--水平间隔-->
+    <style name="line_item_horizontal">
+        <item name="android:background">@color/bg_page</item>
+        <item name="android:layout_height">@dimen/common_item_margin_px</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!--列表样式-->
+    <style name="pull_refresh_list_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0dp</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:listSelector">@android:color/transparent</item>
+    </style>
+    <!--垂直线-->
+    <style name="line_vertical">
+        <item name="android:layout_width">@dimen/px1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/line_color</item>
+    </style>
+    <!--图片显示样式-->
+    <!--<style name="frescoSquareStyle">-->
+        <!--<item name="failureImage">@drawable/place_holder</item>-->
+        <!--<item name="failureImageScaleType">centerCrop</item>-->
+        <!--<item name="placeholderImage">@drawable/place_holder</item>-->
+        <!--<item name="placeholderImageScaleType">centerCrop</item>-->
+    <!--</style>-->
+    <!--头像显示样式-->
+    <!--<style name="frescoHeaderStyle">-->
+        <!--<item name="failureImage">@drawable/ic_shop_holder</item>-->
+        <!--<item name="failureImageScaleType">centerCrop</item>-->
+        <!--<item name="placeholderImage">@drawable/ic_shop_holder</item>-->
+        <!--<item name="placeholderImageScaleType">centerCrop</item>-->
+        <!--<item name="roundAsCircle">true</item>-->
+    <!--</style>-->
+</resources>

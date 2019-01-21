@@ -1,0 +1,59 @@
+<resources>
+
+    <!--主题色按钮样式-->
+    <style name="button_app_color_radis10">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp34</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/px100</item>
+        <item name="android:background">@drawable/btn_shape_rect_appcolor_normal_radius_10</item>
+    </style>
+    <style name="button_app_color">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp34</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/px100</item>
+        <item name="android:background">@color/app_color</item>
+    </style>
+    <!--主题色空心按钮样式-->
+    <style name="button_app_color_empty">
+        <item name="android:textColor">@color/app_color</item>
+        <item name="android:textSize">@dimen/sp34</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/px100</item>
+        <item name="android:background">@drawable/btn_shape_border_rect_appcolor_normal_radius_10</item>
+    </style>
+    <!--CheckTextView单选样式-->
+    <style name="CheckTextView_Radio_style">
+        <item name="android:checkMark">@null</item>
+        <item name="android:checked">false</item>
+        <item name="android:drawableLeft">@drawable/radiobutton_check_selector</item>
+        <item name="android:drawablePadding">@dimen/px8</item>
+        <item name="android:drawableStart">@drawable/radiobutton_check_selector</item>
+    </style>
+
+    <style name="toggle_button">
+        <item name="android:background">@null</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@drawable/toggle_button</item>
+        <item name="android:minHeight">@dimen/sp84</item>
+        <item name="android:minWidth">@dimen/sp110</item>
+        <item name="android:textOff"></item>
+        <item name="android:textOn"></item>
+    </style>
+
+    <!-- activity title bar-->
+    <dimen name="common_layout_title_height">@dimen/px96</dimen>
+    <color name="common_layout_title_bar_bg">@color/white</color>
+    <dimen name="common_layout_title_back_text_size">16sp</dimen>
+    <dimen name="common_layout_title_title_text_size">19sp</dimen>
+    <color name="common_layout_title_line_color">@color/line_color</color>
+    <dimen name="common_layout_title_line_height">@dimen/px1</dimen>
+
+    <!--page load view-->
+    <string name="commons_page_view_empty">暂无数据</string>
+    <string name="commons_page_view_loading">正在加载&#8230;</string>
+    <color name="commons_page_view_text">#666666</color>
+    <dimen name="commons_page_view_text">14sp</dimen>
+</resources>

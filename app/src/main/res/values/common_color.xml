@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--定义APP主题色-->
+    <color name="app_color">#ff6600</color>
+    <color name="app_color_pressed">#7fff6600</color>
+    <!--顶部导航背景色和标题色-->
+    <color name="new_title_bar_bg">#ffffff</color>
+    <color name="new_title_bar_text_color">#333333</color>
+    <dimen name="new_title_bar_text_size">@dimen/px38</dimen>
+
+    <color name="new_title_bar_app_bg">@color/app_color</color>
+    <color name="new_title_bar_text_app_color">@color/white</color>
+    <!--头像点击效果层-->
+    <color name="image_pressed_mask">#66000000</color>
+    <!--占位图-->
+    <color name="place_holder">#f0f0f0</color>
+    <drawable name="place_holder">@color/place_holder</drawable>
+    <!--背景色-->
+    <color name="bg_page">#fff7f7f7</color>
+    <!--分割线颜色-->
+    <color name="line_color">#f0f0f0</color>
+    <!--字体颜色-->
+    <color name="color_3">#333333</color>  <!--标题重要文字色-->
+    <color name="color_6">#666666</color>  <!--内容文字色-->
+    <color name="color_9">#999999</color>  <!--内容文字色-->
+    <color name="color_c">#cccccc</color>  <!--说明文字色-->
+    <!--定义banner指示器颜色-->
+    <color name="page_indicator_selected">@color/app_color</color>
+    <color name="page_indicator_normal">#80d6d6d6</color>
+    <!--辅助色-->
+    <color name="color_egg_will_start">#00ccb4</color>
+    <color name="white">#ffffff</color>
+
+    <!--黑白透明度-->
+    <color name="transparent">#00000000</color>
+    <color name="transparent_white_10">#19FFFFFF</color>
+    <color name="transparent_white_20">#33FFFFFF</color>
+    <color name="transparent_white_30">#4CFFFFFF</color>
+    <color name="transparent_white_40">#66FFFFFF</color>
+    <color name="transparent_white_50">#7FFFFFFF</color>
+    <color name="transparent_white_60">#99FFFFFF</color>
+    <color name="transparent_white_70">#B2FFFFFF</color>
+    <color name="transparent_white_80">#CCFFFFFF</color>
+    <color name="transparent_white_90">#E5FFFFFF</color>
+    <color name="transparent_black_5">#0D000000</color>
+    <color name="transparent_black_10">#19000000</color>
+    <color name="transparent_black_20">#33000000</color>
+    <color name="transparent_black_30">#4C000000</color>
+    <color name="transparent_black_40">#66000000</color>
+    <color name="transparent_black_50">#7F000000</color>
+    <color name="transparent_black_60">#99000000</color>
+    <color name="transparent_black_70">#B2000000</color>
+    <color name="transparent_black_80">#CC000000</color>
+    <color name="transparent_black_90">#E5000000</color>
+
+</resources>

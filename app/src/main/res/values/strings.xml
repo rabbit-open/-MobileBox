@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MobileBox</string>
+    <string name="app_name">行走的盒子</string>
     <string name="title_picture">图片</string>
     <string name="title_video">视频</string>
     <string name="title_music">音乐</string>

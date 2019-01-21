@@ -1,0 +1,13 @@
+ext {
+
+    //定义整个工程的build版本和java版本
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    minSdkVersion = 16
+    targetSdkVersion = 26
+    compileSdkVersion = 28
+    buildToolsVersion = "28.0.3"
+    supportLibVersion = "28.0.0"
+
+}
