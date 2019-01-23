@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/btn_shape_rect_appcolor_pressed_radius_10" android:state_pressed="true"/>
+    <item android:drawable="@drawable/btn_shape_rect_appcolor_normal_radius_10"/>
+
+</selector>

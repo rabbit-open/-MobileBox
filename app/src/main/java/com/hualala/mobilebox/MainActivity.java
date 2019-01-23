@@ -1,11 +1,9 @@
 package com.hualala.mobilebox;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -13,23 +11,19 @@ import java.text.ParseException;
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.navigation_home:
-                    showPicture();
-                    return true;
-                case R.id.navigation_dashboard:
-                    showVideo();
-                    return true;
-                case R.id.navigation_notifications:
-                    showMusic();
-                    return true;
-            }
-            return false;
+            = menuItem -> {
+        switch (menuItem.getItemId()) {
+            case R.id.navigation_home:
+                showPicture();
+                return true;
+            case R.id.navigation_dashboard:
+                showVideo();
+                return true;
+            case R.id.navigation_notifications:
+                showMusic();
+                return true;
         }
-
+        return false;
     };
 
 

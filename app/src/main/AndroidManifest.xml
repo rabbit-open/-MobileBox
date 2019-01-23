@@ -3,6 +3,12 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.hualala.mobilebox">
 
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
     <!--https兼容适配，RTL兼容-->
     <application
             android:hardwareAccelerated="true"
@@ -43,6 +49,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".lib.zxing.CodeScanActivity"/>
+
     </application>
 
 </manifest>
