@@ -1,5 +1,6 @@
 package com.hualala.data.executor;
 
+import com.hualala.domain.executor.PostExecutionThread;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 

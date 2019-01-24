@@ -18,6 +18,9 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class CloudClient {
+
+    public static final String TRACE_ID_PRE_TERMINAL = "10";
+
     private static final int CONNECT_TIMEOUT_SECOND = 15;
     private static final int READ_TIMEOUT_SECOND = 15;
     private static final int WRITE_TIMEOUT_SECOND = 15;

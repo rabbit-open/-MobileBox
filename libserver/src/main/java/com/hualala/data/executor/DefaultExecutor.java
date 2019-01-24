@@ -1,6 +1,7 @@
 package com.hualala.data.executor;
 
 import android.support.annotation.NonNull;
+import com.hualala.domain.executor.ThreadExecutor;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;

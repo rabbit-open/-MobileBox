@@ -11,8 +11,8 @@ public class LocalNetWorkReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (MOCK_SERVICE_NETWORK.equals(intent.getAction())) {
-
             //开启悬浮窗权限检测
+
 
         }
     }

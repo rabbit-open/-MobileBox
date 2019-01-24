@@ -7,7 +7,7 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import com.hualala.data.executor.UIThread;
 import com.hualala.data.repository.TerminalDefaultBusinessContractor;
-import com.hualala.data.general_config.GeneralConfig;
+import com.hualala.domain.config.GeneralConfig;
 import com.hualala.libserver.JobMonitorService;
 import com.hualala.libserver.MBService;
 import com.hualala.mobilebox.compat.JobService21Compcat;

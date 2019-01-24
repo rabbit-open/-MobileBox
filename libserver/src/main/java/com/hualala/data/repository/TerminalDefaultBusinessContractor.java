@@ -2,10 +2,11 @@ package com.hualala.data.repository;
 
 import com.hualala.data.executor.DefaultExecutor;
 import com.hualala.data.net.CloudClient;
-import com.hualala.data.executor.PostExecutionThread;
-import com.hualala.data.executor.ThreadExecutor;
-import com.hualala.data.general_config.GeneralConfig;
-import com.hualala.data.interactor.BusinessContractor;
+import com.hualala.domain.executor.PostExecutionThread;
+import com.hualala.domain.executor.ThreadExecutor;
+import com.hualala.domain.config.GeneralConfig;
+import com.hualala.domain.interactor.BusinessContractor;
+import com.hualala.domain.repository.ITerminalDataRepository;
 
 public class TerminalDefaultBusinessContractor extends BusinessContractor {
     private ITerminalDataRepository iTerminalDataRepository;

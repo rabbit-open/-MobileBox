@@ -1,2 +1,2 @@
-include ':app', ':libserver'
+include ':app', ':libserver', ':libmvp'
 include ':themelib'
