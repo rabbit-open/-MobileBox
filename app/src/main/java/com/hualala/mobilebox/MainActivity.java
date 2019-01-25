@@ -1,23 +1,26 @@
 package com.hualala.mobilebox;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleObserver;
-import android.arch.lifecycle.OnLifecycleEvent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
+import butterknife.BindView;
+import com.google.gson.Gson;
 import com.hualala.domain.interactor.DefaultObserver;
 import com.hualala.domain.model.MVideo;
 import com.hualala.domain.usecase.VideoListUseCase;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
+import com.hualala.mobilebox.utils.WifiUtils;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    public RecyclerView mListView ;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = menuItem -> {
@@ -37,23 +40,82 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void showMusic() {
+        VideoListUseCase videoListUseCase = MBBusinessContractor.getBusinessContractor().create(VideoListUseCase.class);
+        videoListUseCase.execute(new DefaultObserver<List<MVideo>>() {
+            @Override
+            public void onNext(List<MVideo> mVideos) {
+
+            }
+
+
+            @Override
+            public void onError(Throwable throwable) {
+                super.onError(throwable);
+            }
+
+            @Override
+            public void onComplete() {
+                super.onComplete();
+            }
+        }, "mp3");
 
 
     }
 
     private void showVideo() {
+        VideoListUseCase videoListUseCase = MBBusinessContractor.getBusinessContractor().create(VideoListUseCase.class);
+        videoListUseCase.execute(new DefaultObserver<List<MVideo>>() {
+            @Override
+            public void onNext(List<MVideo> mVideos) {
 
+                Log.d("test", new Gson().toJson(mVideos));
+
+            }
+
+
+            @Override
+            public void onError(Throwable throwable) {
+                super.onError(throwable);
+            }
+
+            @Override
+            public void onComplete() {
+                super.onComplete();
+            }
+        }, "mp4");
 
     }
 
     private void showPicture() {
+        VideoListUseCase videoListUseCase = MBBusinessContractor.getBusinessContractor().create(VideoListUseCase.class);
+        videoListUseCase.execute(new DefaultObserver<List<MVideo>>() {
+            @Override
+            public void onNext(List<MVideo> mVideos) {
+                Log.d("test", new Gson().toJson(mVideos));
 
+            }
+
+
+            @Override
+            public void onError(Throwable throwable) {
+                super.onError(throwable);
+            }
+
+            @Override
+            public void onComplete() {
+                super.onComplete();
+            }
+        }, "jpg");
 
     }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String ip = WifiUtils.getWifiIp(this);
+        if (!TextUtils.isEmpty(ip)) {
+            MBBusinessContractor.getBusinessContractor().getTerminalDataRepository().changeServerAddr("http://" + ip + ":8888/");
+        }
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
 
@@ -68,42 +130,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        VideoListUseCase videoListUseCase = MBApplication.getBusinessContractor().create(VideoListUseCase.class);
-        videoListUseCase.execute(new Function<List<MVideo>, Integer>() {
-            @Override
-            public Integer apply(List<MVideo> o) throws Exception {
-                return 1;
-            }
-        }, new Consumer<Integer>() {
-            @Override
-            public void accept(Integer o) throws Exception {
-
-            }
-        }, new DefaultObserver<Integer>() {
-            @Override
-            public void onComplete() {
-                super.onComplete();
-            }
-
-            @Override
-            public void onNext(Integer mVideos) {
-                super.onNext(mVideos);
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                super.onError(throwable);
-            }
-        }, null);
-
-        getLifecycle().addObserver(new LifecycleObserver() {
-
-            @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-            public void onDestory() {
-                videoListUseCase.dispose();
-            }
-
-        });
 
 
     }

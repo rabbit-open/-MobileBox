@@ -7,15 +7,15 @@ import io.reactivex.Observable;
 
 import java.util.List;
 
-public class VideoListUseCase extends MTBaseUseCase<List<MVideo>, Void> {
+public class VideoListUseCase extends MTBaseUseCase<List<MVideo>, String> {
 
     public VideoListUseCase(BusinessContractor businessContractor) {
         super(businessContractor);
     }
 
     @Override
-    protected Observable<List<MVideo>> buildUseCaseObservable(Void params) {
-        return terminalDataRepository.getVideoList();
+    protected Observable<List<MVideo>> buildUseCaseObservable(String params) {
+        return terminalDataRepository.getVideoList(params);
     }
-    
+
 }

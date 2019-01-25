@@ -1,4 +1,4 @@
-package com.hualala.libserver;
+package com.hualala.server.api;
 
 import android.annotation.TargetApi;
 import android.app.*;
@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
+import com.hualala.libserver.R;
 
 public class NotificationUtils extends ContextWrapper {
 

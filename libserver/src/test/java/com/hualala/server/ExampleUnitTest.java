@@ -1,4 +1,4 @@
-package com.hualala.libserver;
+package com.hualala.server;
 
 import org.junit.Test;
 

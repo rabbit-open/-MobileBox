@@ -1,4 +1,4 @@
-package com.hualala.libserver;
+package com.hualala.server.api;
 
 import android.app.Service;
 import android.content.Intent;
@@ -6,21 +6,22 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationManagerCompat;
+import com.hualala.libserver.R;
 
 public class MBService extends Service {
 
-    private LocalNetWorkReceiver mockDataReceiver;
+    private MockReceiver mockDataReceiver;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mockDataReceiver = new LocalNetWorkReceiver();
-        registerReceiver(new LocalNetWorkReceiver(), new IntentFilter(LocalNetWorkReceiver.MOCK_SERVICE_NETWORK));
+        mockDataReceiver = new MockReceiver();
+        registerReceiver(new MockReceiver(), new IntentFilter(MockReceiver.MOCK_SERVICE_NETWORK));
         if (!NotificationManagerCompat.from(getApplicationContext()).areNotificationsEnabled()) {
             NotificationUtils.goToSet(getApplicationContext());
         }
         //启动后台服务
-        ServerApi.getInstance();
+        ServerApi.getInstance().setContext(getApplication());
     }
 
     @Override

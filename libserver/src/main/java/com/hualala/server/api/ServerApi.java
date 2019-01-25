@@ -1,7 +1,11 @@
-package com.hualala.libserver;
+package com.hualala.server.api;
 
+import android.content.Context;
+import com.hualala.server.ServerUtils;
+import com.hualala.server.media.MediaUtils;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
+import org.json.JSONArray;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +17,7 @@ public class ServerApi {
 
     private AsyncHttpServer server = new AsyncHttpServer();
     private AsyncServer asyncServer = new AsyncServer();
+    private Context context;
 
     private static class ServerApiHolder {
         public static ServerApi server = new ServerApi();
@@ -22,9 +27,31 @@ public class ServerApi {
         return ServerApiHolder.server;
     }
 
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
     private ServerApi() {
+        getFiles();
         addLocalFileResource();
-        this.server.listen(asyncServer, 80);
+        this.server.listen(asyncServer, 8888);
+    }
+
+    private void getFiles() {
+        server.get("/files", (request, response) -> {
+            String format = request.getQuery().getString("format");
+            JSONArray array = new JSONArray();
+            if ("apk".equals(format)) {
+                ServerUtils.getApk(context, array);
+            } else if ("mp4".equals(format)) {
+                MediaUtils.getLoadMedia(context, array);
+            } else if ("mp3".equals(format)) {
+                MediaUtils.getLoadAudio(context, array);
+            } else if ("jpg".equals(format)) {
+                MediaUtils.getLoadImages(context, array);
+            }
+            response.send(array.toString());
+        });
     }
 
     private void addLocalFileResource() {

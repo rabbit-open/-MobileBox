@@ -18,10 +18,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+            app:elevation="@null"
             app:menu="@menu/navigation"/>
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/dataRecyclerView"
+            android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

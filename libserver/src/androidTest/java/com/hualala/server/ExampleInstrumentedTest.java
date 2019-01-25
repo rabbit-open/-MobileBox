@@ -1,4 +1,4 @@
-package com.hualala.libserver;
+package com.hualala.server;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

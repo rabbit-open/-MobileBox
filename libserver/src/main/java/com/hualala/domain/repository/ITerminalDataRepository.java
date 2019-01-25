@@ -6,10 +6,14 @@ import io.reactivex.Observable;
 import java.util.List;
 
 public interface ITerminalDataRepository {
+
+    //更换地址
+    void changeServerAddr(String serverAddr);
+
     // 添加header
     void addHeader(String key, String value);
 
     // 视频列表
-    Observable<List<MVideo>> getVideoList();
+    Observable<List<MVideo>> getVideoList(String format);
 
 }

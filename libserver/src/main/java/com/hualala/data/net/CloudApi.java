@@ -4,11 +4,12 @@ import com.hualala.data.entity.reponse.MBVideoListResponse;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Query;
 
 public interface CloudApi {
 
     @Headers({"Accept:application/json"})
-    @GET("api/v1/video/list")
-    Observable<MBVideoListResponse> getVideoList();
+    @GET("/files")
+    Observable<MBVideoListResponse> getVideoList(@Query("format") String name);
 
 }

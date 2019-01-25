@@ -16,13 +16,17 @@ public class TerminalDataRepositoryImpl implements ITerminalDataRepository {
         this.cloudClient = cloudClient;
     }
 
+    public void changeServerAddr(String serverAddr) {
+        cloudClient.changeServerAddr(serverAddr);
+    }
+
     public void addHeader(String key, String value) {
         cloudClient.addHeader(key, value);
     }
 
     @Override
-    public Observable<List<MVideo>> getVideoList() {
-        return cloudClient.getCloudApi().getVideoList().map(MTPrecondition::checkSuccess).map(MBSimpleMapper::transform);
+    public Observable<List<MVideo>> getVideoList(String format) {
+        return cloudClient.getCloudApi().getVideoList(format).map(MTPrecondition::checkSuccess).map(MBSimpleMapper::transform);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.hualala.libserver;
+package com.hualala.server;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -14,10 +14,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by thinkpad on 2018/1/24.
- */
-
 public class ServerUtils {
 
     public static void getfiles(JSONArray array, File dir, String format) {
@@ -31,7 +27,7 @@ public class ServerUtils {
             for (String fileName : fileNames) {
                 File file = new File(dir, fileName);
 
-                if (file.exists() && file.isFile() && file.getName().endsWith("." + format)) {
+                if (file.exists() && file.isFile() && file.getName().toLowerCase().endsWith("." + format)) {
                     try {
                         JSONObject jsonObject = new JSONObject();
                         jsonObject.put("name", fileName);
@@ -77,10 +73,9 @@ public class ServerUtils {
     }
 
 
-    public static JSONArray getApk(Context context) {
+   public static void getApk(Context context, JSONArray array) {
         List<PackageInfo> packageInfoList = context.getPackageManager().getInstalledPackages(0);
         try {
-            JSONArray obj = new JSONArray();
             for (PackageInfo packageInfo : packageInfoList) {
                 String name = (String) context.getPackageManager().getApplicationLabel(packageInfo.applicationInfo);
                 String path = packageInfo.applicationInfo.sourceDir;
@@ -90,14 +85,11 @@ public class ServerUtils {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.put("name", name);
                 jsonObject.put("path", path);
-                obj.put(jsonObject);
+                array.put(jsonObject);
             }
-
-            return obj;
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
 

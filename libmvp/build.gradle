@@ -14,6 +14,8 @@ android {
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        //包含注解生成类
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -49,4 +51,7 @@ dependencies {
 
     implementation "org.projectlombok:lombok:1.16.14"
     annotationProcessor "org.projectlombok:lombok:1.16.14"
+
+    implementation "org.glassfish:javax.annotation:10.0-b28"
+    //implementation "org.google.code.findbugs:jsr305:2.0.1"
 }

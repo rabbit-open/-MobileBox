@@ -35,6 +35,7 @@ public class CloudClient {
     }
 
     public void changeServerAddr(String serverAddr) {
+        Log.v("server",serverAddr);
         mClientConfig.apiBaseUrl = serverAddr;
         mCloudApi = createApi(mClientConfig);
     }

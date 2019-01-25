@@ -6,10 +6,11 @@ import lombok.Setter;
 @Setter
 @Getter
 public class VideoEntity {
-
-    public String url;//资源地址
-    public int format;//资源格式
-    public int size;//资源大小
-    public int time;//资源时长
-    public String name;//资源名称
+    public String path;
+    public String thumbPath;
+    public String name;
+    public long duration;
+    public long size;
+    public int width;
+    public int height;
 }

@@ -5,7 +5,7 @@
 
     <string name="notify_channel_id">本地服务</string>
     <string name="notify_channel_name">本地推送消息</string>
-    <string name="notify_channel_title">APP后台数据服务</string>
+    <string name="notify_channel_title">“行走的手机"后台程序正在运行</string>
     <string name="notify_channel_content">实时获取本地数据库数据</string>
 
 </resources>

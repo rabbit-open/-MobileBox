@@ -29,18 +29,26 @@
         <item name="android:background">@color/line_color</item>
     </style>
     <!--图片显示样式-->
-    <!--<style name="frescoSquareStyle">-->
-        <!--<item name="failureImage">@drawable/place_holder</item>-->
-        <!--<item name="failureImageScaleType">centerCrop</item>-->
-        <!--<item name="placeholderImage">@drawable/place_holder</item>-->
-        <!--<item name="placeholderImageScaleType">centerCrop</item>-->
-    <!--</style>-->
+    <style name="frescoSquareStyle">
+        <item name="failureImage">@drawable/place_holder</item>
+        <item name="failureImageScaleType">centerCrop</item>
+        <item name="placeholderImage">@drawable/place_holder</item>
+        <item name="placeholderImageScaleType">centerCrop</item>
+    </style>
     <!--头像显示样式-->
-    <!--<style name="frescoHeaderStyle">-->
-        <!--<item name="failureImage">@drawable/ic_shop_holder</item>-->
-        <!--<item name="failureImageScaleType">centerCrop</item>-->
-        <!--<item name="placeholderImage">@drawable/ic_shop_holder</item>-->
-        <!--<item name="placeholderImageScaleType">centerCrop</item>-->
-        <!--<item name="roundAsCircle">true</item>-->
-    <!--</style>-->
+    <style name="frescoHeaderStyle">
+        <item name="failureImage">@drawable/place_holder</item>
+        <item name="failureImageScaleType">centerCrop</item>
+        <item name="placeholderImage">@drawable/place_holder</item>
+        <item name="placeholderImageScaleType">centerCrop</item>
+        <item name="roundAsCircle">true</item>
+    </style>
+    <style name="cardViewStyle">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">@dimen/px20</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="contentPadding">0dp</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="cardElevation">@dimen/px10</item>
+    </style>
 </resources>
