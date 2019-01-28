@@ -11,12 +11,13 @@ import android.view.Gravity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.FrameLayout;
+import com.hualala.libcommonui.RatioFrameLayout;
 import com.pili.pldroid.player.AVOptions;
 import com.pili.pldroid.player.PLMediaPlayer;
 import com.pili.pldroid.player.PLOnPreparedListener;
 import com.pili.pldroid.player.PLOnVideoSizeChangedListener;
 
-public class AdMediaPlayerView extends FrameLayout {
+public class AdMediaPlayerView extends RatioFrameLayout {
 
     private static final String TAG = AdMediaPlayerView.class.getSimpleName();
 

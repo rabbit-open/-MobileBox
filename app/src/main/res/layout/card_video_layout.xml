@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="@dimen/px20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/cardViewStyle"
+>
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:padding="0dp"
+            android:background="@drawable/card_view_corner"
+            android:layout_height="wrap_content"
+    >
+        <com.facebook.drawee.view.SimpleDraweeView
+                style="@style/frescoLoadingStyle"
+                android:id="@+id/main_pic"
+                android:layout_width="match_parent"
+                app:roundedCornerRadius="@dimen/px20"
+                app:roundTopLeft="true"
+                app:roundTopRight="true"
+                app:roundBottomLeft="false"
+                app:roundBottomRight="false"
+                android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:id="@+id/playbtn"
+                android:src="@drawable/icon_player"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/px200"
+                android:scaleType="fitCenter"
+                android:layout_height="@dimen/px200"/>
+
+    </FrameLayout>
+</android.support.v7.widget.CardView>

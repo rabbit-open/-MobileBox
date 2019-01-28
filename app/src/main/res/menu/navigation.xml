@@ -3,17 +3,17 @@
 
     <item
             android:id="@+id/navigation_home"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/icon_placeholder"
             android:title="@string/title_picture"/>
 
     <item
             android:id="@+id/navigation_dashboard"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/icon_placeholder"
             android:title="@string/title_video"/>
 
     <item
             android:id="@+id/navigation_notifications"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/icon_placeholder"
             android:title="@string/title_music"/>
 
 </menu>

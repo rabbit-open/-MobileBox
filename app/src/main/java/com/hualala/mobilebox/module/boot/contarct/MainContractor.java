@@ -13,10 +13,11 @@ public class MainContractor extends BaseContractor {
 
     public MainContractor(View view, LifecycleOwner lifecycleOwner) {
         super(view, lifecycleOwner);
-        this.mView = new MainView(view);
         presenter = new MainContractorPresenter(lifecycleOwner);
-        presenter.setView(mView);
+        this.mView = new MainView(view);
         this.mView.setListener(presenter);
+        presenter.setView(mView);
+        presenter.getMediaImage();
     }
 
 }

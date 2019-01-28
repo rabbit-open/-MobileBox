@@ -52,6 +52,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".module.zxing.CodeScanActivity"/>
+        <activity
+                android:theme="@style/CustomAppTheme.FullScreen.Transparent"
+                android:name=".module.player.VideoPlayerActivity"/>
 
     </application>
 
