@@ -49,4 +49,7 @@ public abstract class BusinessContractor implements UseCaseFactory {
         return generalConfig.getTerminalInfo();
     }
 
+    public  GeneralConfig getGeneralConfig() {
+        return generalConfig;
+    }
 }

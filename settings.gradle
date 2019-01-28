@@ -1,2 +1,2 @@
-include ':app', ':libserver', ':libmvp'
+include ':app', ':libserver', ':libmvp', ':libutils', ':libcommonui', ':librouter', ':libstorge'
 include ':themelib'

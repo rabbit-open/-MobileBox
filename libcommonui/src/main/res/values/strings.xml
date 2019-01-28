@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">libCommonUI</string>
+    <string name="load_error_please_refresh">加载失败，请刷新</string>
+
+    <!--page load view-->
+    <string name="commons_page_view_empty">暂无数据</string>
+    <string name="commons_page_view_loading">正在加载&#8230;</string>
+    <color name="commons_page_view_text">#666666</color>
+    <dimen name="commons_page_view_text">14sp</dimen>
+    
+</resources>

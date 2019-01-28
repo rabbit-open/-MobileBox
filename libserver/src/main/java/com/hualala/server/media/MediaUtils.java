@@ -1,15 +1,18 @@
 package com.hualala.server.media;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.provider.MediaStore;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.hualala.domain.model.MVideo;
+
+import java.io.File;
+import java.util.List;
 
 public class MediaUtils {
 
-    public static void getLoadMedia(Context context, JSONArray jsonArray) {
+    public static void getLoadMedia(Context context, List<MVideo> jsonArray) {
 
         Cursor cursor = context.getApplicationContext().getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
                 null, null, null, MediaStore.Video.Media.DEFAULT_SORT_ORDER);
@@ -28,18 +31,25 @@ public class MediaUtils {
 
                 Cursor thumbCursor = null;
                 try {
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("name", title);
-                    jsonObject.put("path", path);
-                    jsonObject.put("duration", duration);
-                    jsonObject.put("size", size);
-                    thumbCursor = context.getApplicationContext().getContentResolver().query(MediaStore.Video.Thumbnails.EXTERNAL_CONTENT_URI, null, MediaStore.Video.Thumbnails.VIDEO_ID + "=" + id, null, null);
-                    if (thumbCursor.moveToFirst()) {
-                        String thumbPath = thumbCursor.getString(thumbCursor.getColumnIndex(MediaStore.Video.Thumbnails.DATA));
-                        jsonObject.put("thumbPath", thumbPath);
+
+                    if (new File(path).exists()) {
+                        MVideo jsonObject = new MVideo();
+                        jsonObject.setName(title);
+                        jsonObject.setPath(path);
+                        jsonObject.setDuration(duration);
+                        jsonObject.setSize(size);
+                        thumbCursor = context.getApplicationContext().getContentResolver().query(MediaStore.Video.Thumbnails.EXTERNAL_CONTENT_URI, null, MediaStore.Video.Thumbnails.VIDEO_ID + "=" + id, null, null);
+                        if (thumbCursor.moveToFirst()) {
+                            String thumbPath = thumbCursor.getString(thumbCursor.getColumnIndex(MediaStore.Video.Thumbnails.DATA));
+                            if (new File(thumbPath).exists()) {
+                                jsonObject.setThumbPath(thumbPath);
+                            }
+                        }
+                        jsonArray.add(jsonObject);
+                        jsonObject.setType(MVideo.MVideoTypeVideo);
                     }
-                    jsonArray.put(jsonObject);
-                } catch (JSONException e) {
+
+                } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
                     if (null != thumbCursor) {
@@ -57,7 +67,7 @@ public class MediaUtils {
     }
 
 
-    public static void getLoadAudio(Context context, JSONArray jsonArray) {
+    public static void getLoadAudio(Context context, List<MVideo> jsonArray) {
 
         Cursor cursor = context.getApplicationContext().getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                 null, null, null, MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
@@ -73,15 +83,19 @@ public class MediaUtils {
                 long duration = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)); // 时长
                 long size = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.SIZE)); // 大小
 
-                try {
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("name", title);
-                    jsonObject.put("path", path);
-                    jsonObject.put("duration", duration);
-                    jsonObject.put("size", size);
-                    jsonArray.put(jsonObject);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (new File(path).exists()) {
+
+                    try {
+                        MVideo jsonObject = new MVideo();
+                        jsonObject.setName(title);
+                        jsonObject.setPath(path);
+                        jsonObject.setDuration(duration);
+                        jsonObject.setSize(size);
+                        jsonArray.add(jsonObject);
+                        jsonObject.setType(MVideo.MVideoTypeAudio);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }
@@ -93,7 +107,7 @@ public class MediaUtils {
     }
 
 
-    public static void getLoadImages(Context context, JSONArray jsonArray) {
+    public static void getLoadImages(Context context, List<MVideo> jsonArray) {
 
         Cursor cursor = context.getApplicationContext().getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 null, null, null, MediaStore.Images.Media.DEFAULT_SORT_ORDER);
@@ -105,26 +119,48 @@ public class MediaUtils {
                 String mimeType = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE));
                 String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)); // 路径
                 long size = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)); // 大小
-                long width = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.WIDTH)); // 大小
-                long height = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.HEIGHT)); // 大小
-
-                try {
-                    JSONObject jsonObject = new JSONObject();
-                    jsonObject.put("name", title);
-                    jsonObject.put("path", path);
-                    jsonObject.put("size", size);
-                    jsonObject.put("width", width);
-                    jsonObject.put("height", height);
-                    jsonArray.put(jsonObject);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                int width = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.WIDTH)); // 大小
+                int height = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.HEIGHT)); // 大小
+                if (new File(path).exists()) {
+                    try {
+                        MVideo jsonObject = new MVideo();
+                        jsonObject.setName(title);
+                        jsonObject.setPath(path);
+                        jsonObject.setSize(size);
+                        jsonObject.setWidth(width);
+                        jsonObject.setHeight(height);
+                        jsonArray.add(jsonObject);
+                        jsonObject.setType(MVideo.MVideoTypePicture);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             cursor.close();
+        }
+    }
+
+
+    public static void getApk(Context context, List<MVideo> array) {
+        List<PackageInfo> packageInfoList = context.getPackageManager().getInstalledPackages(0);
+        try {
+            for (PackageInfo packageInfo : packageInfoList) {
+                String name = (String) context.getPackageManager().getApplicationLabel(packageInfo.applicationInfo);
+                String path = packageInfo.applicationInfo.sourceDir;
+                float size = new File(path).length() / 1024f / 1024f;
+                Drawable icon = context.getPackageManager().getApplicationIcon(packageInfo.applicationInfo);
+                MVideo jsonObject = new MVideo();
+                jsonObject.setName(name);
+                jsonObject.setPath(path);
+                jsonObject.setType(MVideo.MVideoTypeApk);
+                jsonObject.setSize((long) size);
+                array.add(jsonObject);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import com.hualala.domain.model.MVideo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,24 +74,6 @@ public class ServerUtils {
     }
 
 
-   public static void getApk(Context context, JSONArray array) {
-        List<PackageInfo> packageInfoList = context.getPackageManager().getInstalledPackages(0);
-        try {
-            for (PackageInfo packageInfo : packageInfoList) {
-                String name = (String) context.getPackageManager().getApplicationLabel(packageInfo.applicationInfo);
-                String path = packageInfo.applicationInfo.sourceDir;
-                float size = new File(path).length() / 1024f / 1024f;
-                Drawable icon = context.getPackageManager().getApplicationIcon(packageInfo.applicationInfo);
-
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("name", name);
-                jsonObject.put("path", path);
-                array.put(jsonObject);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
 
 }

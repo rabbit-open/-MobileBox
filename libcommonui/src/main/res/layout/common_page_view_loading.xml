@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/page_view_loading"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ProgressBar
+        android:id="@+id/processBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="180dp"
+        android:indeterminateOnly="true"
+        android:minWidth="21dp"
+        android:maxWidth="21dp"
+        android:minHeight="21dp"
+        android:maxHeight="21dp"
+        android:indeterminateDrawable="@drawable/black_loading" />
+
+</FrameLayout>

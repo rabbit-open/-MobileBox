@@ -5,25 +5,28 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.multidex.MultiDexApplication;
 import android.support.v4.content.ContextCompat;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.hualala.libutils.MBContext;
+import com.hualala.libutils.compat.JobService21Compcat;
 import com.hualala.server.api.JobMonitorService;
 import com.hualala.server.api.MBService;
-import com.hualala.mobilebox.compat.JobService21Compcat;
-import com.hualala.mobilebox.lib.context.MBContext;
 
 public class MBApplication extends MultiDexApplication {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        MBContext.initContext(this);
+        MBContext.setContext(this);
         //启动服务
         startService(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             JobService21Compcat.scheduleJob(this, JobMonitorService.class);
         }
         MBBusinessContractor.initBusinessContractor();
-    }
 
+        Fresco.initialize(this, ImagePipelineConfig.newBuilder(this).setDownsampleEnabled(true).build());
+    }
 
     private static void startService(Context context) {
         Intent intent = new Intent(context, MBService.class);

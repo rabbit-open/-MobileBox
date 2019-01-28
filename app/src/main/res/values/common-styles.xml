@@ -35,6 +35,19 @@
         <item name="placeholderImage">@drawable/place_holder</item>
         <item name="placeholderImageScaleType">centerCrop</item>
     </style>
+    <style name="frescoLoadingStyle">
+        <item name="retryImage">@drawable/icon_retry</item>
+        <item name="retryImageScaleType">centerCrop</item>
+        <item name="failureImage">@drawable/icon_failure</item>
+        <item name="failureImageScaleType">centerInside</item>
+        <item name="placeholderImage">@drawable/place_holder</item>
+        <item name="placeholderImageScaleType">centerCrop</item>
+        <item name="progressBarImage">@drawable/icon_progress_bar</item>
+        <item name="progressBarImageScaleType">centerInside</item>
+        <item name="progressBarAutoRotateInterval">2000</item>
+        <item name="fadeDuration">500</item>
+        <item name="backgroundImage">@drawable/place_holder</item>
+    </style>
     <!--头像显示样式-->
     <style name="frescoHeaderStyle">
         <item name="failureImage">@drawable/place_holder</item>

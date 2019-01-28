@@ -1,16 +1,19 @@
 package com.hualala.server.api;
 
 import android.content.Context;
-import com.hualala.server.ServerUtils;
+import com.google.gson.Gson;
+import com.hualala.data.entity.reponse.MBVideoListResponse;
+import com.hualala.domain.model.MVideo;
 import com.hualala.server.media.MediaUtils;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
-import org.json.JSONArray;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ServerApi {
@@ -40,9 +43,9 @@ public class ServerApi {
     private void getFiles() {
         server.get("/files", (request, response) -> {
             String format = request.getQuery().getString("format");
-            JSONArray array = new JSONArray();
+            List<MVideo> array = new ArrayList<>();
             if ("apk".equals(format)) {
-                ServerUtils.getApk(context, array);
+                MediaUtils.getApk(context, array);
             } else if ("mp4".equals(format)) {
                 MediaUtils.getLoadMedia(context, array);
             } else if ("mp3".equals(format)) {
@@ -50,7 +53,12 @@ public class ServerApi {
             } else if ("jpg".equals(format)) {
                 MediaUtils.getLoadImages(context, array);
             }
-            response.send(array.toString());
+
+            MBVideoListResponse  data=new MBVideoListResponse();
+            data.setCode("200");
+            data.setMsg("success");
+            data.setData(array);
+            response.send(new Gson().toJson(data));
         });
     }
 

@@ -11,6 +11,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class GeneralConfig {
-    private CloudServerInfo cloudServerInfo = new CloudServerInfo();// 未使用
-    private TerminalInfo terminalInfo = new TerminalInfo();// 未使用
+    private CloudServerInfo cloudServerInfo = new CloudServerInfo();
+    private TerminalInfo terminalInfo = new TerminalInfo();
 }
