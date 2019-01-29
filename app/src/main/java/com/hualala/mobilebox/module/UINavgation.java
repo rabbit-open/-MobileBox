@@ -29,11 +29,10 @@ public class UINavgation {
         context.startActivity(intent);
     }
 
-    public static final int ScanCode = 0x1000;
+    public static final int ScanCode = 0xff;
 
     public static void startScanCodeActivity(Context context) {
         Intent intent = new Intent(context, CodeScanActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         ((Activity) context).startActivityForResult(intent, ScanCode);
     }
 

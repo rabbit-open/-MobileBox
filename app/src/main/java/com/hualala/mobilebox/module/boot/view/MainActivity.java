@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == UINavgation.ScanCode && resultCode == Activity.RESULT_OK) {
+        if (requestCode == UINavgation.ScanCode) {
             IntentResult result = IntentIntegrator.parseActivityResult(resultCode, data);
             if (result.getContents() == null) {
                 ToastUtils.showToastCenter(this, "扫码失败");
