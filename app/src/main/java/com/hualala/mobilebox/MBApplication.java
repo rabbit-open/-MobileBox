@@ -1,9 +1,9 @@
 package com.hualala.mobilebox;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.support.multidex.MultiDexApplication;
 import android.support.v4.content.ContextCompat;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
@@ -12,7 +12,7 @@ import com.hualala.libutils.compat.JobService21Compcat;
 import com.hualala.server.api.JobMonitorService;
 import com.hualala.server.api.MBService;
 
-public class MBApplication extends MultiDexApplication {
+public class MBApplication extends Application {
 
     @Override
     public void onCreate() {
