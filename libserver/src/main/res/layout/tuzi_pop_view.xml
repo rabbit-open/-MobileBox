@@ -22,7 +22,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableLeft="@drawable/umeng_push_notification_default_large_icon"
+                    android:drawableLeft="@drawable/umeng_push_notification_default_small_icon"
                     android:drawablePadding="10dp"
                     android:gravity="left"
                     android:includeFontPadding="false"
