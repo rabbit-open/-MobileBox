@@ -2,6 +2,7 @@ package com.hualala.mobilebox.module;
 
 import android.content.Context;
 import android.content.Intent;
+import com.hualala.mobilebox.module.boot.view.MainActivity;
 import com.hualala.mobilebox.module.player.VideoPlayerActivity;
 
 public class UINavgation {
@@ -16,6 +17,12 @@ public class UINavgation {
         intent.putExtra("audio-data-callback", false);
         intent.putExtra("disable-log", true);
         intent.putExtra("start-pos", 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    public static void startMainActivity(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

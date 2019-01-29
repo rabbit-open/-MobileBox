@@ -2,8 +2,8 @@
 <resources>
 
     <!--定义APP主题色-->
-    <color name="app_color">#ff6600</color>
-    <color name="app_color_pressed">#7fff6600</color>
+    <color name="app_color">#D81B60</color>
+    <color name="app_color_pressed">#7fD81B60</color>
     <!--顶部导航背景色和标题色-->
     <color name="new_title_bar_bg">#ffffff</color>
     <color name="new_title_bar_text_color">#333333</color>

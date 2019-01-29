@@ -1,2 +1,3 @@
 include ':app', ':libserver', ':libmvp', ':libutils', ':libcommonui', ':librouter', ':libstorge'
 include ':themelib'
+include ':libpermission'
