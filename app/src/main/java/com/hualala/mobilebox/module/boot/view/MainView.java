@@ -136,7 +136,6 @@ public class MainView extends ViewDelegate<View> implements IMainView,
                 UINavgation.startScanCodeActivity(getContext());
             }
         });
-
     }
 
     @Override
@@ -170,5 +169,16 @@ public class MainView extends ViewDelegate<View> implements IMainView,
                 return true;
         }
         return false;
+    }
+
+    public void refresh() {
+        switch (navigationView.getSelectedItemId()) {
+            case R.id.navigation_home:
+                showPicture();
+            case R.id.navigation_dashboard:
+                showVideo();
+            case R.id.navigation_notifications:
+                showMusic();
+        }
     }
 }

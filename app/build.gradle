@@ -56,6 +56,10 @@ dependencies {
     androidTestImplementation androidLib.runner
     androidTestImplementation androidLib.espresso
 
+    implementation "android.arch.lifecycle:runtime:1.1.1"
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
+
     //视频
     implementation files('libs/pldroid-player-2.1.6.jar')
     //布局

@@ -23,7 +23,7 @@ ext {
             espresso             : 'com.android.support.test.espresso:espresso-core:3.0.2',
             javaxAnnotation      : "org.glassfish:javax.annotation:10.0-b28",
             findbugs             : "org.google.code.findbugs:jsr305:2.0.1",
-
+            findbugs             : "org.google.code.findbugs:jsr305:2.0.1",
     ]
 
 }

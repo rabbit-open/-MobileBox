@@ -77,4 +77,5 @@ public class CodeScanActivity extends AppCompatActivity implements DecoratedBarc
 
     }
 
+
 }

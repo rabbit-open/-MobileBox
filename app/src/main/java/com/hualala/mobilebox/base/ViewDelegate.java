@@ -2,7 +2,9 @@ package com.hualala.mobilebox.base;
 
 import android.content.Context;
 import android.support.annotation.Keep;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.view.ViewGroup;
 
 
 @Keep
@@ -14,8 +16,15 @@ public class ViewDelegate<T extends View> implements BaseView {
         this.mView = view;
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return mView.getContext();
+    }
+
+    public FragmentActivity getFragmentActivity() {
+        if (mView instanceof ViewGroup){
+            return (FragmentActivity) mView.getContext();
+        }
+        return (FragmentActivity) mView.getContext();
     }
 
     public T getView() {

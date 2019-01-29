@@ -1,19 +1,19 @@
 package com.hualala.mobilebox.base;
 
-import android.arch.lifecycle.LifecycleOwner;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 public class BaseContractor {
 
-    private LifecycleOwner lifecycleOwner;
+    private FragmentActivity lifecycleOwner;
     private View rootView;
 
 
-    public LifecycleOwner getLifecycleOwner() {
+    public FragmentActivity getLifecycleOwner() {
         return lifecycleOwner;
     }
 
-    public BaseContractor(View view, LifecycleOwner lifecycleOwner) {
+    public BaseContractor(View view, FragmentActivity lifecycleOwner) {
         this.lifecycleOwner = lifecycleOwner;
         this.rootView = view;
     }

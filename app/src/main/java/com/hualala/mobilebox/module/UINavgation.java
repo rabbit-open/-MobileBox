@@ -1,5 +1,6 @@
 package com.hualala.mobilebox.module;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import com.hualala.mobilebox.module.boot.view.MainActivity;
@@ -28,10 +29,12 @@ public class UINavgation {
         context.startActivity(intent);
     }
 
+    public static final int ScanCode = 0x1000;
+
     public static void startScanCodeActivity(Context context) {
         Intent intent = new Intent(context, CodeScanActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        ((Activity) context).startActivityForResult(intent, ScanCode);
     }
 
 }
