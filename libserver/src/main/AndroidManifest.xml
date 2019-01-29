@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.hualala.libserver">
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
     <application>
         <service android:name="com.hualala.server.api.MBService" android:exported="true"/>
         <service android:name="com.hualala.server.api.JobMonitorService"

@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.hualala.data.entity.reponse.MBVideoListResponse;
 import com.hualala.domain.model.MVideo;
 import com.hualala.server.media.MediaUtils;
+import com.hualala.server.widget.FormatLogProcess;
+import com.hualala.server.widget.JsonFormatUtils;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 
@@ -42,6 +44,9 @@ public class ServerApi {
 
     private void getFiles() {
         server.get("/files", (request, response) -> {
+
+            JsonFormatUtils.sendLocalRequest(request.getPath(),"有人访问了","{}");
+
             String format = request.getQuery().getString("format");
             List<MVideo> array = new ArrayList<>();
             if ("apk".equals(format)) {
@@ -64,6 +69,9 @@ public class ServerApi {
 
     private void addLocalFileResource() {
         server.get("/files/.*", (request, response) -> {
+
+            JsonFormatUtils.sendLocalRequest(request.getPath(),"有人访问了","{}");
+
             String path = request.getPath().replace("/files/", "");
             try {
                 path = URLDecoder.decode(path, "utf-8");

@@ -53,7 +53,7 @@ public class Utils {
 
     private static TuZiWidget mTipViewController;
 
-    public static void showFloatView(Intent intent, Context context) {
+    public static void showFloatView(Intent intent) {
         try {
             MockData data = new MockData();
             data.setUrl(intent.getStringExtra("url"));
@@ -61,7 +61,7 @@ public class Utils {
             data.setRequestParam(intent.getStringExtra("requestParam"));
 
             if (!TuZiWidget.isShow) {
-                mTipViewController = new TuZiWidget(context.getApplicationContext(), data);
+                mTipViewController = new TuZiWidget(AppContext.INSTANCE, data);
                 mTipViewController.setViewDismissHandler(() -> {
 
                 });

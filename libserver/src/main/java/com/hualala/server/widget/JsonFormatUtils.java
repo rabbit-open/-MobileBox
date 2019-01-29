@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import static com.hualala.server.api.MockReceiver.MOCK_SERVICE_NETWORK;
 
 
-final class JsonFormatUtils {
+public  class JsonFormatUtils {
 
 
     public static boolean isJson(String message) {
