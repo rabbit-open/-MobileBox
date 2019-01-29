@@ -1,11 +1,11 @@
 package com.hualala.data.net;
 
 import android.util.Log;
+import com.hualala.server.widget.HttpLoggingInterceptor3;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -52,13 +52,7 @@ public class CloudClient {
 
     private CloudApi createApi(final ClientConfig clientConfig) {
         OkHttpClient httpClient = new OkHttpClient.Builder()
-                .addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-                    @Override
-                    public void log(String message) {
-                        Log.v("app-[request]", message);
-                    }
-                })
-                        .setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new HttpLoggingInterceptor3())
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {

@@ -5,10 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.provider.Settings;
+import com.hualala.server.widget.Utils;
 
 
 public class MockReceiver extends BroadcastReceiver {
-    
+
     public static final String MOCK_SERVICE_NETWORK = "mock.crash.network2";
 
     @Override
@@ -26,7 +27,7 @@ public class MockReceiver extends BroadcastReceiver {
                     }
                 }
             }
-
+            Utils.showFloatView(intent, context);
         }
     }
 }
