@@ -6,15 +6,12 @@ import android.view.View;
 public class BaseContractor {
 
     private FragmentActivity lifecycleOwner;
-    private View rootView;
-
 
     public FragmentActivity getLifecycleOwner() {
         return lifecycleOwner;
     }
 
-    public BaseContractor(View view, FragmentActivity lifecycleOwner) {
+    public BaseContractor(FragmentActivity lifecycleOwner) {
         this.lifecycleOwner = lifecycleOwner;
-        this.rootView = view;
     }
 }
