@@ -47,7 +47,9 @@
         <activity
                 android:theme="@style/CustomAppTheme.FullScreen.Transparent"
                 android:name=".module.player.VideoPlayerActivity"/>
-        <activity android:name=".module.boot.view.AppStartActivity">
+        <activity
+                android:label="@string/app_name"
+                android:name=".module.boot.view.AppStartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
