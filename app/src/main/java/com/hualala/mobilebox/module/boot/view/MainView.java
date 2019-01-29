@@ -175,10 +175,13 @@ public class MainView extends ViewDelegate<View> implements IMainView,
         switch (navigationView.getSelectedItemId()) {
             case R.id.navigation_home:
                 showPicture();
+                break;
             case R.id.navigation_dashboard:
                 showVideo();
+                break;
             case R.id.navigation_notifications:
                 showMusic();
+                break;
         }
     }
 }
