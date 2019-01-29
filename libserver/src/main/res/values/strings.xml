@@ -8,4 +8,9 @@
     <string name="notify_channel_title">MobileBox后台程序正在运行</string>
     <string name="notify_channel_content">实时获取本地数据库数据</string>
 
+    <string name="notify_channel_id_api">后台监控服务</string>
+    <string name="notify_channel_name_api">后台监控消息</string>
+    <string name="notify_channel_title_api">MobileBox后台接口监控消息</string>
+    <string name="notify_channel_content_api">实时获取后台监控接口访问</string>
+
 </resources>

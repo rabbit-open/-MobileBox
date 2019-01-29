@@ -20,7 +20,7 @@ public class MBBusinessContractor {
     public static void initBusinessContractor() {
         GeneralConfig generalConfig = new GeneralConfig();
         CloudServerInfo cloudServerInfo = new CloudServerInfo();
-        cloudServerInfo.setBaseApiUrl("http://127.0.0.1:8888/");
+        cloudServerInfo.setBaseApiUrl("http://0.0.0.0:8888/");
         generalConfig.setCloudServerInfo(cloudServerInfo);
         businessContractor = new TerminalDefaultBusinessContractor(generalConfig, UIThread.getInstance(), null);
     }

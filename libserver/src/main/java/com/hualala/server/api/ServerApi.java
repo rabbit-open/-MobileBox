@@ -4,9 +4,8 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.hualala.data.entity.reponse.MBVideoListResponse;
 import com.hualala.domain.model.MVideo;
+import com.hualala.libserver.R;
 import com.hualala.server.media.MediaUtils;
-import com.hualala.server.widget.FormatLogProcess;
-import com.hualala.server.widget.JsonFormatUtils;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 
@@ -45,7 +44,11 @@ public class ServerApi {
     private void getFiles() {
         server.get("/files", (request, response) -> {
 
-            JsonFormatUtils.sendLocalRequest(request.getPath(),"有人访问了","{}");
+            new NotificationUtils(context,
+                    "channel_api", context.getString(R.string.notify_channel_id_api),
+                    context.getString(R.string.notify_channel_name_api))
+                    .sendNotification(context.getString(R.string.notify_channel_title_api) + ":" + request.getPath(),
+                            context.getString(R.string.notify_channel_content_api), 3);
 
             String format = request.getQuery().getString("format");
             List<MVideo> array = new ArrayList<>();
@@ -59,7 +62,7 @@ public class ServerApi {
                 MediaUtils.getLoadImages(context, array);
             }
 
-            MBVideoListResponse  data=new MBVideoListResponse();
+            MBVideoListResponse data = new MBVideoListResponse();
             data.setCode("200");
             data.setMsg("success");
             data.setData(array);
@@ -70,7 +73,11 @@ public class ServerApi {
     private void addLocalFileResource() {
         server.get("/files/.*", (request, response) -> {
 
-            JsonFormatUtils.sendLocalRequest(request.getPath(),"有人访问了","{}");
+            new NotificationUtils(context,
+                    "channel_api", context.getString(R.string.notify_channel_id_api),
+                    context.getString(R.string.notify_channel_name_api))
+                    .sendNotification(context.getString(R.string.notify_channel_title_api) + ":" + request.getPath(),
+                            context.getString(R.string.notify_channel_content_api), 2);
 
             String path = request.getPath().replace("/files/", "");
             try {
