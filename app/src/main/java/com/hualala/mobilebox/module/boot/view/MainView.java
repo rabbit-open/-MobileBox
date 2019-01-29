@@ -3,6 +3,7 @@ package com.hualala.mobilebox.module.boot.view;
 import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +39,8 @@ public class MainView extends ViewDelegate<View> implements IMainView,
 
     @BindView(R2.id.navigation)
     public BottomNavigationView navigationView;
+    @BindView(R2.id.floatbtn)
+    public FloatingActionButton floatingActionButton;
 
 
     private SupetRecyclerAdapter adapter;
@@ -126,6 +129,14 @@ public class MainView extends ViewDelegate<View> implements IMainView,
             }
         };
         mListView.setAdapter(adapter);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UINavgation.startScanCodeActivity(getContext());
+            }
+        });
+
     }
 
     @Override

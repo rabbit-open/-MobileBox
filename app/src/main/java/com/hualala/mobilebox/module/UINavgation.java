@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import com.hualala.mobilebox.module.boot.view.MainActivity;
 import com.hualala.mobilebox.module.player.VideoPlayerActivity;
+import com.hualala.mobilebox.module.zxing.CodeScanActivity;
 
 public class UINavgation {
 
@@ -23,6 +24,12 @@ public class UINavgation {
 
     public static void startMainActivity(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    public static void startScanCodeActivity(Context context) {
+        Intent intent = new Intent(context, CodeScanActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

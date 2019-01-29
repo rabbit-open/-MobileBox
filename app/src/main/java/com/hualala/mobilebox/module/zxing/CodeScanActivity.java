@@ -29,8 +29,8 @@ public class CodeScanActivity extends AppCompatActivity implements DecoratedBarc
         //指定扫猫条形码
         Intent intent = getIntent();
         intent.setAction(Intents.Scan.ACTION);
-        intent.putExtra(Intents.Scan.FORMATS, BarcodeFormat.CODE_128.name());
-        intent.putExtra(Intents.Scan.MODE, Intents.Scan.ONE_D_MODE);
+        intent.putExtra(Intents.Scan.FORMATS, BarcodeFormat.QR_CODE.name());
+        intent.putExtra(Intents.Scan.MODE, Intents.Scan.QR_CODE_MODE);
 
         capture.initializeFromIntent(intent, savedInstanceState);
         capture.decode();

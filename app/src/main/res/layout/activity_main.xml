@@ -3,23 +3,44 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        style="@style/StatusBarFullScreenNoBarStyle"
+        style="@style/StatusBarFixColorStyle"
         android:orientation="vertical"
         android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    <com.hualala.mobilebox.widget.recyclelib.SupetRecyclerView
-            android:id="@+id/list"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-    />
-    <android.support.design.widget.BottomNavigationView
-            android:id="@+id/navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
-            android:layout_marginStart="0dp"
-            app:elevation="@null"
-            android:background="?android:attr/windowBackground"
-            app:menu="@menu/navigation"/>
+        <android.support.design.widget.BottomNavigationView
+                android:id="@+id/navigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_marginStart="0dp"
+                app:itemTextColor="@color/color_appcolor3_selector"
+                android:layout_alignParentTop="true"
+                app:elevation="@null"
+                app:itemIconTint="@color/color_appcolor6_selector"
+                app:itemBackground="@color/bg_page"
+                app:menu="@menu/navigation"/>
+
+        <com.hualala.mobilebox.widget.recyclelib.SupetRecyclerView
+                android:id="@+id/list"
+                android:layout_below="@+id/navigation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+        />
+
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/px60"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                app:backgroundTint="@color/app_color"
+                app:maxImageSize="@dimen/px56"
+                app:elevation="@dimen/px20"
+                app:rippleColor="@color/app_color_pressed"
+                android:src="@drawable/pet_icon"/>
+
+    </RelativeLayout>
 </com.supets.pet.theme.statsbar.TranslucentLinearLayout>
