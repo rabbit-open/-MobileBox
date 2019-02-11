@@ -36,4 +36,9 @@ public class MBBusinessContractor {
                 .getGeneralConfig().getCloudServerInfo().getBaseApiUrl() + "files/";
     }
 
+    public static String getShareFileBaseUrl() {
+        return MBBusinessContractor.getBusinessContractor()
+                .getGeneralConfig().getCloudServerInfo().getBaseApiUrl() + "files/";
+    }
+
 }

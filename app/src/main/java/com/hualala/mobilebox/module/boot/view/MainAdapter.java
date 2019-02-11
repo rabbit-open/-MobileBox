@@ -78,6 +78,7 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
                 @Override
                 public boolean onLongClick(View v) {
                     try {
+                        String path = MBBusinessContractor.getShareFileBaseUrl() + data.getPath();
                         QRDialog.newInstance()
                                 .setTitle("分享视频二维码")
                                 .setImage(QRCodeUtils.CreateTwoDCode(path))
@@ -112,6 +113,7 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
                 @Override
                 public boolean onLongClick(View v) {
                     try {
+                        String path = MBBusinessContractor.getShareFileBaseUrl() + data.getPath();
                         QRDialog.newInstance()
                                 .setTitle("分享音乐二维码")
                                 .setImage(QRCodeUtils.CreateTwoDCode(path))
@@ -149,6 +151,7 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
                 @Override
                 public boolean onLongClick(View v) {
                     try {
+                        String path = MBBusinessContractor.getShareFileBaseUrl() + data.getPath();
                         QRDialog.newInstance()
                                 .setTitle("分享图片二维码")
                                 .setImage(QRCodeUtils.CreateTwoDCode(path))
