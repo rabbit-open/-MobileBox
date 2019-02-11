@@ -2,7 +2,7 @@
 <com.supets.pet.theme.statsbar.TranslucentLinearLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/StatusBarFullScreenColorStyle">
+        style="@style/StatusBarFullScreenNoBarStyle">
 
     <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"

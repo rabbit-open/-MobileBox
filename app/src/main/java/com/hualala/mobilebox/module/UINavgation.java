@@ -13,7 +13,7 @@ public class UINavgation {
         Intent intent = new Intent(context, VideoPlayerActivity.class);
         intent.putExtra("videoPath", path);
         intent.putExtra("liveStreaming", 0);
-        intent.putExtra("cache", false);
+        intent.putExtra("cache", true);
         intent.putExtra("loop", false);
         intent.putExtra("video-data-callback", false);
         intent.putExtra("audio-data-callback", false);
