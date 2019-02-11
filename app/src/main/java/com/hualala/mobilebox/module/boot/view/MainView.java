@@ -49,7 +49,7 @@ public class MainView extends ViewDelegate<View> implements IMainView,
         super(view);
         ButterKnife.bind(this, view);
         navigationView.setOnNavigationItemSelectedListener(this);
-        mListView.setLayoutManager(new SupetStaggeredGridLayoutManager(1, SupetStaggeredGridLayoutManager.VERTICAL));
+        mListView.setLayoutManager(new SupetStaggeredGridLayoutManager(2, SupetStaggeredGridLayoutManager.VERTICAL));
         adapter = new SupetRecyclerAdapter<MVideo>(getContext()) {
             @Override
             public int getItemViewType(int position) {
@@ -134,6 +134,14 @@ public class MainView extends ViewDelegate<View> implements IMainView,
             @Override
             public void onClick(View v) {
                 UINavgation.startScanCodeActivity(getContext());
+            }
+        });
+
+        floatingActionButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                
+                return true;
             }
         });
     }
