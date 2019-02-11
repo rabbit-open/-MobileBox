@@ -4,6 +4,7 @@
     <string name="title_picture">图片</string>
     <string name="title_video">视频</string>
     <string name="title_music">音乐</string>
+    <string name="title_set">设置</string>
 
     <!-- 网络访问错误 -->
     <string name="m_base_can_not_connect_server">无法连接服务器,请检查网络</string>

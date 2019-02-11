@@ -34,6 +34,18 @@ public class MainContractorPresenter extends BasePresenter<MainView> implements 
         });
     }
 
+    public MainContractorPresenter(LifecycleOwner lifecycleOwner) {
+
+        viewModel = new MainViewModel();
+
+        viewModel.getData().observe(lifecycleOwner, new Observer<MainViewData>() {
+            @Override
+            public void onChanged(@Nullable MainViewData mainViewData) {
+                mView.updateData(mainViewData);
+            }
+        });
+    }
+
     @Override
     public void getMediaVideo() {
         VideoListUseCase videoListUseCase = MBBusinessContractor.getBusinessContractor().create(VideoListUseCase.class);

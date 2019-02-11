@@ -8,7 +8,6 @@
         android:layout_height="match_parent">
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
         <android.support.design.widget.BottomNavigationView
                 android:id="@+id/navigation"
                 android:layout_width="match_parent"
@@ -16,15 +15,14 @@
                 android:layout_marginEnd="0dp"
                 android:layout_marginStart="0dp"
                 app:itemTextColor="@color/color_appcolor3_selector"
-                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
                 app:elevation="@null"
                 app:itemIconTint="@color/color_appcolor6_selector"
                 app:itemBackground="@color/bg_page"
                 app:menu="@menu/navigation"/>
-
         <com.hualala.mobilebox.widget.recyclelib.SupetRecyclerView
                 android:id="@+id/list"
-                android:layout_below="@+id/navigation"
+                android:layout_above="@+id/navigation"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
         />
@@ -34,8 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/px60"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_above="@+id/navigation"
                 app:backgroundTint="@color/app_color"
                 app:maxImageSize="@dimen/px56"
                 app:elevation="@dimen/px20"
