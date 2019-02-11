@@ -2,7 +2,6 @@ package com.hualala.mobilebox.module.boot.view;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -13,17 +12,17 @@ import com.hualala.libutils.view.ToastUtils;
 import com.hualala.libutils.wifi.WifiUtils;
 import com.hualala.mobilebox.MBBusinessContractor;
 import com.hualala.mobilebox.module.UINavgation;
-import com.hualala.mobilebox.module.boot.contarct.MainContractor;
+import com.hualala.mobilebox.module.boot.contarct.MainTabVpContractor;
 import com.hualala.mobilebox.module.boot.viewmodel.MainShareViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    MainContractor contract;
+    MainTabVpContractor contract;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         changeServiceAddress();
-        contract = new MainContractor(this);
+        contract = new MainTabVpContractor(this);
     }
 
     private void changeServiceAddress() {

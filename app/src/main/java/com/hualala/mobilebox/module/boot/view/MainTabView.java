@@ -1,11 +1,13 @@
 package com.hualala.mobilebox.module.boot.view;
 
-import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewCompat;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -24,10 +26,12 @@ import com.hualala.mobilebox.widget.recyclelib.SupetStaggeredGridLayoutManager;
 import com.sample.commondialog.QRDialog;
 import lombok.Setter;
 
-@Keep
-public class MainView extends ViewDelegate<View> implements IMainView,
-        BottomNavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
+public class MainTabView extends ViewDelegate<View> implements IMainView,
+        BottomNavigationView.OnNavigationItemSelectedListener {
 
     @Setter
     private IMainViewListener Listener;
@@ -35,22 +39,71 @@ public class MainView extends ViewDelegate<View> implements IMainView,
     @BindView(R2.id.list)
     public SupetRecyclerView mListView;
 
-    @BindView(R2.id.navigation)
-    public BottomNavigationView navigationView;
     @BindView(R2.id.floatbtn)
     public FloatingActionButton floatingActionButton;
+    @BindView(R2.id.tab)
+    public TabLayout mTabLayout;
+
+    private List<String> tabIndicators;
 
     private SupetRecyclerAdapter adapter;
 
-    public MainView(View view) {
+    public MainTabView(View view) {
         super(view);
         ButterKnife.bind(this, view);
 
-        navigationView.setOnNavigationItemSelectedListener(this);
-
+        initTab();
         mListView.setLayoutManager(new SupetStaggeredGridLayoutManager(2, SupetStaggeredGridLayoutManager.VERTICAL));
         adapter = new MainAdapter(getContext());
         mListView.setAdapter(adapter);
+    }
+
+    private void initTab() {
+
+        tabIndicators = new ArrayList<>();
+        tabIndicators.add("图片");
+        tabIndicators.add("视频");
+        tabIndicators.add("音乐");
+        tabIndicators.add("设置");
+
+        mTabLayout.setTabMode(TabLayout.MODE_FIXED);
+        mTabLayout.setupWithViewPager(null);//根据viewpager自动创建tab数量，此处为NULL.则mTabLayout.getTabAt(i)为null，需要创建
+
+
+        if (tabIndicators.size() > 0) {
+
+            for (int i = 0; i < tabIndicators.size(); i++) {
+                TabLayout.Tab itemTab = mTabLayout.getTabAt(i);
+                if (itemTab == null) {
+                    itemTab = mTabLayout.newTab();
+                    itemTab.setCustomView(R.layout.item_tab_item);
+                    mTabLayout.addTab(itemTab);
+                }
+
+                TextView itemTv = Objects.requireNonNull(itemTab.getCustomView()).findViewById(R.id.tv_menu_item);
+                itemTv.setText(tabIndicators.get(i));
+            }
+
+            mTabLayout.getTabAt(0).select();
+        }
+        //放在最后，防止第一次select执行
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                refresh();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
     }
 
     @OnClick(R2.id.floatbtn)
@@ -109,14 +162,14 @@ public class MainView extends ViewDelegate<View> implements IMainView,
     }
 
     public void refresh() {
-        switch (navigationView.getSelectedItemId()) {
-            case R.id.navigation_home:
+        switch (mTabLayout.getSelectedTabPosition()) {
+            case 0:
                 showPicture();
                 break;
-            case R.id.navigation_dashboard:
+            case 1:
                 showVideo();
                 break;
-            case R.id.navigation_notifications:
+            case 2:
                 showMusic();
                 break;
         }

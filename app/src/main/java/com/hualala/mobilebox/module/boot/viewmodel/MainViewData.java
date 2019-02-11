@@ -11,6 +11,7 @@ import java.util.List;
 public class MainViewData {
 
     public List<MVideo> videoList;
+    public int type;// 1,2,3
 
     public boolean isSuccess;
 

@@ -1,6 +1,7 @@
 package com.hualala.mobilebox.module.boot.view;
 
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.zxing.WriterException;
 import com.hualala.domain.model.MVideo;
 import com.hualala.mobilebox.MBBusinessContractor;
 import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.module.UINavgation;
+import com.hualala.mobilebox.module.zxing.QRCodeUtils;
 import com.hualala.mobilebox.widget.recyclelib.SupetRecyclerAdapter;
 import com.hualala.mobilebox.widget.recyclelib.SupetRecyclerViewHolder;
+import com.sample.commondialog.QRDialog;
 
 public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
 
@@ -70,6 +74,24 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
                 }
             });
 
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    try {
+                        QRDialog.newInstance()
+                                .setTitle("分享视频二维码")
+                                .setImage(QRCodeUtils.CreateTwoDCode(path))
+                                .setContent(path)
+                                .setMargin(60)
+                                .setOutCancel(true)
+                                .show(((FragmentActivity) getContext()).getSupportFragmentManager());
+                    } catch (WriterException e) {
+                        e.printStackTrace();
+                    }
+                    return true;
+                }
+            });
+
         } else if (viewType == MVideo.MVideoTypeAudio) {
 
             TextView name = holder.itemView.findViewById(R.id.name);
@@ -85,6 +107,25 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
                     UINavgation.startPlayerActivity(getContext(), path);
                 }
             });
+
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    try {
+                        QRDialog.newInstance()
+                                .setTitle("分享音乐二维码")
+                                .setImage(QRCodeUtils.CreateTwoDCode(path))
+                                .setContent(path)
+                                .setMargin(60)
+                                .setOutCancel(true)
+                                .show(((FragmentActivity) getContext()).getSupportFragmentManager());
+                    } catch (WriterException e) {
+                        e.printStackTrace();
+                    }
+                    return true;
+                }
+            });
+
         } else {
 
             SimpleDraweeView simpleDraweeView = holder.itemView.findViewById(R.id.main_pic);
@@ -103,6 +144,24 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
                     .setRetainImageOnFailure(true)
                     .setOldController(simpleDraweeView.getController())
                     .setAutoPlayAnimations(true).build());
+
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    try {
+                        QRDialog.newInstance()
+                                .setTitle("分享图片二维码")
+                                .setImage(QRCodeUtils.CreateTwoDCode(path))
+                                .setContent(path)
+                                .setMargin(60)
+                                .setOutCancel(true)
+                                .show(((FragmentActivity) getContext()).getSupportFragmentManager());
+                    } catch (WriterException e) {
+                        e.printStackTrace();
+                    }
+                    return true;
+                }
+            });
         }
 
     }

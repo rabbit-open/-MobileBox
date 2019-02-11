@@ -131,6 +131,7 @@ public abstract class SupetRecyclerAdapter<T> {
         positionStart = mDRecyclerViewAdapter.getHeaderViewsCount() + positionStart;
         mDRecyclerViewAdapter.notifyItemRangeRemoved(positionStart, itemCount);
     }
+
     public List<T> getData() {
         return mDatas;
     }
