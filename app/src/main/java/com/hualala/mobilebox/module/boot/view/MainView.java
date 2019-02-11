@@ -4,6 +4,7 @@ import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -84,6 +85,8 @@ public class MainView extends ViewDelegate<View> implements IMainView,
                     simpleDraweeView.setAspectRatio(1.7f);
 
                     final String path = MBBusinessContractor.getFileBaseUrl() + data.getPath();
+                    Log.v("path",path);
+
                     simpleDraweeView.setController(Fresco.newDraweeControllerBuilder()
                             .setUri(path)
                             .setRetainImageOnFailure(true)
@@ -104,6 +107,7 @@ public class MainView extends ViewDelegate<View> implements IMainView,
                     name.setText(data.getName());
 
                     String path = MBBusinessContractor.getFileBaseUrl() + data.getPath();
+                    Log.v("path",path);
 
                     ImageView playerView = holder.itemView.findViewById(R.id.playbtn);
                     playerView.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +126,9 @@ public class MainView extends ViewDelegate<View> implements IMainView,
                     }
 
                     String path = MBBusinessContractor.getFileBaseUrl() + (data.getThumbPath() == null ? data.getPath() : data.getThumbPath());
+
+                    Log.v("path",path);
+
                     simpleDraweeView.setController(Fresco.newDraweeControllerBuilder()
                             .setUri(path)
                             .setRetainImageOnFailure(true)

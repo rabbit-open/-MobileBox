@@ -26,11 +26,14 @@ public class MBBusinessContractor {
     }
 
     public static String getFileBaseUrl() {
-        if (getBusinessContractor().getGeneralConfig().getCloudServerInfo().getBaseApiUrl().equals(WifiUtils.getWifiIp(MBContext.getContext()))) {
-            return MBBusinessContractor.getBusinessContractor()
-                    .getGeneralConfig().getCloudServerInfo().getBaseApiUrl() + "files/";
+        String url = getBusinessContractor().getGeneralConfig().getCloudServerInfo().getBaseApiUrl();
+        String ip = WifiUtils.getWifiIp(MBContext.getContext());
+        if (url.contains("0.0.0.0:8888") || (ip != null && url.contains(ip))) {
+            return "file://";
         }
-        return "file://";
+
+        return MBBusinessContractor.getBusinessContractor()
+                .getGeneralConfig().getCloudServerInfo().getBaseApiUrl() + "files/";
     }
 
 }
