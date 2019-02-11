@@ -11,6 +11,7 @@ import com.hualala.libutils.view.ToastUtils;
 import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.base.BaseContractor;
 import com.hualala.mobilebox.module.boot.presenter.MainContractorPresenter;
+import com.hualala.mobilebox.module.boot.view.IMainView;
 import com.hualala.mobilebox.module.boot.view.MainView;
 import com.hualala.mobilebox.module.boot.viewmodel.MainShareViewModel;
 
@@ -27,10 +28,24 @@ public class MainContractor extends BaseContractor {
 
         mView = new MainView(rootView);
 
-        presenter = new MainContractorPresenter(lifecycleOwner);
-        presenter.setView(mView);
+        presenter = new MainContractorPresenter(lifecycleOwner, mView);
 
-        mView.setListener(presenter);
+        mView.setListener(new IMainView.IMainViewListener() {
+            @Override
+            public void getMediaVideo() {
+                presenter.getMediaVideo();
+            }
+
+            @Override
+            public void getMediaAudio() {
+                presenter.getMediaAudio();
+            }
+
+            @Override
+            public void getMediaImage() {
+                presenter.getMediaImage();
+            }
+        });
 
         presenter.getMediaImage();
 

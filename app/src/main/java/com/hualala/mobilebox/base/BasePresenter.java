@@ -10,6 +10,13 @@ public abstract class BasePresenter<T> implements Presenter, LifecycleObserver {
 
     protected T mView;
 
+    public BasePresenter() {
+    }
+
+    public BasePresenter(T mView) {
+        this.mView = mView;
+    }
+
     public void setView(T view) {
         mView = view;
     }

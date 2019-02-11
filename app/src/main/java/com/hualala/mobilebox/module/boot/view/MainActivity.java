@@ -1,8 +1,8 @@
 package com.hualala.mobilebox.module.boot.view;
 
-import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +12,6 @@ import com.google.zxing.integration.android.IntentResult;
 import com.hualala.libutils.view.ToastUtils;
 import com.hualala.libutils.wifi.WifiUtils;
 import com.hualala.mobilebox.MBBusinessContractor;
-import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.module.UINavgation;
 import com.hualala.mobilebox.module.boot.contarct.MainContractor;
 import com.hualala.mobilebox.module.boot.viewmodel.MainShareViewModel;

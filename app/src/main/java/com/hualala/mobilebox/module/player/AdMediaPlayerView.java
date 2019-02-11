@@ -1,9 +1,12 @@
 package com.hualala.mobilebox.module.player;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
 import android.os.PowerManager;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -85,6 +88,7 @@ public class AdMediaPlayerView extends RatioFrameLayout {
             int startPos = mIntent.getIntExtra("start-pos", 0);
             mAVOptions.setInteger(AVOptions.KEY_START_POSITION, startPos * 1000);
         }
+
 
         AudioManager audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
         audioManager.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
@@ -181,6 +185,11 @@ public class AdMediaPlayerView extends RatioFrameLayout {
                 FrameLayout.LayoutParams layout = new FrameLayout.LayoutParams(width, height);
                 layout.gravity = Gravity.CENTER;
                 mSurfaceView.setLayoutParams(layout);
+
+                //视频是横屏 旋转方向
+                if ((width > height) && isScreenAutoRotate(getContext())) {
+                    ((Activity) getContext()).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                }
             }
         }
     };
@@ -193,5 +202,18 @@ public class AdMediaPlayerView extends RatioFrameLayout {
             mIsStopped = false;
         }
     };
+
+    /**
+     * 判断是否开启了 “屏幕自动旋转”
+     */
+    public static boolean isScreenAutoRotate(Context context) {
+        int gravity = 0;
+        try {
+            gravity = Settings.System.getInt(context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+        return gravity == 1;
+    }
 
 }

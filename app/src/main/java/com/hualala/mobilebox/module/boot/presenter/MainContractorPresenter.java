@@ -2,6 +2,7 @@ package com.hualala.mobilebox.module.boot.presenter;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
 import com.hualala.domain.interactor.DefaultObserver;
 import com.hualala.domain.model.MVideo;
@@ -18,9 +19,13 @@ import java.util.List;
 
 public class MainContractorPresenter extends BasePresenter<MainView> implements IMainView.IMainViewListener {
 
-    private MainViewModel viewModel = new MainViewModel();
+    private MainViewModel viewModel;
 
-    public MainContractorPresenter(LifecycleOwner lifecycleOwner) {
+    public MainContractorPresenter(LifecycleOwner lifecycleOwner, MainView mView) {
+        super(mView);
+
+        viewModel = ViewModelProviders.of(mView.getFragmentActivity()).get(MainViewModel.class);
+
         viewModel.getData().observe(lifecycleOwner, new Observer<MainViewData>() {
             @Override
             public void onChanged(@Nullable MainViewData mainViewData) {
