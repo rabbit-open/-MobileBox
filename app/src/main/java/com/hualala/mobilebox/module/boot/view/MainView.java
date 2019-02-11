@@ -84,11 +84,13 @@ public class MainView extends ViewDelegate<View> implements IMainView,
                     SimpleDraweeView simpleDraweeView = holder.itemView.findViewById(R.id.main_pic);
                     simpleDraweeView.setAspectRatio(1.7f);
 
+                    final String thumbPath = MBBusinessContractor.getFileBaseUrl() + data.getThumbPath();
+                    Log.v("thumbPath",thumbPath);
+
                     final String path = MBBusinessContractor.getFileBaseUrl() + data.getPath();
-                    Log.v("path",path);
 
                     simpleDraweeView.setController(Fresco.newDraweeControllerBuilder()
-                            .setUri(path)
+                            .setUri(thumbPath)
                             .setRetainImageOnFailure(true)
                             .setOldController(simpleDraweeView.getController())
                             .setAutoPlayAnimations(true).build());
