@@ -14,6 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.zxing.WriterException;
 import com.hualala.domain.model.MVideo;
 import com.hualala.mobilebox.MBBusinessContractor;
 import com.hualala.mobilebox.R;
@@ -21,10 +22,12 @@ import com.hualala.mobilebox.R2;
 import com.hualala.mobilebox.base.ViewDelegate;
 import com.hualala.mobilebox.module.UINavgation;
 import com.hualala.mobilebox.module.boot.viewmodel.MainViewData;
+import com.hualala.mobilebox.module.zxing.QRCodeUtils;
 import com.hualala.mobilebox.widget.recyclelib.SupetRecyclerAdapter;
 import com.hualala.mobilebox.widget.recyclelib.SupetRecyclerView;
 import com.hualala.mobilebox.widget.recyclelib.SupetRecyclerViewHolder;
 import com.hualala.mobilebox.widget.recyclelib.SupetStaggeredGridLayoutManager;
+import com.sample.commondialog.QRDialog;
 import lombok.Setter;
 
 @Keep
@@ -140,7 +143,19 @@ public class MainView extends ViewDelegate<View> implements IMainView,
         floatingActionButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                
+
+                String url = MBBusinessContractor.getBusinessContractor().getGeneralConfig().getCloudServerInfo().getBaseApiUrl();
+                try {
+                    QRDialog.newInstance()
+                            .setTitle("本机服务器地址二维码")
+                            .setImage(QRCodeUtils.CreateTwoDCode(url))
+                            .setContent(url)
+                            .setMargin(60)
+                            .setOutCancel(true)
+                            .show(getFragmentActivity().getSupportFragmentManager());
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
                 return true;
             }
         });

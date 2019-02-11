@@ -1,8 +1,10 @@
 package com.sample.commondialog.widget;
 
+import android.graphics.Bitmap;
 import android.support.annotation.IdRes;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ViewHolder {
@@ -76,6 +78,11 @@ public class ViewHolder {
     public void setBackgroundColor(int viewId, int colorId) {
         View view = getView(viewId);
         view.setBackgroundColor(colorId);
+    }
+
+    public void setImageView(int viewId, Bitmap bitmap) {
+        ImageView view = getView(viewId);
+        view.setImageBitmap(bitmap);
     }
 
     /**

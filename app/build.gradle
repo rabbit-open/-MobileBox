@@ -97,6 +97,7 @@ dependencies {
     implementation project(":libcommonui")
     implementation project(":themelib")
     implementation project(':libpermission')
+    implementation project(':libdialog')
 
     //图片处理
     implementation "com.scwang.smartrefresh:SmartRefreshLayout:1.0.3"

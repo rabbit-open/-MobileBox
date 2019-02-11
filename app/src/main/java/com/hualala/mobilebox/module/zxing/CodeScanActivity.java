@@ -75,6 +75,7 @@ public class CodeScanActivity extends AppCompatActivity implements DecoratedBarc
     @Override
     public void onTorchOff() {
 
+
     }
 
 
