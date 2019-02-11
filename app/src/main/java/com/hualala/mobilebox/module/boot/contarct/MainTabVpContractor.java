@@ -16,6 +16,7 @@ import com.hualala.mobilebox.R2;
 import com.hualala.mobilebox.base.BaseContractor;
 import com.hualala.mobilebox.base.BaseFragment;
 import com.hualala.mobilebox.module.boot.view.PictureListFragment;
+import com.hualala.mobilebox.module.setting.SetListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class MainTabVpContractor extends BaseContractor {
         tabFragments.add(PictureListFragment.newInstance(1));
         tabFragments.add(PictureListFragment.newInstance(2));
         tabFragments.add(PictureListFragment.newInstance(3));
-        tabFragments.add(PictureListFragment.newInstance(1));
+        tabFragments.add(SetListFragment.newInstance());
 
         mViewPager.setAdapter(new ContentPagerAdapter(getLifecycleOwner().getSupportFragmentManager()));
 

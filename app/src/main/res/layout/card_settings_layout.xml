@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_margin="@dimen/px5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/cardViewStyle"
+>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="0dp"
+            android:background="@drawable/card_view_corner"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+                android:id="@+id/name"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/sp30"
+                android:textColor="@color/color_3"
+                android:layout_width="match_parent"
+                android:text="@string/app_name"
+                android:drawableRight="@drawable/widget_delate_edit_right_icon_me_right_arrow"
+                android:layout_height="@dimen/px100"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

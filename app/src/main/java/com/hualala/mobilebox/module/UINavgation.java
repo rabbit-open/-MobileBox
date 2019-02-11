@@ -3,6 +3,7 @@ package com.hualala.mobilebox.module;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import com.hualala.mobilebox.module.boot.view.MainActivity;
 import com.hualala.mobilebox.module.player.VideoPlayerActivity;
 import com.hualala.mobilebox.module.zxing.CodeScanActivity;
@@ -36,4 +37,8 @@ public class UINavgation {
         ((Activity) context).startActivityForResult(intent, ScanCode);
     }
 
+    public static void startScanCodeActivity(Fragment context) {
+        Intent intent = new Intent(context.getActivity(), CodeScanActivity.class);
+        context.startActivityForResult(intent, ScanCode);
+    }
 }
