@@ -9,15 +9,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import com.hualala.libutils.view.ToastUtils;
 import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.base.BaseContractorActivity;
 
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MP3Player extends BaseContractorActivity {
     private EditText et_path;
     private Button btn_play, btn_pause, btn_replay, btn_stop;
+    private SeekBar btn_process;
     private MediaPlayer mediaPlayer;
 
     @Override
@@ -28,6 +32,29 @@ public class MP3Player extends BaseContractorActivity {
         String path = getIntent().getStringExtra("path");
 
         et_path = findViewById(R.id.et_path);
+        btn_process = findViewById(R.id.btn_process);
+        btn_process.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                    mediaPlayer.seekTo(seekBar.getProgress());
+                }
+            }
+        });
+        if (path.startsWith("file://")) {
+            path = path.replaceFirst("file://", "");
+        }
+
         et_path.setText(path);
 
         btn_play = findViewById(R.id.btn_play);
@@ -39,7 +66,21 @@ public class MP3Player extends BaseContractorActivity {
         btn_pause.setOnClickListener(click);
         btn_replay.setOnClickListener(click);
         btn_stop.setOnClickListener(click);
+
+        mTimer = new Timer();
+        mTimerTask = new TimerTask() {
+            @Override
+            public void run() {
+                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                    btn_process.setProgress(mediaPlayer.getCurrentPosition());
+                }
+            }
+        };
+        mTimer.schedule(mTimerTask, 0, 1000);
     }
+
+    Timer mTimer;
+    TimerTask mTimerTask;
 
     private View.OnClickListener click = new View.OnClickListener() {
 
@@ -73,6 +114,8 @@ public class MP3Player extends BaseContractorActivity {
         File file = new File(path);
         if (file.exists() && file.length() > 0) {
             try {
+                btn_process.setProgress(0);
+
                 mediaPlayer = new MediaPlayer();
                 // 设置指定的流媒体地址
                 mediaPlayer.setDataSource(path);
@@ -89,8 +132,10 @@ public class MP3Player extends BaseContractorActivity {
                         ToastUtils.showToastCenter(MP3Player.this, "开始播放");
                         // 避免重复播放，把播放按钮设置为不可用
                         btn_play.setEnabled(false);
+                        btn_process.setMax(mediaPlayer.getDuration());
                     }
                 });
+
                 // 设置循环播放
                 // mediaPlayer.setLooping(true);
                 mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
@@ -99,6 +144,7 @@ public class MP3Player extends BaseContractorActivity {
                     public void onCompletion(MediaPlayer mp) {
                         // 在播放完毕被回调
                         btn_play.setEnabled(true);
+                        btn_process.setProgress(mediaPlayer.getDuration());
                     }
                 });
 
@@ -145,6 +191,7 @@ public class MP3Player extends BaseContractorActivity {
     protected void replay() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.seekTo(0);
+            btn_process.setProgress(0);
             ToastUtils.showToastCenter(MP3Player.this, "重新播放");
             btn_pause.setText("暂停");
             return;
@@ -161,6 +208,7 @@ public class MP3Player extends BaseContractorActivity {
             mediaPlayer.release();
             mediaPlayer = null;
             btn_play.setEnabled(true);
+            btn_process.setProgress(0);
             ToastUtils.showToastCenter(MP3Player.this, "停止播放");
         }
 
@@ -173,6 +221,11 @@ public class MP3Player extends BaseContractorActivity {
             mediaPlayer.stop();
             mediaPlayer.release();
             mediaPlayer = null;
+        }
+
+        if (mTimerTask != null) {
+            mTimerTask.cancel();
+            mTimer.cancel();
         }
         super.onDestroy();
     }
