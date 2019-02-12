@@ -69,18 +69,27 @@ public class SetListFragment extends BaseFragment {
             if (result.getContents() == null) {
                 ToastUtils.showToastCenter(getActivity(), "扫码失败");
             } else {
-                changeServiceAddress(result.getContents());
-                ToastUtils.showToastCenter(getActivity(), "扫码成功");
+                if (result.getContents().endsWith("/")) {
+                    changeServiceAddress(result.getContents());
+                    ToastUtils.showToastCenter(getActivity(), "成功切换远程地址");
+                } else {
+                    ToastUtils.showToastCenter(getActivity(), "非法地址");
+                }
             }
         }
     }
 
     private void changeServiceAddress(String ip) {
         if (!TextUtils.isEmpty(ip)) {
-            MBBusinessContractor.getBusinessContractor().getTerminalDataRepository().changeServerAddr(ip);
-            MBBusinessContractor.getBusinessContractor().getGeneralConfig().getCloudServerInfo().setBaseApiUrl(ip);
-            MainShareViewModel model = ViewModelProviders.of(this).get(MainShareViewModel.class);
-            model.select(true);
+            if (ip.endsWith("/")) {
+                MBBusinessContractor.getBusinessContractor().getTerminalDataRepository().changeServerAddr(ip);
+                MBBusinessContractor.getBusinessContractor().getGeneralConfig().getCloudServerInfo().setBaseApiUrl(ip);
+                MainShareViewModel model = ViewModelProviders.of(this).get(MainShareViewModel.class);
+                model.select(true);
+                ToastUtils.showToastCenter(getActivity(), "成功切换本地服务");
+            } else {
+                ToastUtils.showToastCenter(getActivity(), "非法地址");
+            }
         }
     }
 }
