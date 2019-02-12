@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
 import android.media.MediaPlayer.OnPreparedListener;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -112,58 +113,61 @@ public class MP3Player extends BaseContractorActivity {
     protected void play() {
         String path = et_path.getText().toString().trim();
         File file = new File(path);
-        if (file.exists() && file.length() > 0) {
-            try {
-                btn_process.setProgress(0);
 
-                mediaPlayer = new MediaPlayer();
-                // 设置指定的流媒体地址
-                mediaPlayer.setDataSource(path);
-                // 设置音频流的类型
-                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-                // 通过异步的方式装载媒体资源
-                mediaPlayer.prepareAsync();
-                mediaPlayer.setOnPreparedListener(new OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        // 装载完毕 开始播放流媒体
-                        mediaPlayer.start();
-                        ToastUtils.showToastCenter(MP3Player.this, "开始播放");
-                        // 避免重复播放，把播放按钮设置为不可用
-                        btn_play.setEnabled(false);
-                        btn_process.setMax(mediaPlayer.getDuration());
-                    }
-                });
-
-                // 设置循环播放
-                // mediaPlayer.setLooping(true);
-                mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
-
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        // 在播放完毕被回调
-                        btn_play.setEnabled(true);
-                        btn_process.setProgress(mediaPlayer.getDuration());
-                    }
-                });
-
-                mediaPlayer.setOnErrorListener(new OnErrorListener() {
-
-                    @Override
-                    public boolean onError(MediaPlayer mp, int what, int extra) {
-                        // 如果发生错误，重新播放
-                        replay();
-                        return false;
-                    }
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-                ToastUtils.showToastCenter(MP3Player.this, "播放失败");
-            }
-        } else {
+        if (!path.toLowerCase().startsWith("http") && file.exists() && file.length() > 0) {
             ToastUtils.showToastCenter(MP3Player.this, "文件不存在");
+            return;
         }
+
+        try {
+            btn_process.setProgress(0);
+
+            mediaPlayer = new MediaPlayer();
+            // 设置指定的流媒体地址
+            mediaPlayer.setDataSource(this, Uri.parse(path));
+            // 设置音频流的类型
+            mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+            // 通过异步的方式装载媒体资源
+            mediaPlayer.prepareAsync();
+            mediaPlayer.setOnPreparedListener(new OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    // 装载完毕 开始播放流媒体
+                    mediaPlayer.start();
+                    ToastUtils.showToastCenter(MP3Player.this, "开始播放");
+                    // 避免重复播放，把播放按钮设置为不可用
+                    btn_play.setEnabled(false);
+                    btn_process.setMax(mediaPlayer.getDuration());
+                }
+            });
+
+            // 设置循环播放
+            // mediaPlayer.setLooping(true);
+            mediaPlayer.setOnCompletionListener(new OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    // 在播放完毕被回调
+                    btn_play.setEnabled(true);
+                    btn_process.setProgress(mediaPlayer.getDuration());
+                }
+            });
+
+            mediaPlayer.setOnErrorListener(new OnErrorListener() {
+
+                @Override
+                public boolean onError(MediaPlayer mp, int what, int extra) {
+                    // 如果发生错误，重新播放
+                    replay();
+                    return false;
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            ToastUtils.showToastCenter(MP3Player.this, "播放失败");
+        }
+
 
     }
 
