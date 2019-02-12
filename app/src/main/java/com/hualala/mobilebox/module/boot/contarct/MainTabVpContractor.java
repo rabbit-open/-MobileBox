@@ -14,7 +14,7 @@ import com.hualala.mobilebox.R2;
 import com.hualala.mobilebox.base.BaseContractor;
 import com.hualala.mobilebox.base.BaseFragment;
 import com.hualala.mobilebox.base.TabFragmentPagerAdapter;
-import com.hualala.mobilebox.module.boot.view.NoAnimationViewPager;
+import com.hualala.mobilebox.widget.viewpager.NoAnimationViewPager;
 import com.hualala.mobilebox.module.boot.view.PictureListFragment;
 import com.hualala.mobilebox.module.setting.SetListFragment;
 

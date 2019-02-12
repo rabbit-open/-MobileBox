@@ -1,4 +1,4 @@
-package com.hualala.mobilebox.module.boot.view;
+package com.hualala.mobilebox.widget.viewpager;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
