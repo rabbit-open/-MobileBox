@@ -4,7 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/StatusBarFullScreenNoBarStyle">
 
-    <android.support.v4.view.ViewPager
+    <com.hualala.mobilebox.module.boot.view.NoAnimationViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="0dp"

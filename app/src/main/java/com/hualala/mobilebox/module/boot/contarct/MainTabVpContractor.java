@@ -14,6 +14,7 @@ import com.hualala.mobilebox.R2;
 import com.hualala.mobilebox.base.BaseContractor;
 import com.hualala.mobilebox.base.BaseFragment;
 import com.hualala.mobilebox.base.TabFragmentPagerAdapter;
+import com.hualala.mobilebox.module.boot.view.NoAnimationViewPager;
 import com.hualala.mobilebox.module.boot.view.PictureListFragment;
 import com.hualala.mobilebox.module.setting.SetListFragment;
 
@@ -25,7 +26,7 @@ public class MainTabVpContractor extends BaseContractor {
     @BindView(R2.id.tab)
     public TabLayout mTabLayout;
     @BindView(R2.id.viewpager)
-    public ViewPager mViewPager;
+    public NoAnimationViewPager mViewPager;
 
     private List<String> tabIndicators;
     private List<BaseFragment> tabFragments;
