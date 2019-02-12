@@ -77,6 +77,15 @@ public class PictureListFragment extends BaseFragment {
         });
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isLoadData()) {
+            updateData();
+        }
+    }
+
     @Override
     public void process() {
         updateData();

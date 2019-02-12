@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 public abstract class BaseFragment extends Fragment {
 
     private View mContentView;
-    private boolean mIsLazyLoad=true;
-    private boolean mIsProcessed=false;
-    private boolean mIsOnCreated=false;
+    private boolean mIsLazyLoad = true;
+    private boolean mIsProcessed = false;
+    private boolean mIsOnCreated = false;
 
     @Override
     public void onAttach(Context context) {
@@ -158,17 +158,17 @@ public abstract class BaseFragment extends Fragment {
         super.onDestroy();
     }
 
-    public boolean isOnResumedLoad() {
+    public boolean isLoadData() {
         //懒加载未处理,不走onresume
         //不是懒加载处理，不走其他情况下都走
-        boolean load = (mIsLazyLoad && !mIsProcessed) || (!mIsLazyLoad && mIsOnCreated);
-        Log.v("manualProcess", getClass().getName() + "onResume=" + !load);
+        boolean noload = (mIsLazyLoad && !mIsProcessed) || (!mIsLazyLoad && mIsOnCreated);
+        Log.v("manualProcess", getClass().getName() + "onResume=" + !noload);
 
         if (mIsOnCreated) {
             mIsOnCreated = false;
         }
 
-        return !load;
+        return !noload;
     }
 
     @Override
