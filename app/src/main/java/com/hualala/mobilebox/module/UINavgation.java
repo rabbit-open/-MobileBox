@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import com.hualala.mobilebox.module.boot.view.MainActivity;
+import com.hualala.mobilebox.module.player.MP3Player;
 import com.hualala.mobilebox.module.player.VideoPlayerActivity;
 import com.hualala.mobilebox.module.zxing.CodeScanActivity;
 
@@ -20,6 +21,13 @@ public class UINavgation {
         intent.putExtra("audio-data-callback", false);
         intent.putExtra("disable-log", true);
         intent.putExtra("start-pos", 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    public static void startMp3PlayerActivity(Context context, String path) {
+        Intent intent = new Intent(context, MP3Player.class);
+        intent.putExtra("path", path);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

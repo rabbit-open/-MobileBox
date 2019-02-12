@@ -105,7 +105,7 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
             playerView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    UINavgation.startPlayerActivity(getContext(), path);
+                    UINavgation.startMp3PlayerActivity(getContext(), path);
                 }
             });
 
