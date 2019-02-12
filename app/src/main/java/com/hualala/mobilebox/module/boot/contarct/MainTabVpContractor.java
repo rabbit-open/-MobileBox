@@ -58,6 +58,7 @@ public class MainTabVpContractor extends BaseContractor {
         mTabLayout.setupWithViewPager(mViewPager);
         for (int i = 0; i < tabIndicators.size(); i++) {
             TabLayout.Tab itemTab = mTabLayout.getTabAt(i);
+
             if (itemTab != null) {
                 itemTab.setCustomView(R.layout.item_tab_item);
                 TextView itemTv = itemTab.getCustomView().findViewById(R.id.tv_menu_item);
@@ -73,6 +74,8 @@ public class MainTabVpContractor extends BaseContractor {
                 if (fragment != null) {
                     fragment.manualProcess();
                 }
+
+                mTabLayout.getTabAt(position).select();
             }
         });
     }
