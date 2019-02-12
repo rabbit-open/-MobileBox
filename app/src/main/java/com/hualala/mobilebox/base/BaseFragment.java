@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 public abstract class BaseFragment extends Fragment {
 
     private View mContentView;
-    private boolean mIsLazyLoad;
-    private boolean mIsProcessed;
-    private boolean mIsOnCreated;
+    private boolean mIsLazyLoad=true;
+    private boolean mIsProcessed=false;
+    private boolean mIsOnCreated=false;
 
     @Override
     public void onAttach(Context context) {

@@ -41,9 +41,9 @@ public class MBBusinessContractor {
                 .getGeneralConfig().getCloudServerInfo().getBaseApiUrl() + "files/";
     }
 
-    public static String getBaseUrl() {
-        return MBBusinessContractor.getBusinessContractor()
-                .getGeneralConfig().getCloudServerInfo().getBaseApiUrl();
+    public static String getDeviceBaseUrl() {
+        String ip = WifiUtils.getWifiIp(MBContext.getContext());
+        return ip != null ? "http://" + ip + ":8888/" : "http://0.0.0.0:8888/";
     }
 
 }

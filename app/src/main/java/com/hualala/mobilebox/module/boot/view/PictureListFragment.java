@@ -41,6 +41,7 @@ public class PictureListFragment extends BaseFragment {
         adapter = new MainAdapter(getContext());
         mListView.setAdapter(adapter);
 
+        mainPresenter = new MainPresenter(new ViewDelegate<>(getContentView()));
 
     }
 
@@ -78,7 +79,6 @@ public class PictureListFragment extends BaseFragment {
 
     @Override
     public void process() {
-        mainPresenter = new MainPresenter(new ViewDelegate<>(getContentView()));
         updateData();
     }
 
@@ -100,9 +100,4 @@ public class PictureListFragment extends BaseFragment {
         return fragment;
     }
 
-    @Override
-    public void manuRefresh() {
-        mListView.getLayoutManager().scrollToPosition(0);
-        updateData();
-    }
 }

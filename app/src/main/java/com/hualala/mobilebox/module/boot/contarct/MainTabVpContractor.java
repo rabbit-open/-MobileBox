@@ -1,10 +1,8 @@
 package com.hualala.mobilebox.module.boot.contarct;
 
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +13,7 @@ import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.R2;
 import com.hualala.mobilebox.base.BaseContractor;
 import com.hualala.mobilebox.base.BaseFragment;
+import com.hualala.mobilebox.base.TabFragmentPagerAdapter;
 import com.hualala.mobilebox.module.boot.view.PictureListFragment;
 import com.hualala.mobilebox.module.setting.SetListFragment;
 
@@ -30,6 +29,7 @@ public class MainTabVpContractor extends BaseContractor {
 
     private List<String> tabIndicators;
     private List<BaseFragment> tabFragments;
+    private ContentPagerAdapter tabAdapter;
 
     public MainTabVpContractor(FragmentActivity lifecycleOwner) {
         super(lifecycleOwner);
@@ -51,8 +51,8 @@ public class MainTabVpContractor extends BaseContractor {
         tabFragments.add(PictureListFragment.newInstance(2));
         tabFragments.add(PictureListFragment.newInstance(3));
         tabFragments.add(SetListFragment.newInstance());
-
-        mViewPager.setAdapter(new ContentPagerAdapter(getLifecycleOwner().getSupportFragmentManager()));
+        tabAdapter = new ContentPagerAdapter(mViewPager, getLifecycleOwner().getSupportFragmentManager());
+        mViewPager.setAdapter(tabAdapter);
 
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mTabLayout.setupWithViewPager(mViewPager);
@@ -66,32 +66,26 @@ public class MainTabVpContractor extends BaseContractor {
             mTabLayout.getTabAt(0).select();
         }
 
-        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-                tabFragments.get(mViewPager.getCurrentItem()).manuRefresh();
+            public void onPageSelected(int position) {
+                BaseFragment fragment = tabAdapter.findFragment(position);
+                if (fragment != null) {
+                    fragment.manualProcess();
+                }
             }
         });
     }
 
-    class ContentPagerAdapter extends FragmentPagerAdapter {
+    class ContentPagerAdapter extends TabFragmentPagerAdapter {
 
-        public ContentPagerAdapter(FragmentManager fm) {
-            super(fm);
+
+        public ContentPagerAdapter(ViewPager viewPager, FragmentManager fm) {
+            super(viewPager, fm);
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public BaseFragment getItemFragment(int position) {
             return tabFragments.get(position);
         }
 
