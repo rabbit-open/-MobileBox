@@ -112,11 +112,13 @@ public class MP3Player extends BaseContractorActivity {
      */
     protected void play() {
         String path = et_path.getText().toString().trim();
-        File file = new File(path);
 
-        if (!path.toLowerCase().startsWith("http") && file.exists() && file.length() > 0) {
-            ToastUtils.showToastCenter(MP3Player.this, "文件不存在");
-            return;
+        if (!path.toLowerCase().startsWith("http") ) {
+            File file = new File(path);
+            if (!(file.exists() && file.length() > 0)){
+                ToastUtils.showToastCenter(this, "文件不存在");
+                return;
+            }
         }
 
         try {
