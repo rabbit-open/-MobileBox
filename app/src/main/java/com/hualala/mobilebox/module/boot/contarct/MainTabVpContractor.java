@@ -14,9 +14,10 @@ import com.hualala.mobilebox.R2;
 import com.hualala.mobilebox.base.BaseContractor;
 import com.hualala.mobilebox.base.BaseFragment;
 import com.hualala.mobilebox.base.TabFragmentPagerAdapter;
-import com.hualala.mobilebox.widget.viewpager.NoAnimationViewPager;
 import com.hualala.mobilebox.module.boot.view.PictureListFragment;
 import com.hualala.mobilebox.module.setting.SetListFragment;
+import com.hualala.mobilebox.module.tv.TvListFragment;
+import com.hualala.mobilebox.widget.viewpager.NoAnimationViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,12 +46,14 @@ public class MainTabVpContractor extends BaseContractor {
         tabIndicators.add("图片");
         tabIndicators.add("视频");
         tabIndicators.add("音乐");
+        tabIndicators.add("电视");
         tabIndicators.add("设置");
 
         tabFragments = new ArrayList<>();
         tabFragments.add(PictureListFragment.newInstance(1));
         tabFragments.add(PictureListFragment.newInstance(2));
         tabFragments.add(PictureListFragment.newInstance(3));
+        tabFragments.add(TvListFragment.newInstance());
         tabFragments.add(SetListFragment.newInstance());
         tabAdapter = new ContentPagerAdapter(mViewPager, getLifecycleOwner().getSupportFragmentManager());
         mViewPager.setAdapter(tabAdapter);

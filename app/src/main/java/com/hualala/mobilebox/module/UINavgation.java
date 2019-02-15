@@ -49,4 +49,20 @@ public class UINavgation {
         Intent intent = new Intent(context.getActivity(), CodeScanActivity.class);
         context.startActivityForResult(intent, ScanCode);
     }
+
+    public static void startLivePlayerActivity(Context context, String path) {
+        Intent intent = new Intent(context, VideoPlayerActivity.class);
+        intent.putExtra("videoPath", path);
+        intent.putExtra("liveStreaming", 1);
+        intent.putExtra("cache", true);
+        intent.putExtra("loop", true);
+        intent.putExtra("video-data-callback", false);
+        intent.putExtra("audio-data-callback", false);
+        intent.putExtra("disable-log", true);
+        intent.putExtra("start-pos", 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+
 }
