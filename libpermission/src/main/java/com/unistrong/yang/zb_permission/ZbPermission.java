@@ -168,7 +168,7 @@ public class ZbPermission {
         if (executeMethod != null) {
             try {
                 if (!executeMethod.isAccessible()) executeMethod.setAccessible(true);
-                executeMethod.invoke(activity, null);
+                executeMethod.invoke(activity);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {

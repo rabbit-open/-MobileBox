@@ -11,12 +11,12 @@ import lombok.Setter;
 @Setter
 public class User {
     @PrimaryKey
-    private int uid;
+    public int uid;
 
     @ColumnInfo(name = "first_name")
-    private String firstName;
+    public String firstName;
 
     @ColumnInfo(name = "last_name")
-    private String lastName;
+    public String lastName;
     
 }
