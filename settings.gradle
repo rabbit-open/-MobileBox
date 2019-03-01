@@ -1,4 +1,19 @@
-include ':app', ':libserver', ':libmvp', ':libutils', ':libcommonui', ':librouter', ':libstorge'
-include ':themelib'
-include ':libpermission'
-include ':libdialog'
+include ':bi:app'
+
+include ':lib:libmvp'
+include ':lib:libserver'
+include ':lib:libutils'
+include ':lib:librouter'
+include ':lib:libstorge'
+include ':lib:libpermission'
+
+include ':ui:libdialog'
+include ':ui:libres'
+include ':ui:libtheme'
+include ':ui:libcommonui'
+
+include ':bi:bi_framework'
+include ':bi:bi_router'
+include ':bi:bi_widget'
+include ':bi:boot_ui'
+include ':bi:boot_bi'

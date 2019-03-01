@@ -11,8 +11,10 @@ ext {
     supportLibVersion = "28.0.0"
 
     androidLib = [
+            libs                 : fileTree(dir: 'libs', include: ['*.jar']),
             multidex             : 'com.android.support:multidex:1.0.3',
             appcompatV7          : 'com.android.support:appcompat-v7:28.0.0',
+            supportcompat        : 'com.android.support:support-compat:28.0.0',
             recyclerviewV7       : "com.android.support:recyclerview-v7:28.0.0",
             cardviewV7           : "com.android.support:cardview-v7:28.0.0",
             design               : 'com.android.support:design:28.0.0',
