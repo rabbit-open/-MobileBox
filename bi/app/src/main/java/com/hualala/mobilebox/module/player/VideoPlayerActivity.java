@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.base.BaseContractorActivity;
+import com.hualala.ui.widget.AdMediaPlayerView;
 
 public class VideoPlayerActivity extends BaseContractorActivity {
 

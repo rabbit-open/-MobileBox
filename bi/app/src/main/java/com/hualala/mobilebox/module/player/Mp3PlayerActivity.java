@@ -19,7 +19,7 @@ import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MP3Player extends BaseContractorActivity {
+public class Mp3PlayerActivity extends BaseContractorActivity {
     private EditText et_path;
     private Button btn_play, btn_pause, btn_replay, btn_stop;
     private SeekBar btn_process;
@@ -137,7 +137,7 @@ public class MP3Player extends BaseContractorActivity {
                 public void onPrepared(MediaPlayer mp) {
                     // 装载完毕 开始播放流媒体
                     mediaPlayer.start();
-                    ToastUtils.showToastCenter(MP3Player.this, "开始播放");
+                    ToastUtils.showToastCenter(Mp3PlayerActivity.this, "开始播放");
                     // 避免重复播放，把播放按钮设置为不可用
                     btn_play.setEnabled(false);
                     btn_process.setMax(mediaPlayer.getDuration());
@@ -167,7 +167,7 @@ public class MP3Player extends BaseContractorActivity {
             });
         } catch (Exception e) {
             e.printStackTrace();
-            ToastUtils.showToastCenter(MP3Player.this, "播放失败");
+            ToastUtils.showToastCenter(Mp3PlayerActivity.this, "播放失败");
         }
 
 
@@ -180,13 +180,13 @@ public class MP3Player extends BaseContractorActivity {
         if (btn_pause.getText().toString().trim().equals("继续")) {
             btn_pause.setText("暂停");
             mediaPlayer.start();
-            ToastUtils.showToastCenter(MP3Player.this, "继续播放");
+            ToastUtils.showToastCenter(Mp3PlayerActivity.this, "继续播放");
             return;
         }
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             btn_pause.setText("继续");
-            ToastUtils.showToastCenter(MP3Player.this, "暂停播放");
+            ToastUtils.showToastCenter(Mp3PlayerActivity.this, "暂停播放");
         }
 
     }
@@ -198,7 +198,7 @@ public class MP3Player extends BaseContractorActivity {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.seekTo(0);
             btn_process.setProgress(0);
-            ToastUtils.showToastCenter(MP3Player.this, "重新播放");
+            ToastUtils.showToastCenter(Mp3PlayerActivity.this, "重新播放");
             btn_pause.setText("暂停");
             return;
         }
@@ -215,7 +215,7 @@ public class MP3Player extends BaseContractorActivity {
             mediaPlayer = null;
             btn_play.setEnabled(true);
             btn_process.setProgress(0);
-            ToastUtils.showToastCenter(MP3Player.this, "停止播放");
+            ToastUtils.showToastCenter(Mp3PlayerActivity.this, "停止播放");
         }
 
     }

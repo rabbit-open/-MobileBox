@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import com.hualala.mobilebox.module.boot.view.MainActivity;
-import com.hualala.mobilebox.module.player.MP3Player;
+import com.hualala.mobilebox.module.player.Mp3PlayerActivity;
 import com.hualala.mobilebox.module.player.VideoPlayerActivity;
 import com.hualala.mobilebox.module.zxing.CodeScanActivity;
 
@@ -26,7 +26,7 @@ public class UINavgation {
     }
 
     public static void startMp3PlayerActivity(Context context, String path) {
-        Intent intent = new Intent(context, MP3Player.class);
+        Intent intent = new Intent(context, Mp3PlayerActivity.class);
         intent.putExtra("path", path);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);

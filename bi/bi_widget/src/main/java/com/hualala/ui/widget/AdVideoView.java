@@ -1,4 +1,4 @@
-package com.hualala.mobilebox.module.player;
+package com.hualala.ui.widget;
 
 import android.content.Context;
 import android.content.Intent;

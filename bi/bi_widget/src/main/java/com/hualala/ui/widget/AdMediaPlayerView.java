@@ -1,10 +1,11 @@
-package com.hualala.mobilebox.module.player;
+package com.hualala.ui.widget;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
+import android.os.Environment;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.view.Gravity;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.FrameLayout;
+
 import com.hualala.libcommonui.RatioFrameLayout;
 import com.pili.pldroid.player.AVOptions;
 import com.pili.pldroid.player.PLMediaPlayer;
@@ -21,6 +23,9 @@ import com.pili.pldroid.player.PLOnPreparedListener;
 import com.pili.pldroid.player.PLOnVideoSizeChangedListener;
 
 public class AdMediaPlayerView extends RatioFrameLayout {
+
+    public static final String SDCARD_DIR = Environment.getExternalStorageDirectory().getAbsolutePath();
+    public static final String DEFAULT_CACHE_DIR = SDCARD_DIR + "/PLDroidPlayer";
 
     private static final String TAG = AdMediaPlayerView.class.getSimpleName();
 
@@ -80,7 +85,7 @@ public class AdMediaPlayerView extends RatioFrameLayout {
         mAVOptions.setInteger(AVOptions.KEY_LIVE_STREAMING, isLiveStreaming ? 1 : 0);
         boolean cache = mIntent.getBooleanExtra("cache", false);
         if (!isLiveStreaming && cache) {
-            mAVOptions.setString(AVOptions.KEY_CACHE_DIR, FileManager.DEFAULT_CACHE_DIR);
+            mAVOptions.setString(AVOptions.KEY_CACHE_DIR, DEFAULT_CACHE_DIR);
         }
         mDisableLog = mIntent.getBooleanExtra("disable-log", false);
         mAVOptions.setInteger(AVOptions.KEY_LOG_LEVEL, mDisableLog ? 5 : 0);
