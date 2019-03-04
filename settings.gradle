@@ -1,4 +1,4 @@
-include ':bi:app'
+include ':bi:app', ':test'
 
 include ':lib:libmvp'
 include ':lib:libserver'
