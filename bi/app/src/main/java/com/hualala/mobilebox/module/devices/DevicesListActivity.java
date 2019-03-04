@@ -6,7 +6,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.hualala.mobilebox.base.BaseContractorActivity;
+import com.hualala.bi.framework.base.BaseContractorActivity;
 import com.hualala.ui.widget.PullLoadMoreView;
 
 import java.net.InetSocketAddress;

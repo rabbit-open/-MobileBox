@@ -3,8 +3,9 @@ package com.hualala.mobilebox.module.zxing;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.View;
+
 import com.google.zxing.WriterException;
-import com.hualala.mobilebox.utils.FileUtils;
+import com.hualala.bi.framework.utils.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +15,7 @@ import java.io.IOException;
 public class QRCodeUtils {
 
 
-    public static final int QRsIZE=300;
+    public static final int QRsIZE = 300;
 
     public static Bitmap CreateTwoDCodeWithLogo(String contentString)
             throws WriterException {
@@ -24,7 +25,7 @@ public class QRCodeUtils {
 
     public static Bitmap CreateTwoDCode(String contentString)
             throws WriterException {
-        return  EncodingHandler.createQRCode(contentString, QRsIZE);
+        return EncodingHandler.createQRCode(contentString, QRsIZE);
     }
 
     public static String saveQrCodePicture(Bitmap qrCodeBitmap) {
@@ -45,8 +46,7 @@ public class QRCodeUtils {
 
         qrCodeBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fOut);
         try {
-            if (fOut!=null)
-            {
+            if (fOut != null) {
                 fOut.flush();
                 fOut.close();
             }
@@ -54,10 +54,10 @@ public class QRCodeUtils {
             return qrImage.getAbsolutePath();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if (qrCodeBitmap!=null){
+        } finally {
+            if (qrCodeBitmap != null) {
                 qrCodeBitmap.recycle();
-                qrCodeBitmap=null;
+                qrCodeBitmap = null;
             }
         }
         return null;

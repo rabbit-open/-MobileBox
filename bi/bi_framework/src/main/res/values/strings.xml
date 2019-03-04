@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">ui</string>
+    <!-- 网络访问错误 -->
+    <string name="m_base_can_not_connect_server">无法连接服务器,请检查网络</string>
+    <string name="m_base_network_error">网络错误</string>
+    <string name="m_base_connect_timeout">网络连接超时,请检查网络或稍后重试</string>
+    <string name="m_base_data_error">数据错误</string>
+    <string name="m_base_data_error_on_json_paser">服务器数据异常，请稍后重试。</string>
+    <string name="m_base_access_server_error">访问服务器出错,请稍后重试</string>
+    <string name="m_base_data_submit_error">数据提交出错,请检查所填入的数据</string>
+
+    <string name="app_name">MobileBox</string>
+
 </resources>

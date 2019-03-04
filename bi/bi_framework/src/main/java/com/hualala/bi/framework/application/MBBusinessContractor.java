@@ -1,4 +1,4 @@
-package com.hualala.mobilebox;
+package com.hualala.bi.framework.application;
 
 
 import com.hualala.data.executor.UIThread;

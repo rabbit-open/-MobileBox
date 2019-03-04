@@ -1,4 +1,4 @@
-package com.hualala.mobilebox.base;
+package com.hualala.bi.framework.base;
 
 import android.support.v4.app.FragmentActivity;
 import android.view.View;

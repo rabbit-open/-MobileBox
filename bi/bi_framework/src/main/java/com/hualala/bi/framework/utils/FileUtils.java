@@ -1,11 +1,16 @@
-package com.hualala.mobilebox.utils;
+package com.hualala.bi.framework.utils;
 
 import android.os.Environment;
+
+import com.hualala.bi.framework.R;
 import com.hualala.libutils.MBContext;
 import com.hualala.libutils.view.ToastUtils;
-import com.hualala.mobilebox.R;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

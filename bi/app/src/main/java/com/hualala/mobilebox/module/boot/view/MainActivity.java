@@ -10,7 +10,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.hualala.libutils.view.ToastUtils;
 import com.hualala.libutils.wifi.WifiUtils;
-import com.hualala.mobilebox.MBBusinessContractor;
+import com.hualala.bi.framework.application.MBBusinessContractor;
 import com.hualala.mobilebox.module.UINavgation;
 import com.hualala.mobilebox.module.boot.contarct.MainTabVpContractor;
 import com.hualala.mobilebox.module.boot.viewmodel.MainShareViewModel;

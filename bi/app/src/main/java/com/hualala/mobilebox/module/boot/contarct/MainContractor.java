@@ -9,7 +9,7 @@ import android.view.View;
 import com.hualala.libutils.MBContext;
 import com.hualala.libutils.view.ToastUtils;
 import com.hualala.mobilebox.R;
-import com.hualala.mobilebox.base.BaseContractor;
+import com.hualala.bi.framework.base.BaseContractor;
 import com.hualala.mobilebox.module.boot.presenter.MainContractorPresenter;
 import com.hualala.mobilebox.module.boot.view.IMainView;
 import com.hualala.mobilebox.module.boot.view.MainView;

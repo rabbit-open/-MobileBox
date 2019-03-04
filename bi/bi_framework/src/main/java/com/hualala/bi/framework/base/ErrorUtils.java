@@ -1,7 +1,8 @@
-package com.hualala.mobilebox.base;
+package com.hualala.bi.framework.base;
 
 import com.google.gson.JsonSyntaxException;
-import com.hualala.mobilebox.R;
+import com.hualala.bi.framework.R;
+
 import retrofit2.HttpException;
 
 import java.net.ConnectException;

@@ -10,7 +10,7 @@ import android.os.Message;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import com.hualala.mobilebox.R;
-import com.hualala.mobilebox.base.BaseContractorActivity;
+import com.hualala.bi.framework.base.BaseContractorActivity;
 import com.hualala.mobilebox.module.UINavgation;
 import com.unistrong.yang.zb_permission.ZbPermission;
 

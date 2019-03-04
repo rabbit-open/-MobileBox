@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.google.zxing.WriterException;
-import com.hualala.mobilebox.MBBusinessContractor;
+import com.hualala.bi.framework.application.MBBusinessContractor;
 import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.module.UINavgation;
 import com.hualala.mobilebox.module.boot.viewmodel.MainShareViewModel;

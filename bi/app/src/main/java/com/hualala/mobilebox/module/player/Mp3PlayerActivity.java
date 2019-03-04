@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import com.hualala.libutils.view.ToastUtils;
 import com.hualala.mobilebox.R;
-import com.hualala.mobilebox.base.BaseContractorActivity;
+import com.hualala.bi.framework.base.BaseContractorActivity;
 
 import java.io.File;
 import java.util.Timer;

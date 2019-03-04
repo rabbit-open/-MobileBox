@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.R2;
-import com.hualala.mobilebox.base.BaseContractor;
-import com.hualala.mobilebox.base.BaseFragment;
-import com.hualala.mobilebox.base.TabFragmentPagerAdapter;
+import com.hualala.bi.framework.base.BaseContractor;
+import com.hualala.bi.framework.base.BaseFragment;
+import com.hualala.bi.framework.base.TabFragmentPagerAdapter;
 import com.hualala.mobilebox.module.boot.view.PictureListFragment;
 import com.hualala.mobilebox.module.setting.SetListFragment;
 import com.hualala.mobilebox.module.tv.TvListFragment;

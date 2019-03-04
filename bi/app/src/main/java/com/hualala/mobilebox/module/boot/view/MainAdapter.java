@@ -12,7 +12,7 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.zxing.WriterException;
 import com.hualala.domain.model.MVideo;
-import com.hualala.mobilebox.MBBusinessContractor;
+import com.hualala.bi.framework.application.MBBusinessContractor;
 import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.module.UINavgation;
 import com.hualala.mobilebox.module.zxing.QRCodeUtils;

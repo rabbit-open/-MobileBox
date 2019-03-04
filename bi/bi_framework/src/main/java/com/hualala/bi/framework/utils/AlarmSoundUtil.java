@@ -1,4 +1,4 @@
-//package com.hualala.mobilebox.utils;
+package com.hualala.bi.framework.utils;//package com.hualala.mobilebox.utils;
 //
 //import android.content.Context;
 //import android.media.AudioManager;

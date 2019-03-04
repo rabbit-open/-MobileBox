@@ -1,4 +1,4 @@
-package com.hualala.mobilebox;
+package com.hualala.bi.framework.application;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.common.util.ByteConstants;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.hualala.bi.framework.utils.FileUtils;
 import com.hualala.libutils.MBContext;
 import com.hualala.libutils.compat.JobService21Compcat;
-import com.hualala.mobilebox.utils.FileUtils;
 import com.hualala.server.api.JobMonitorService;
 import com.hualala.server.api.MBService;
 

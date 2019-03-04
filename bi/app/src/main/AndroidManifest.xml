@@ -14,7 +14,7 @@
 
     <!--https兼容适配，RTL兼容-->
     <application
-        android:name=".MBApplication"
+        android:name="com.hualala.bi.framework.application.MBApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"

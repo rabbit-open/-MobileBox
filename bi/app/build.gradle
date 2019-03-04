@@ -73,11 +73,6 @@ dependencies {
     implementation "org.greenrobot:eventbus:3.1.1"
     annotationProcessor "org.greenrobot:eventbus:3.1.1"
 
-    //接口和模型
-    implementation project(":lib:libserver")
-    //工具类
-    implementation project(":lib:libutils")
-    implementation project(':lib:libpermission')
     //UI
     implementation project(":bi:bi_widget")
     implementation project(":bi:bi_framework")

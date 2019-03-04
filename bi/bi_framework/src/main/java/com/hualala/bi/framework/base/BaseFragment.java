@@ -1,4 +1,4 @@
-package com.hualala.mobilebox.base;
+package com.hualala.bi.framework.base;
 
 import android.content.Context;
 import android.os.Bundle;
