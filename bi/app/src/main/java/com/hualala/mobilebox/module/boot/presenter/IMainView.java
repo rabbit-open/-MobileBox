@@ -1,4 +1,4 @@
-package com.hualala.mobilebox.module.boot.view;
+package com.hualala.mobilebox.module.boot.presenter;
 
 import com.hualala.mobilebox.module.boot.viewmodel.MainViewData;
 

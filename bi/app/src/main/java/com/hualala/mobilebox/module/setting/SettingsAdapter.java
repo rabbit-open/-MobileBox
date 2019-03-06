@@ -5,19 +5,29 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.google.zxing.WriterException;
 import com.hualala.bi.framework.application.MBBusinessContractor;
+import com.hualala.domain.interactor.DefaultObserver;
+import com.hualala.domain.usecase.PhoneListUseCase;
+import com.hualala.libutils.MBContext;
+import com.hualala.libutils.view.ToastUtils;
 import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.module.UINavgation;
 import com.hualala.mobilebox.module.boot.viewmodel.MainShareViewModel;
 import com.hualala.mobilebox.module.zxing.QRCodeUtils;
+import com.hualala.server.phone.ContactsBean;
+import com.hualala.server.phone.PhoneUtils;
 import com.hualala.ui.widget.recyclelib.SupetRecyclerAdapter;
 import com.hualala.ui.widget.recyclelib.SupetRecyclerViewHolder;
 import com.sample.commondialog.QRDialog;
+
+import java.util.List;
 
 public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
 
@@ -43,7 +53,7 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -86,6 +96,15 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
                 }
             });
 
+        } else if (position == 3) {
+            name.setText("远程联系人迁移，需要对方权限");
+            name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    readContacts();
+                }
+            });
+
         }
     }
 
@@ -96,5 +115,38 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
             MainShareViewModel model = ViewModelProviders.of(fragment.getActivity()).get(MainShareViewModel.class);
             model.select(true);
         }
+    }
+
+
+    private void readContacts() {
+        PhoneListUseCase videoListUseCase = MBBusinessContractor.getBusinessContractor().create(PhoneListUseCase.class);
+        videoListUseCase.execute(new DefaultObserver<List<ContactsBean>>() {
+
+            List<ContactsBean> mVideos;
+
+            @Override
+            public void onNext(List<ContactsBean> videos) {
+                mVideos = videos;
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                super.onError(throwable);
+                ToastUtils.showToastCenter(MBContext.getInstance(), throwable.getMessage());
+            }
+
+            @Override
+            public void onComplete() {
+                super.onComplete();
+                if (mVideos != null) {
+                    for (int i = 0; i < mVideos.size(); i++) {
+                        ContactsBean bean = mVideos.get(i);
+                        PhoneUtils.insertData(MBContext.getInstance(), bean.getName(), bean.getPhone());
+                        Log.v("insertData", bean.getName() + "--" + bean.getPhone());
+                    }
+                }
+            }
+
+        }, null);
     }
 }

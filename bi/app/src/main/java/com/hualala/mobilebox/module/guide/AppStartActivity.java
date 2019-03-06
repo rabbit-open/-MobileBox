@@ -1,4 +1,4 @@
-package com.hualala.mobilebox.module.boot.view;
+package com.hualala.mobilebox.module.guide;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -9,8 +9,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
-import com.hualala.mobilebox.R;
+
 import com.hualala.bi.framework.base.BaseContractorActivity;
+import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.module.UINavgation;
 import com.unistrong.yang.zb_permission.ZbPermission;
 
@@ -35,6 +36,8 @@ public class AppStartActivity extends BaseContractorActivity implements Handler.
                 Manifest.permission.ACCESS_WIFI_STATE,
                 Manifest.permission.ACCESS_NETWORK_STATE,
                 Manifest.permission.INTERNET,
+                Manifest.permission.READ_CONTACTS,
+                Manifest.permission.WRITE_CONTACTS,
         }, new ZbPermission.ZbPermissionCallback() {
             @Override
             public void permissionSuccess(int i) {

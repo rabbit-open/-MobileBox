@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.multidex.MultiDexApplication;
 import android.support.v4.content.ContextCompat;
+
 import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.common.util.ByteConstants;
 import com.facebook.drawee.backends.pipeline.Fresco;

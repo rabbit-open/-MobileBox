@@ -9,7 +9,6 @@ import com.hualala.bi.framework.application.MBBusinessContractor;
 import com.hualala.bi.framework.base.BasePresenter;
 import com.hualala.bi.framework.base.ErrorUtils;
 import com.hualala.bi.framework.base.ViewDelegate;
-import com.hualala.mobilebox.module.boot.view.IMainView;
 import com.hualala.mobilebox.module.boot.viewmodel.MainViewData;
 import com.hualala.mobilebox.module.boot.viewmodel.MainViewModel;
 

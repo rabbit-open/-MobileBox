@@ -58,7 +58,7 @@
             android:name=".module.player.Mp3PlayerActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.boot.view.AppStartActivity"
+            android:name=".module.guide.AppStartActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -67,7 +67,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

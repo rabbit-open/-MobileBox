@@ -1,11 +1,15 @@
 package com.hualala.server.api;
 
 import android.content.Context;
+
 import com.google.gson.Gson;
+import com.hualala.data.entity.reponse.MBPhoneListResponse;
 import com.hualala.data.entity.reponse.MBVideoListResponse;
 import com.hualala.domain.model.MVideo;
 import com.hualala.libserver.R;
 import com.hualala.server.media.MediaUtils;
+import com.hualala.server.phone.ContactsBean;
+import com.hualala.server.phone.PhoneUtils;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 
@@ -37,8 +41,20 @@ public class ServerApi {
 
     private ServerApi() {
         getFiles();
+        getPhoneInfo();
         addLocalFileResource();
         this.server.listen(asyncServer, 8888);
+    }
+
+    private void getPhoneInfo() {
+        server.get("/getPhoneInfo", (request, response) -> {
+            List<ContactsBean> list = PhoneUtils.getContactInfo(context);
+            MBPhoneListResponse data = new MBPhoneListResponse();
+            data.setCode("200");
+            data.setMsg("success");
+            data.setData(list);
+            response.send(new Gson().toJson(data));
+        });
     }
 
     private void getFiles() {
