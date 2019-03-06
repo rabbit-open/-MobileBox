@@ -13,6 +13,7 @@ import com.hualala.server.phone.ContactsBean;
 import com.hualala.server.phone.PhoneUtils;
 import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
+import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -52,16 +53,13 @@ public class ServerApi {
 
 
             List<ContactsBean> list = PhoneUtils.getContactInfo(context);
+
             MBPhoneListResponse data = new MBPhoneListResponse();
             data.setCode("200");
             data.setMsg("success");
             data.setData(list);
 
-            Intent intent=new Intent();
-            intent.putExtra("url", request.getPath());
-            intent.putExtra("message", new Gson().toJson(data));
-            intent.putExtra("requestParam", "有人访问你手机联系人");
-            context.sendBroadcast(intent);
+            postUrlBroadcast(request, new Gson().toJson(data), request.getQuery().toString());
 
             response.send(new Gson().toJson(data));
 
@@ -93,15 +91,20 @@ public class ServerApi {
             data.setCode("200");
             data.setMsg("success");
             data.setData(array);
+
+            postUrlBroadcast(request, new Gson().toJson(data), request.getQuery().toString());
+
             response.send(new Gson().toJson(data));
 
-            Intent intent=new Intent();
-            intent.putExtra("url", request.getPath());
-            intent.putExtra("message", new Gson().toJson(data));
-            intent.putExtra("requestParam", request.getQuery().toString());
-            context.sendBroadcast(intent);
-
         });
+    }
+
+    private void postUrlBroadcast(AsyncHttpServerRequest request, String data, String requestParam) {
+        Intent intent = new Intent(MockReceiver.MOCK_SERVICE_NETWORK);
+        intent.putExtra("url", request.getPath());
+        intent.putExtra("message", data);
+        intent.putExtra("requestParam", requestParam);
+        context.sendBroadcast(intent);
     }
 
     private void addLocalFileResource() {
