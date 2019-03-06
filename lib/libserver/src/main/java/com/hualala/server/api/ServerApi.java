@@ -1,6 +1,7 @@
 package com.hualala.server.api;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.google.gson.Gson;
 import com.hualala.data.entity.reponse.MBPhoneListResponse;
@@ -48,23 +49,33 @@ public class ServerApi {
 
     private void getPhoneInfo() {
         server.get("/getPhoneInfo", (request, response) -> {
+
+
             List<ContactsBean> list = PhoneUtils.getContactInfo(context);
             MBPhoneListResponse data = new MBPhoneListResponse();
             data.setCode("200");
             data.setMsg("success");
             data.setData(list);
+
+            Intent intent=new Intent();
+            intent.putExtra("url", request.getPath());
+            intent.putExtra("message", new Gson().toJson(data));
+            intent.putExtra("requestParam", "有人访问你手机联系人");
+            context.sendBroadcast(intent);
+
             response.send(new Gson().toJson(data));
+
         });
     }
 
     private void getFiles() {
         server.get("/files", (request, response) -> {
 
-            new NotificationUtils(context,
-                    "channel_api", context.getString(R.string.notify_channel_id_api),
-                    context.getString(R.string.notify_channel_name_api))
-                    .sendNotification(context.getString(R.string.notify_channel_title_api) + ":" + request.getPath(),
-                            context.getString(R.string.notify_channel_content_api), 3);
+//            new NotificationUtils(context,
+//                    "channel_api", context.getString(R.string.notify_channel_id_api),
+//                    context.getString(R.string.notify_channel_name_api))
+//                    .sendNotification(context.getString(R.string.notify_channel_title_api) + ":" + request.getPath(),
+//                            context.getString(R.string.notify_channel_content_api), 3);
 
             String format = request.getQuery().getString("format");
             List<MVideo> array = new ArrayList<>();
@@ -83,6 +94,13 @@ public class ServerApi {
             data.setMsg("success");
             data.setData(array);
             response.send(new Gson().toJson(data));
+
+            Intent intent=new Intent();
+            intent.putExtra("url", request.getPath());
+            intent.putExtra("message", new Gson().toJson(data));
+            intent.putExtra("requestParam", request.getQuery().toString());
+            context.sendBroadcast(intent);
+
         });
     }
 
