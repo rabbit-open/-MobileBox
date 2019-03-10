@@ -53,7 +53,7 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 5;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
                 }
             });
         } else if (position == 1) {
-            name.setText("切换远程服务器");
+            name.setText("二维码切换远程服务器");
             name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -102,6 +102,15 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
                 @Override
                 public void onClick(View v) {
                     readContacts();
+                }
+            });
+
+        }else if (position == 4) {
+            name.setText("局域网设备扫描");
+            name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   UINavgation.startDevicesListActivity(getContext());
                 }
             });
 

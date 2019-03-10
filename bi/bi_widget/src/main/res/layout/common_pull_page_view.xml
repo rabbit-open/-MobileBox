@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.caidanmao.view.widget.pageloadview.DefaultPageLoadView
+    <com.hualala.libcommonui.pageloadview.DefaultPageLoadView
         android:id="@+id/pageLoadView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

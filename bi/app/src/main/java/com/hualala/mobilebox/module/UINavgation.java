@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+
 import com.hualala.mobilebox.module.boot.view.MainActivity;
+import com.hualala.mobilebox.module.devices.DevicesListActivity;
 import com.hualala.mobilebox.module.player.Mp3PlayerActivity;
 import com.hualala.mobilebox.module.player.VideoPlayerActivity;
 import com.hualala.mobilebox.module.zxing.CodeScanActivity;
@@ -42,6 +44,11 @@ public class UINavgation {
 
     public static void startScanCodeActivity(Context context) {
         Intent intent = new Intent(context, CodeScanActivity.class);
+        ((Activity) context).startActivityForResult(intent, ScanCode);
+    }
+
+    public static void startDevicesListActivity(Context context) {
+        Intent intent = new Intent(context, DevicesListActivity.class);
         ((Activity) context).startActivityForResult(intent, ScanCode);
     }
 
