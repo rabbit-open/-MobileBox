@@ -60,6 +60,8 @@ dependencies {
     implementation project(":lib:libutils")
     implementation project(':lib:libpermission')
     //UI部分
-    implementation project(':bi:boot_ui')
+    implementation project(":bi:bi_widget")
+    implementation project(":bi:bi_framework")
+    implementation project(":bi:bi_router")
 
 }
