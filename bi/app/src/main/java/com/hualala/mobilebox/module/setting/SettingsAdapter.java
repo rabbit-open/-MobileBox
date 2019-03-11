@@ -18,7 +18,6 @@ import com.hualala.domain.usecase.PhoneListUseCase;
 import com.hualala.libutils.MBContext;
 import com.hualala.libutils.view.ToastUtils;
 import com.hualala.mobilebox.R;
-import com.hualala.mobilebox.module.UINavgation;
 import com.hualala.mobilebox.module.boot.viewmodel.MainShareViewModel;
 import com.hualala.mobilebox.module.zxing.QRCodeUtils;
 import com.hualala.server.phone.ContactsBean;
@@ -53,7 +52,7 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 3;
     }
 
     @Override
@@ -79,15 +78,6 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
                 }
             });
         } else if (position == 1) {
-            name.setText("二维码切换远程服务器");
-            name.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    UINavgation.startScanCodeActivity(fragment);
-                }
-            });
-
-        } else if (position == 2) {
             name.setText("切换本地服务器");
             name.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -96,24 +86,14 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
                 }
             });
 
-        } else if (position == 3) {
-            name.setText("远程联系人迁移，需要对方权限");
+        } else if (position == 2) {
+            name.setText("远程联系人迁移");
             name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     readContacts();
                 }
             });
-
-        }else if (position == 4) {
-            name.setText("局域网设备扫描");
-            name.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                   UINavgation.startDevicesListActivity(getContext());
-                }
-            });
-
         }
     }
 

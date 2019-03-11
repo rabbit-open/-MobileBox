@@ -1,7 +1,6 @@
 package com.hualala.bi.framework.base;
 
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
 
 public class BaseContractor {
 
@@ -13,5 +12,9 @@ public class BaseContractor {
 
     public BaseContractor(FragmentActivity lifecycleOwner) {
         this.lifecycleOwner = lifecycleOwner;
+    }
+
+    public FragmentActivity getContext() {
+        return lifecycleOwner;
     }
 }

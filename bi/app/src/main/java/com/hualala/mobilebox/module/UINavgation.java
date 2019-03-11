@@ -42,9 +42,9 @@ public class UINavgation {
 
     public static final int ScanCode = 0xff;
 
-    public static void startScanCodeActivity(Context context) {
+    public static void startScanCodeActivity(Activity context) {
         Intent intent = new Intent(context, CodeScanActivity.class);
-        context.startActivity(intent);
+        context.startActivityForResult(intent, ScanCode);
     }
 
     public static void startDevicesListActivity(Context context) {

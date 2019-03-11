@@ -13,6 +13,7 @@ import com.hualala.mobilebox.R2;
 import com.hualala.bi.framework.base.BaseContractor;
 import com.hualala.bi.framework.base.BaseFragment;
 import com.hualala.bi.framework.base.TabFragmentPagerAdapter;
+import com.hualala.mobilebox.module.UINavgation;
 import com.hualala.mobilebox.module.boot.view.PictureListFragment;
 import com.hualala.mobilebox.module.setting.SetListFragment;
 import com.hualala.mobilebox.module.tv.TvListFragment;
@@ -87,6 +88,13 @@ public class MainTabVpContractor extends BaseContractor {
                 }
 
                 mTabLayout.getTabAt(position).select();
+            }
+        });
+
+        moreBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UINavgation.startDevicesListActivity(getContext());
             }
         });
     }

@@ -4,9 +4,12 @@
     style="@style/StatusBarFixColorStyle">
 
     <com.hualala.ui.widget.CommonHeader
+        android:id="@+id/commonHeader"
         android:layout_width="match_parent"
-        app:titleText="局域网设备查找"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:rightText="扫描"
+        app:rightTextColor="@color/app_color"
+        app:titleText="设备" />
 
     <com.hualala.ui.widget.PullLoadMoreView
         android:id="@+id/pullLoadView"

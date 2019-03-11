@@ -34,7 +34,7 @@
                     android:layout_alignParentRight="true"
                     android:gravity="center"
                     android:padding="@dimen/px20"
-                    android:text="更多"
+                    android:text="设备"
                     android:textColor="@color/color_3"
                     android:textSize="@dimen/sp30" />
             </RelativeLayout>
