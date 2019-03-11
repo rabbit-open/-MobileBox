@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.supets.pet.theme.statsbar.TranslucentLinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.supets.pet.theme.statsbar.TranslucentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/StatusBarFixColorStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.hualala.ui.widget.CommonHeader
+        android:id="@+id/commonHeader"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/StatusBarFullScreenNoBarStyle"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        app:rightText="开灯"
+        app:rightTextColor="@color/app_color"
+        app:titleText="扫码二维码" />
+
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
-            android:id="@+id/zxing_barcode_scanner"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:zxing_scanner_layout="@layout/item_code_scan"/>
+        android:id="@+id/zxing_barcode_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:zxing_scanner_layout="@layout/item_code_scan" />
 </com.supets.pet.theme.statsbar.TranslucentLinearLayout>

@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.android.Intents;
 import com.hualala.mobilebox.R;
+import com.hualala.ui.widget.CommonHeader;
 import com.journeyapps.barcodescanner.CaptureManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
@@ -17,6 +19,9 @@ public class CodeScanActivity extends AppCompatActivity implements DecoratedBarc
 
     private CaptureManager capture;
     private DecoratedBarcodeView barcodeScannerView;
+    private CommonHeader commonHeader;
+
+    private boolean isOpen = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +31,27 @@ public class CodeScanActivity extends AppCompatActivity implements DecoratedBarc
 
         barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);
         barcodeScannerView.setTorchListener(this);
+
+        commonHeader = findViewById(R.id.commonHeader);
+        if (FlashCompact.hasFlash(this)) {
+            commonHeader.getRightButton().setVisibility(View.VISIBLE);
+            commonHeader.getRightButton().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!isOpen) {
+                        isOpen = true;
+                        commonHeader.getRightButton().setText("关灯");
+                        barcodeScannerView.setTorchOff();
+                    } else {
+                        isOpen = false;
+                        commonHeader.getRightButton().setText("开灯");
+                        barcodeScannerView.setTorchOn();
+                    }
+                }
+            });
+        } else {
+            commonHeader.getRightButton().setVisibility(View.INVISIBLE);
+        }
 
         capture = new CaptureManager(this, barcodeScannerView);
 
