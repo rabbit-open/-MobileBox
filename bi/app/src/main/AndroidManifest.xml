@@ -14,7 +14,7 @@
 
     <!--https兼容适配，RTL兼容-->
     <application
-        android:name="com.hualala.bi.framework.application.MBApplication"
+        android:name=".module.App"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -43,6 +43,7 @@
         <!--屏幕方向改变引起的前一个页面重新创建-->
         <activity
             android:name=".module.boot.view.MainActivity"
+            android:autoRemoveFromRecents="true"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

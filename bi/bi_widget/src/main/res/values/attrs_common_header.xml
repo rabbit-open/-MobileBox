@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CommonHeader">
+        <attr name="leftText" format="reference|string" />
+        <attr name="rightText" format="reference|string" />
+        <attr name="titleText" format="reference|string" />
+        <attr name="leftBgDrawable" format="reference" />
+        <attr name="rightBgDrawable" format="reference" />
+        <attr name="rightTextColor" format="reference|color" />
+        <attr name="leftTextColor" format="reference|color" />
+        <attr name="titleTextLayoutPadding" format="reference|dimension" />
+        <attr name="leftRightTextPadding" format="reference|dimension" />
+    </declare-styleable>
+
+    <!-- commonHeader -->
+    <color name="mia_commons_new_title_bar_bg">#fbfbfb</color>
+    <color name="mia_commons_new_title_bar_text_color">#333333</color>
+    <color name="mia_commons_line_color">#e5e5e5</color>
+    <color name="mia_commons_white">#ffffff</color>
+    <!-- commonHeader  -->
+    <dimen name="mia_commons_title_bar_height">48dp</dimen>
+    <dimen name="mia_commons_title_bar_title_text_size">18sp</dimen>
+    <dimen name="mia_commons_px20">10dp</dimen>
+    <dimen name="mia_commons_sp38">19sp</dimen>
+    <dimen name="mia_commons_sp32">16sp</dimen>
+    <dimen name="mia_commons_line_1px">0.5dp</dimen>
+
+    <style name="mia_commons_line_horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/mia_commons_line_1px</item>
+        <item name="android:background">@color/mia_commons_line_color</item>
+    </style>
+
+</resources>

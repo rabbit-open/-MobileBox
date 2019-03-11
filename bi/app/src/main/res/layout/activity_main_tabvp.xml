@@ -48,9 +48,11 @@
         android:background="@color/bg_page"
         app:elevation="0dp"
         app:tabBackground="@null"
+        app:tabGravity="fill"
         app:tabIndicatorHeight="0dp"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
         app:tabPaddingEnd="0dp"
         app:tabPaddingStart="0dp"
         app:tabRippleColor="@color/bg_page" />
-
 </com.supets.pet.theme.statsbar.TranslucentLinearLayout>

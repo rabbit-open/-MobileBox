@@ -1,4 +1,4 @@
-package com.hualala.mobilebox.module.devices;
+package com.hualala.server.api;
 
 import android.content.Context;
 import android.net.wifi.WifiInfo;
@@ -14,12 +14,12 @@ import java.nio.charset.Charset;
 
 /**
  * 设备等待搜索类
- * Created by zjun on 2016/9/4.
+ *
  */
 public abstract class DeviceWaitingSearch extends Thread {
     private final String TAG = DeviceWaitingSearch.class.getSimpleName();
-    private static final int DEVICE_FIND_PORT = 8888;
-    private static final int RECEIVE_TIME_OUT = 1500; // 接收超时时间，应小于等于主机的超时时间1500
+    private static final int DEVICE_FIND_PORT = 9000;
+    private static final int RECEIVE_TIME_OUT = 2000; // 接收超时时间，应小于等于主机的超时时间1500
     private static final int RESPONSE_DEVICE_MAX = 200; // 响应设备的最大个数，防止UDP广播攻击
     private static final byte PACKET_TYPE_FIND_DEVICE_REQ_10 = 0x10; // 搜索请求
     private static final byte PACKET_TYPE_FIND_DEVICE_RSP_11 = 0x11; // 搜索响应
@@ -57,7 +57,6 @@ public abstract class DeviceWaitingSearch extends Thread {
                         if (verifyCheckData(pack)) {
                             Log.i(TAG, "@@@zjun: 确认成功");
                             onDeviceSearched((InetSocketAddress) pack.getSocketAddress());
-                            break;
                         }
                     } catch (SocketTimeoutException e) {
                         e.printStackTrace();

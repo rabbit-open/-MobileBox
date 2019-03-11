@@ -6,11 +6,6 @@ import android.os.Build;
 import android.support.multidex.MultiDexApplication;
 import android.support.v4.content.ContextCompat;
 
-import com.facebook.cache.disk.DiskCacheConfig;
-import com.facebook.common.util.ByteConstants;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.imagepipeline.core.ImagePipelineConfig;
-import com.hualala.bi.framework.utils.FileUtils;
 import com.hualala.libutils.MBContext;
 import com.hualala.libutils.compat.JobService21Compcat;
 import com.hualala.server.api.JobMonitorService;
@@ -28,15 +23,6 @@ public class MBApplication extends MultiDexApplication {
             JobService21Compcat.scheduleJob(this, JobMonitorService.class);
         }
         MBBusinessContractor.initBusinessContractor();
-
-        Fresco.initialize(this, ImagePipelineConfig.newBuilder(this)
-                .setMainDiskCacheConfig(DiskCacheConfig.newBuilder(this)
-                        .setBaseDirectoryPath(FileUtils.getAppFolder())
-                        .setBaseDirectoryName("images")
-                        .setMaxCacheSize(1000 * ByteConstants.MB)
-                        .setMaxCacheSizeOnLowDiskSpace(50 * ByteConstants.MB)
-                        .setMaxCacheSizeOnVeryLowDiskSpace(10 * ByteConstants.MB).build())
-                .setDownsampleEnabled(true).build());
     }
 
     private static void startService(Context context) {

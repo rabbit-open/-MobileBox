@@ -8,14 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.facebook.drawee.backends.pipeline.Fresco;
+
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.zxing.WriterException;
-import com.hualala.domain.model.MVideo;
 import com.hualala.bi.framework.application.MBBusinessContractor;
+import com.hualala.domain.model.MVideo;
+import com.hualala.libutils.view.UIUtils;
 import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.module.UINavgation;
 import com.hualala.mobilebox.module.zxing.QRCodeUtils;
+import com.hualala.ui.widget.fresco.FrescoUtils;
 import com.hualala.ui.widget.recyclelib.SupetRecyclerAdapter;
 import com.hualala.ui.widget.recyclelib.SupetRecyclerViewHolder;
 import com.sample.commondialog.QRDialog;
@@ -60,11 +62,7 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
 
             final String path = MBBusinessContractor.getFileBaseUrl() + data.getPath();
 
-            simpleDraweeView.setController(Fresco.newDraweeControllerBuilder()
-                    .setUri(thumbPath)
-                    .setRetainImageOnFailure(true)
-                    .setOldController(simpleDraweeView.getController())
-                    .setAutoPlayAnimations(true).build());
+            FrescoUtils.displayImageWithSmallNoRepeat(path, simpleDraweeView, UIUtils.getScreenWidth() / 3, UIUtils.getScreenWidth() / 3);
 
             ImageView playerView = holder.itemView.findViewById(R.id.playbtn);
             playerView.setOnClickListener(new View.OnClickListener() {
@@ -140,13 +138,7 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
             String path = MBBusinessContractor.getFileBaseUrl() + (data.getThumbPath() == null ? data.getPath() : data.getThumbPath());
 
             Log.v("path", path);
-
-            simpleDraweeView.setController(Fresco.newDraweeControllerBuilder()
-                    .setUri(path)
-                    .setRetainImageOnFailure(true)
-                    .setOldController(simpleDraweeView.getController())
-                    .setAutoPlayAnimations(true).build());
-
+            FrescoUtils.displayImageWithSmallNoRepeat(path, simpleDraweeView, UIUtils.getScreenWidth() / 3, UIUtils.getScreenWidth() / 3);
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {

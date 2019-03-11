@@ -1,4 +1,4 @@
-package com.hualala.mobilebox.module.devices;
+package com.hualala.server.api;
 
 import android.util.Log;
 
@@ -17,8 +17,8 @@ import java.util.Set;
  */
 public abstract class DeviceSearcher extends Thread {
     private static final String TAG = DeviceSearcher.class.getSimpleName();
-    private static final int DEVICE_FIND_PORT = 8888;
-    private static final int RECEIVE_TIME_OUT = 1500; // 接收超时时间
+    private static final int DEVICE_FIND_PORT = 9000;
+    private static final int RECEIVE_TIME_OUT = 2000; // 接收超时时间
     private static final int RESPONSE_DEVICE_MAX = 200; // 响应设备的最大个数，防止UDP广播攻击
     private static final byte PACKET_TYPE_FIND_DEVICE_REQ_10 = 0x10; // 搜索请求
     private static final byte PACKET_TYPE_FIND_DEVICE_RSP_11 = 0x11; // 搜索响应
@@ -30,7 +30,7 @@ public abstract class DeviceSearcher extends Thread {
     private byte mPackType;
     private String mDeviceIP;
 
-    DeviceSearcher() {
+    public DeviceSearcher() {
         mDeviceSet = new HashSet<>();
     }
 
@@ -188,62 +188,6 @@ public abstract class DeviceSearcher extends Thread {
         byte[] result = new byte[offset];
         System.arraycopy(data, 0, result, 0, offset);
         return result;
-    }
-
-    /**
-     * 设备Bean
-     * 只要IP一样，则认为是同一个设备
-     */
-    public static class DeviceBean {
-        String ip; // IP地址
-        int port; // 端口
-        String name; // 设备名称
-        String room; // 设备所在房间
-
-        @Override
-        public int hashCode() {
-            return ip.hashCode();
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (o instanceof DeviceBean) {
-                return this.ip.equals(((DeviceBean) o).getIp());
-            }
-            return super.equals(o);
-        }
-
-        public String getIp() {
-            return ip;
-        }
-
-        public void setIp(String ip) {
-            this.ip = ip;
-        }
-
-        public int getPort() {
-            return port;
-        }
-
-        public void setPort(int port) {
-            this.port = port;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getRoom() {
-            return room;
-        }
-
-        public void setRoom(String room) {
-            this.room = room;
-        }
     }
 
 }

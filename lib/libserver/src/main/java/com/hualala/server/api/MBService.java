@@ -6,7 +6,11 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
+
 import com.hualala.libserver.R;
+
+import java.net.InetSocketAddress;
 
 public class MBService extends Service {
 
@@ -22,6 +26,14 @@ public class MBService extends Service {
         }
         //启动后台服务
         ServerApi.getInstance().setContext(getApplication());
+        //启动设备监听服务
+        new DeviceWaitingSearch(getApplication(),Build.MODEL,Build.BRAND){
+
+            @Override
+            public void onDeviceSearched(InetSocketAddress socketAddr) {
+                Log.v("test", "已上线，搜索主机：" + socketAddr.getAddress().getHostAddress() + ":" + socketAddr.getPort());
+            }
+        }.start();
     }
 
     @Override
