@@ -38,15 +38,20 @@ public class CodeScanActivity extends AppCompatActivity implements DecoratedBarc
             commonHeader.getRightButton().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    v.setEnabled(false);
+
                     if (!isOpen) {
                         isOpen = true;
                         commonHeader.getRightButton().setText("关灯");
-                        barcodeScannerView.setTorchOff();
+                        barcodeScannerView.setTorchOn();
                     } else {
                         isOpen = false;
                         commonHeader.getRightButton().setText("开灯");
-                        barcodeScannerView.setTorchOn();
+                        barcodeScannerView.setTorchOff();
                     }
+
+                    v.setEnabled(true);
                 }
             });
         } else {
