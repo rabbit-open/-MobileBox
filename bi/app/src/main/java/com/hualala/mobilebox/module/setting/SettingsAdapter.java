@@ -103,6 +103,7 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
             MBBusinessContractor.getBusinessContractor().getGeneralConfig().getCloudServerInfo().setBaseApiUrl(ip);
             MainShareViewModel model = ViewModelProviders.of(fragment.getActivity()).get(MainShareViewModel.class);
             model.select(true);
+            ToastUtils.showToastCenter(getContext(),"切换本地服务成功");
         }
     }
 
