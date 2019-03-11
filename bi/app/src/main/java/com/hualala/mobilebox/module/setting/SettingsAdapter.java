@@ -49,10 +49,9 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
         return new SupetRecyclerViewHolder(itemView, adapter);
     }
 
-
     @Override
     public int getItemCount() {
-        return 3;
+        return 2;
     }
 
     @Override
@@ -85,16 +84,17 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
                     changeServiceAddress(MBBusinessContractor.getDeviceBaseUrl());
                 }
             });
-
-        } else if (position == 2) {
-            name.setText("远程联系人迁移");
-            name.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    readContacts();
-                }
-            });
         }
+
+//        else if (position == 2) {
+//            name.setText("联系人迁移[需要授权]");
+//            name.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    readContacts();
+//                }
+//            });
+//        }
     }
 
     private void changeServiceAddress(String ip) {

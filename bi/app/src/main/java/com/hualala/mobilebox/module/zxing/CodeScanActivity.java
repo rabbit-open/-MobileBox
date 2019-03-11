@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.WindowManager;
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.client.android.Intents;
 import com.hualala.mobilebox.R;
@@ -19,6 +21,7 @@ public class CodeScanActivity extends AppCompatActivity implements DecoratedBarc
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_code_scan);
 
         barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);

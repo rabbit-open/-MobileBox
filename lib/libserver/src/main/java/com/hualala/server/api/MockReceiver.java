@@ -15,7 +15,7 @@ public class MockReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (MOCK_SERVICE_NETWORK.equals(intent.getAction())) {
+        if (MOCK_SERVICE_NETWORK.equals(intent.getAction())&&ServerConfigPref.getFloatWindowSwitchStatus(context)) {
             if (Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(context)) {
                 try {
                     context.startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION));
