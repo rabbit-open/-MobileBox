@@ -1,8 +1,6 @@
 package com.hualala.mobilebox.module.devices;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +9,6 @@ import android.widget.TextView;
 
 import com.hualala.bi.framework.application.MBBusinessContractor;
 import com.hualala.mobilebox.R;
-import com.hualala.mobilebox.module.boot.viewmodel.MainShareViewModel;
 import com.hualala.server.api.DeviceBean;
 import com.hualala.ui.widget.recyclelib.SupetRecyclerAdapter;
 import com.hualala.ui.widget.recyclelib.SupetRecyclerViewHolder;
@@ -37,24 +34,21 @@ public class DevicesAdapter extends SupetRecyclerAdapter<DeviceBean> {
     @Override
     public void onBindViewHolder(SupetRecyclerViewHolder holder, int position) {
         TextView name = holder.itemView.findViewById(R.id.name);
-       DeviceBean bean= getData(position);
+        DeviceBean bean = getData(position);
 
         name.setText(String.format("%s--%s:%d", bean.getRoom(), bean.getIp(), bean.getPort()));
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeServiceAddress("http://"+bean.getIp()+":"+bean.getPort()+"/");
+                changeServiceAddress("http://" + bean.getIp() + ":" + bean.getPort() + "/");
             }
         });
-
     }
 
     private void changeServiceAddress(String ip) {
         if (!TextUtils.isEmpty(ip)) {
             MBBusinessContractor.getBusinessContractor().getTerminalDataRepository().changeServerAddr(ip);
             MBBusinessContractor.getBusinessContractor().getGeneralConfig().getCloudServerInfo().setBaseApiUrl(ip);
-            MainShareViewModel model = ViewModelProviders.of((FragmentActivity) getContext()).get(MainShareViewModel.class);
-            model.select(true);
         }
     }
 
