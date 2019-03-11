@@ -36,11 +36,11 @@ public class DevicesAdapter extends SupetRecyclerAdapter<DeviceBean> {
         TextView name = holder.itemView.findViewById(R.id.name);
         DeviceBean bean = getData(position);
 
-        name.setText(String.format("%s--%s:%d", bean.getRoom(), bean.getIp(), bean.getPort()));
+        name.setText(String.format("%s--%s", bean.getRoom(), bean.getIp()));
         name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeServiceAddress("http://" + bean.getIp() + ":" + bean.getPort() + "/");
+                changeServiceAddress("http://" + bean.getIp() + ":8888/");
             }
         });
     }
