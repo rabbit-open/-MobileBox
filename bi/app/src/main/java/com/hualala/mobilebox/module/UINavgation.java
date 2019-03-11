@@ -44,7 +44,7 @@ public class UINavgation {
 
     public static void startScanCodeActivity(Context context) {
         Intent intent = new Intent(context, CodeScanActivity.class);
-        ((Activity) context).startActivityForResult(intent, ScanCode);
+        context.startActivity(intent);
     }
 
     public static void startDevicesListActivity(Context context) {

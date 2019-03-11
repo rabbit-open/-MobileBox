@@ -1,5 +1,6 @@
 package com.hualala.mobilebox.module.devices;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hualala.bi.framework.application.MBBusinessContractor;
+import com.hualala.libutils.view.ToastUtils;
 import com.hualala.mobilebox.R;
 import com.hualala.server.api.DeviceBean;
 import com.hualala.ui.widget.recyclelib.SupetRecyclerAdapter;
@@ -49,6 +51,8 @@ public class DevicesAdapter extends SupetRecyclerAdapter<DeviceBean> {
         if (!TextUtils.isEmpty(ip)) {
             MBBusinessContractor.getBusinessContractor().getTerminalDataRepository().changeServerAddr(ip);
             MBBusinessContractor.getBusinessContractor().getGeneralConfig().getCloudServerInfo().setBaseApiUrl(ip);
+            ToastUtils.showToastCenter(getContext(), "切换设备成功");
+            ((Activity) getContext()).finish();
         }
     }
 
