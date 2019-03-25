@@ -3,13 +3,11 @@ package com.hualala.mobilebox.module.wifi;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.hualala.libutils.MBContext;
+
 public class WifiConfig {
 
-    private static SharedPreferences mWifiSharedPreferences;
-
-    public static void init(Context context) {
-        mWifiSharedPreferences = context.getSharedPreferences("wifiConfig", Context.MODE_PRIVATE);
-    }
+    private static SharedPreferences mWifiSharedPreferences = MBContext.getContext().getSharedPreferences("wifiConfig", Context.MODE_PRIVATE);
 
     public static void putSSID(String ssid, String pass) {
         mWifiSharedPreferences.edit().putString(ssid, pass).apply();
