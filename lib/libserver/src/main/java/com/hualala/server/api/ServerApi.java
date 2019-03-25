@@ -2,12 +2,16 @@ package com.hualala.server.api;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.hualala.data.entity.reponse.MBPhoneListResponse;
 import com.hualala.data.entity.reponse.MBVideoListResponse;
 import com.hualala.domain.model.MVideo;
 import com.hualala.libserver.R;
+import com.hualala.server.ServerUtils;
+import com.hualala.server.filefolder.FileData;
+import com.hualala.server.filefolder.FilieManagerUtils;
 import com.hualala.server.media.MediaUtils;
 import com.hualala.server.phone.ContactsBean;
 import com.hualala.server.phone.PhoneUtils;
@@ -15,8 +19,10 @@ import com.koushikdutta.async.AsyncServer;
 import com.koushikdutta.async.http.server.AsyncHttpServer;
 import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -42,11 +48,71 @@ public class ServerApi {
     }
 
     private ServerApi() {
+        addhtml("/filedir", "filedir.html");
+        addLocalJSResource("/jquery-1.7.2.min.js");
+        addLocalFileResource();
+
         getFiles();
         getPhoneInfo();
-        addLocalFileResource();
+        getFilePath();
+
         this.server.listen(asyncServer, 8888);
     }
+
+    private void getFilePath() {
+        server.get("/getfilepath", (request, response) -> {
+
+            String path = request.getQuery().getString("path");
+            if (path == null || path.equals("")) {
+                List<FileData> list = FilieManagerUtils.getFileListRoot();
+                response.send(new Gson().toJson(list));
+            } else {
+                List<FileData> list = FilieManagerUtils.getFileList(path);
+                response.send(new Gson().toJson(list));
+            }
+
+
+        });
+    }
+
+    private void addhtml(String path, String name) {
+        server.get(path, (request, response) -> {
+            try {
+                response.send(ServerUtils.getIndexContent(context, name));
+            } catch (IOException e) {
+                e.printStackTrace();
+                response.code(500).end();
+            }
+        });
+    }
+
+    private void addLocalJSResource(String path) {
+        server.get(path, (request, response) -> {
+            try {
+                String fullPath = request.getPath();
+                fullPath = fullPath.replace("%20", " ");
+                String resourceName = fullPath;
+                if (resourceName.startsWith("/")) {
+                    resourceName = resourceName.substring(1);
+                }
+                if (resourceName.indexOf("?") > 0) {
+                    resourceName = resourceName.substring(0, resourceName.indexOf("?"));
+                }
+
+                if (!TextUtils.isEmpty(getContentTypeByResourceName(resourceName))) {
+                    response.setContentType(getContentTypeByResourceName(resourceName));
+                }
+
+                BufferedInputStream bInputStream = new BufferedInputStream(context.getAssets().open(resourceName));
+                response.sendStream(bInputStream, bInputStream.available());
+            } catch (IOException e) {
+                e.printStackTrace();
+                response.code(404).end();
+                return;
+            }
+        });
+    }
+
 
     private void getPhoneInfo() {
         server.get("/getPhoneInfo", (request, response) -> {

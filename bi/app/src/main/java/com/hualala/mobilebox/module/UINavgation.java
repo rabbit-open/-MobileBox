@@ -9,6 +9,7 @@ import com.hualala.mobilebox.module.boot.view.MainActivity;
 import com.hualala.mobilebox.module.devices.DevicesListActivity;
 import com.hualala.mobilebox.module.player.Mp3PlayerActivity;
 import com.hualala.mobilebox.module.player.VideoPlayerActivity;
+import com.hualala.mobilebox.module.wifi.WifiSettingsActivity;
 import com.hualala.mobilebox.module.zxing.CodeScanActivity;
 
 public class UINavgation {
@@ -55,6 +56,11 @@ public class UINavgation {
     public static void startScanCodeActivity(Fragment context) {
         Intent intent = new Intent(context.getActivity(), CodeScanActivity.class);
         context.startActivityForResult(intent, ScanCode);
+    }
+
+    public static void startWifiSettingsActivity(Context context) {
+        Intent intent = new Intent(context, WifiSettingsActivity.class);
+        context.startActivity(intent);
     }
 
     public static void startLivePlayerActivity(Context context, String path) {

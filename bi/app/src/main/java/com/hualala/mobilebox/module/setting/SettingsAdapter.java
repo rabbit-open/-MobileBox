@@ -18,6 +18,7 @@ import com.hualala.domain.usecase.PhoneListUseCase;
 import com.hualala.libutils.MBContext;
 import com.hualala.libutils.view.ToastUtils;
 import com.hualala.mobilebox.R;
+import com.hualala.mobilebox.module.UINavgation;
 import com.hualala.mobilebox.module.boot.viewmodel.MainShareViewModel;
 import com.hualala.mobilebox.module.zxing.QRCodeUtils;
 import com.hualala.server.phone.ContactsBean;
@@ -51,7 +52,7 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -84,6 +85,14 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
                     changeServiceAddress(MBBusinessContractor.getDeviceBaseUrl());
                 }
             });
+        } else if (position == 2) {
+            name.setText("wifi設置");
+            name.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    UINavgation.startWifiSettingsActivity(getContext());
+                }
+            });
         }
 
 //        else if (position == 2) {
@@ -103,7 +112,7 @@ public class SettingsAdapter extends SupetRecyclerAdapter<Object> {
             MBBusinessContractor.getBusinessContractor().getGeneralConfig().getCloudServerInfo().setBaseApiUrl(ip);
             MainShareViewModel model = ViewModelProviders.of(fragment.getActivity()).get(MainShareViewModel.class);
             model.select(true);
-            ToastUtils.showToastCenter(getContext(),"切换本地服务成功");
+            ToastUtils.showToastCenter(getContext(), "切换本地服务成功");
         }
     }
 

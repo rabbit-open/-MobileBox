@@ -35,9 +35,12 @@ public class AppStartActivity extends BaseContractorActivity implements Handler.
                 Manifest.permission.CAMERA,
                 Manifest.permission.ACCESS_WIFI_STATE,
                 Manifest.permission.ACCESS_NETWORK_STATE,
+                Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.INTERNET,
-//                Manifest.permission.READ_CONTACTS,
-//                Manifest.permission.WRITE_CONTACTS,
+                Manifest.permission.CHANGE_WIFI_STATE,
+                Manifest.permission.CHANGE_NETWORK_STATE,
+                //Manifest.permission.READ_CONTACTS,
+                //Manifest.permission.WRITE_CONTACTS,
         }, new ZbPermission.ZbPermissionCallback() {
             @Override
             public void permissionSuccess(int i) {
