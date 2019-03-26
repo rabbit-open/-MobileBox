@@ -37,9 +37,10 @@ android {
         abortOnError false
     }
 
-    dexOptions{
-        preDexLibraries = true //4.4 dex找不到主dex
+    dexOptions {
+        preDexLibraries = false  //多个library工程，不要预编译
     }
+
 }
 
 dependencies {

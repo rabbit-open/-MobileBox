@@ -1,1 +1,11 @@
 https://www.jianshu.com/p/cddfc89ce947  multiDexEnabled遇坑简记
+
+1 在5.0系统上使用art 支持多dex，而低版本dalvik默认先加载主dex，
+如果启动时需要的类不在主dex内就会报错ClassNotFoundException。
+
+2 对于dex 的–multi-dex 选项设置与预编译的library工程有冲突,
+如果你的应用中包含引用的lirary工程,需要将预编译设置为false:
+在 build.gradle中添加
+dexOptions{
+preDexLibraries = false
+}
