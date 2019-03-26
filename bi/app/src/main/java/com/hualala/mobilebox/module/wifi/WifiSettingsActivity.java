@@ -8,12 +8,13 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.hualala.bi.framework.base.BaseContractorActivity;
-import com.hualala.libutils.system.DeviceUtils;
 import com.hualala.mobilebox.R;
 import com.hualala.ui.widget.recyclelib.SupetRecyclerView;
 
@@ -26,26 +27,87 @@ public class WifiSettingsActivity extends BaseContractorActivity {
     private BroadcastReceiver mWifiBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
-                NetworkInfo info = intent.getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
-                if (NetworkInfo.State.DISCONNECTED == info.getState()) {//wifi没连接上
-                    Log.v(TAG, "wifi没连接上");
-                } else if (NetworkInfo.State.CONNECTED == info.getState()) {//wifi连接上了
-                    updateWifi();
-                    Log.v(TAG, "wifi连接上了");
-                } else if (NetworkInfo.State.CONNECTING == info.getState()) {//正在连接
-                    Log.v(TAG, "wifi正在连接");
-                }
-            } else if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(intent.getAction())) {
+            if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(intent.getAction())) {
                 boolean isScanned = intent.getBooleanExtra(WifiManager.EXTRA_RESULTS_UPDATED, true);
                 if (isScanned) {
                     Log.v(TAG, "wifi扫描成功");
-                    updateWifi();
+                    String ip = getWifiIp(context);
+                    if (!TextUtils.isEmpty(ip)) {
+                        onWifiConnected(ip);
+                    } else {
+                        onWifiDisconnected();
+                    }
+                }
+            } else if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(intent.getAction())) {
+                Parcelable parcelableExtra = intent
+                        .getParcelableExtra(WifiManager.EXTRA_NETWORK_INFO);
+                if (null != parcelableExtra) {
+                    NetworkInfo networkInfo = (NetworkInfo) parcelableExtra;
+                    checkWifiState(networkInfo.getState());
                 }
             }
         }
     };
+
+    private void checkWifiState(NetworkInfo.State state) {
+        if (state == NetworkInfo.State.CONNECTED || state == NetworkInfo.State.CONNECTING) {
+            if (state == NetworkInfo.State.CONNECTED) {
+                String ip = getWifiIp(this);
+                if (!TextUtils.isEmpty(ip)) {
+                    onWifiConnected(ip);
+                    return;
+                }
+            }
+            onWifiConnecting();
+            return;
+        }
+        onWifiDisconnected();
+    }
+
+    private void onWifiDisconnected() {
+        Log.v(TAG, "断开连接");
+        updateWifi(null);
+    }
+
+    private void onWifiConnecting() {
+        Log.v(TAG, "连接中...");
+        updateWifi(getCurrentUseWifiInfo());
+    }
+
+    private void onWifiConnected(String ip) {
+        Log.v(TAG, ip);
+        updateWifi(getCurrentUseWifiInfo());
+    }
+
+    private synchronized void updateWifi(WifiInfo wifiInfo) {
+        mAdapter.addHomePage(null);
+        if (wifiInfo != null) {
+            mAdapter.insertHomePage(wifiInfo);
+        }
+        List<WifiBean> wifis = WifiUtils.getWifiList(this);
+        for (WifiBean wifi : wifis) {
+            if (wifiInfo != null && (wifi.getWifiName()).equals(wifiInfo.getSSID().replace("\"", ""))) {
+                //empty
+            } else {
+                mAdapter.addNextPage(wifi);
+            }
+        }
+    }
+
+
+    public static String getWifiIp(Context context) {
+        WifiManager wifimanager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifimanager.getConnectionInfo();
+        if (wifiInfo != null && wifiInfo.getIpAddress() > 0) {
+            return intToIp(wifiInfo.getIpAddress());
+        }
+        return null;
+    }
+
+    private static String intToIp(int i) {
+        return (i & 0xFF) + "." + ((i >> 8) & 0xFF) + "." + ((i >> 16) & 0xFF) + "." + ((i >> 24) & 0xFF);
+    }
+
     private SupetRecyclerView recyclerView;
     private WifiAdapter mAdapter;
 
@@ -54,6 +116,7 @@ public class WifiSettingsActivity extends BaseContractorActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wifi_settings);
         initView();
+        openWifi();
     }
 
     @Override
@@ -79,24 +142,6 @@ public class WifiSettingsActivity extends BaseContractorActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mAdapter = new WifiAdapter(this);
         recyclerView.setAdapter(mAdapter);
-
-    }
-
-    private void updateWifi() {
-
-        mAdapter.addHomePage(null);
-
-        if (DeviceUtils.isNetworkConnected(this) && getCurrentUseWifiInfo() != null) {
-            mAdapter.addNextPage(getCurrentUseWifiInfo());
-        }
-
-        List<WifiBean> wifis = WifiUtils.getWifiList(this);
-        for (WifiBean wifi : wifis) {
-            if (DeviceUtils.isNetworkConnected(this) && ("\"" + wifi.getWifiName() + "\"").equals(getCurrentUseWifiInfo().getSSID())) {
-                continue;
-            }
-            mAdapter.addNextPage(wifi);
-        }
     }
 
     private WifiManager getWifiManager() {
@@ -104,11 +149,20 @@ public class WifiSettingsActivity extends BaseContractorActivity {
     }
 
     private WifiInfo getCurrentUseWifiInfo() {
-        WifiManager wifi = getWifiManager();
-        WifiInfo wifiInfo = getWifiManager().getConnectionInfo();
-        if (wifi.getWifiState() == WifiManager.WIFI_STATE_ENABLED) {
-            return wifiInfo;
+        return getWifiManager().getConnectionInfo();
+    }
+
+    // 打开WIFI
+    public void openWifi() {
+        if (!getWifiManager().isWifiEnabled()) {
+            getWifiManager().setWifiEnabled(true);
         }
-        return null;
+    }
+
+    // 关闭WIFI
+    public void closeWifi() {
+        if (getWifiManager().isWifiEnabled()) {
+            getWifiManager().setWifiEnabled(false);
+        }
     }
 }

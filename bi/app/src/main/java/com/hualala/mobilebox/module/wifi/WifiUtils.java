@@ -43,6 +43,15 @@ public class WifiUtils {
         return ((WifiManager) context.getSystemService(Context.WIFI_SERVICE)).getConfiguredNetworks();
     }
 
+    /**
+     * 创建wifi配置
+     *
+     * @param context
+     * @param scan
+     * @param password
+     * @param type
+     * @return
+     */
     public static WifiConfiguration createWifiConfig(Context context, ScanResult scan, String password, WifiCipherType type) {
 
         //remove wifi
@@ -92,6 +101,12 @@ public class WifiUtils {
 
     }
 
+    /**
+     * 删除所有配置
+     *
+     * @param wifiManager
+     * @param targetSsid
+     */
     private static void removeWifiBySsid(WifiManager wifiManager, String targetSsid) {
         List<WifiConfiguration> configs = wifiManager.getConfiguredNetworks();
         if (configs != null) {

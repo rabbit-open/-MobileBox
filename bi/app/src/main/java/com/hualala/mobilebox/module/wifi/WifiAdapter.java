@@ -39,9 +39,9 @@ public class WifiAdapter extends SupetRecyclerAdapter<Object> {
     public void onBindViewHolder(SupetRecyclerViewHolder holder, int position) {
 
         TextView name = holder.itemView.findViewById(R.id.name);
-
         if (getData(position) instanceof WifiInfo) {
-            name.setText(((WifiInfo) getData(position)).getSSID() + "    当前连接");
+            WifiInfo temp = ((WifiInfo) getData(position));
+            name.setText(temp.getSSID().replace("\"", "") + "   " + temp.getSupplicantState().name());
             name.setOnClickListener(null);
         }
 
@@ -62,9 +62,10 @@ public class WifiAdapter extends SupetRecyclerAdapter<Object> {
         editText.setText(WifiConfig.getSSID(wifiBean.getScanResult().SSID));
 
         new AlertDialog.Builder(getContext())
-                .setTitle("提示")
+                .setTitle("输入密码")
                 .setView(editText)
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                .setCancelable(true)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         WifiConfig.putSSID(wifiBean.getScanResult().SSID, editText.getText().toString());

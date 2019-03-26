@@ -49,6 +49,13 @@ public abstract class SupetRecyclerAdapter<T> {
         notifyDataSetChanged();
     }
 
+    public void insertHomePage(T data) {
+        if (data != null) {
+            this.mDatas.add(0, data);
+        }
+        notifyDataSetChanged();
+    }
+
     public void addNextPage(List<T> data) {
         if (data != null) {
             int itemCount = data.size();
