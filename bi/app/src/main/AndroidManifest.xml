@@ -31,7 +31,7 @@
         <!--全面屏适配-->
         <meta-data
             android:name="android.max_aspect"
-            android:value="2.4" />
+            android:value="3.0" />
         <!--版本更新所要用到的 fileProvider 用于兼容7.0通知栏的安装-->
         <provider
             android:name="android.support.v4.content.FileProvider"

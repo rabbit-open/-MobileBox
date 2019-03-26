@@ -1,16 +1,19 @@
 package com.hualala.mobilebox.module.wifi;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@SuppressLint("WifiManagerPotentialLeak")
 public class WifiUtils {
 
     private static final String TAG = WifiUtils.class.getSimpleName();
@@ -28,6 +31,7 @@ public class WifiUtils {
 
     public static List<ScanResult> getWifiScanResult(Context context) {
         boolean b = context == null;
+        assert context != null;
         return ((WifiManager) context.getSystemService(Context.WIFI_SERVICE)).getScanResults();
     }
 
@@ -56,6 +60,7 @@ public class WifiUtils {
 
         //remove wifi
         WifiManager wifimanager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+
         removeWifiBySsid(wifimanager, scan.SSID);
 
         WifiConfiguration config = new WifiConfiguration();
@@ -102,7 +107,7 @@ public class WifiUtils {
     }
 
     /**
-     * 删除所有配置
+     * 删除ssid旧的配置
      *
      * @param wifiManager
      * @param targetSsid
@@ -129,7 +134,6 @@ public class WifiUtils {
         WifiManager wifimanager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 
         WifiInfo wifiinfo = wifimanager.getConnectionInfo();
-
         if (null != wifiinfo) {
             wifimanager.disableNetwork(wifiinfo.getNetworkId());
             printLog("close current_wifi" + wifiinfo.toString());

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiInfo;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.hualala.libutils.view.ToastUtils;
 import com.hualala.mobilebox.R;
 import com.hualala.ui.widget.recyclelib.SupetRecyclerAdapter;
 import com.hualala.ui.widget.recyclelib.SupetRecyclerViewHolder;
@@ -77,7 +79,12 @@ public class WifiAdapter extends SupetRecyclerAdapter<Object> {
 
     /*连接到热点*/
     public void connectToHotpot(ScanResult ssid, String pass, WifiUtils.WifiCipherType type) {
-        WifiUtils.addNetWork(WifiUtils.createWifiConfig(getContext(), ssid, pass, type), getContext());
+        //需要root权限,不能删除，修改，关闭网络权限
+        if (Build.VERSION.SDK_INT < 27) {
+            WifiUtils.addNetWork(WifiUtils.createWifiConfig(getContext(), ssid, pass, type), getContext());
+        } else {
+            ToastUtils.showToastCenter(getContext(), "不能使用删除，修改，关闭网络系统API,需要root权限，系统权限");
+        }
     }
 
 }

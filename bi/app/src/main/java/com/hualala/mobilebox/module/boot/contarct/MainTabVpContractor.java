@@ -8,15 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.hualala.mobilebox.R;
-import com.hualala.mobilebox.R2;
 import com.hualala.bi.framework.base.BaseContractor;
 import com.hualala.bi.framework.base.BaseFragment;
 import com.hualala.bi.framework.base.TabFragmentPagerAdapter;
+import com.hualala.mobilebox.R;
+import com.hualala.mobilebox.R2;
 import com.hualala.mobilebox.module.UINavgation;
 import com.hualala.mobilebox.module.boot.view.PictureListFragment;
 import com.hualala.mobilebox.module.setting.SetListFragment;
 import com.hualala.mobilebox.module.tv.TvListFragment;
+import com.hualala.ui.widget.CommonHeader;
 import com.hualala.ui.widget.viewpager.NoAnimationViewPager;
 
 import java.util.ArrayList;
@@ -30,9 +31,8 @@ public class MainTabVpContractor extends BaseContractor {
     @BindView(R2.id.tab)
     public TabLayout mTabLayout;
 
-    @BindView(R2.id.moreBtn)
-    public View moreBtn;
-
+    @BindView(R2.id.commonHeader)
+    public CommonHeader commonHeader;
 
     @BindView(R2.id.viewpager)
     public NoAnimationViewPager mViewPager;
@@ -76,9 +76,11 @@ public class MainTabVpContractor extends BaseContractor {
                 TextView itemTv = itemTab.getCustomView().findViewById(R.id.tv_menu_item);
                 itemTv.setText(tabIndicators.get(i));
             }
-            mTabLayout.getTabAt(0).select();
         }
 
+        mTabLayout.getTabAt(0).select();
+        commonHeader.getTitleTextView().setText(tabIndicators.get(0));
+        
         mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
@@ -87,16 +89,19 @@ public class MainTabVpContractor extends BaseContractor {
                     fragment.manualProcess();
                 }
 
+                commonHeader.getTitleTextView().setText(tabIndicators.get(position));
                 mTabLayout.getTabAt(position).select();
             }
         });
 
-        moreBtn.setOnClickListener(new View.OnClickListener() {
+        commonHeader.getRightButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UINavgation.startDevicesListActivity(getContext());
             }
         });
+
+        commonHeader.getLeftButton().setVisibility(View.INVISIBLE);
     }
 
     class ContentPagerAdapter extends TabFragmentPagerAdapter {
