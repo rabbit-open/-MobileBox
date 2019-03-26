@@ -16,7 +16,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/px100"
+                android:layout_height="@dimen/px60"
                 android:background="@color/new_title_bar_bg">
 
                 <TextView
@@ -24,11 +24,12 @@
                     android:layout_width="@dimen/px120"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/btn_shape_rect_appcolor_selector_radius_10"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/px10"
+                    android:background="@drawable/bg_lay_click_status_selector"
                     android:gravity="center"
-                    android:padding="@dimen/px20"
                     android:text="设备"
-                    android:textColor="@color/white"
+                    android:textColor="@color/app_color"
                     android:textSize="@dimen/sp30" />
             </RelativeLayout>
         </LinearLayout>
