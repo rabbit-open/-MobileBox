@@ -47,28 +47,17 @@
             android:name=".module.boot.view.MainActivity"
             android:autoRemoveFromRecents="true"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".module.zxing.CodeScanActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".module.wifi.WifiSettingsActivity"
-            android:screenOrientation="portrait" />
+            android:launchMode="singleTask" />
+        <activity android:name=".module.zxing.CodeScanActivity" />
+        <activity android:name=".module.wifi.WifiSettingsActivity" />
         <activity
             android:name=".module.player.VideoPlayerActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/CustomAppTheme.FullScreen.Transparent" />
-        <activity
-            android:name=".module.player.Mp3PlayerActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".module.devices.DevicesListActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".module.player.Mp3PlayerActivity" />
+        <activity android:name=".module.devices.DevicesListActivity" />
         <activity
             android:name=".module.guide.AppStartActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
