@@ -41,6 +41,18 @@ android {
         preDexLibraries = false  //多个library工程，不要预编译
     }
 
+    bundle {
+        density {
+            enableSplit = true
+        }
+        language {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
+
 }
 
 dependencies {
