@@ -37,7 +37,7 @@ public class PictureListFragment extends BaseFragment {
     public void findViews(View view) {
         ButterKnife.bind(this, view);
 
-        mListView.setLayoutManager(new SupetStaggeredGridLayoutManager(2, SupetStaggeredGridLayoutManager.VERTICAL));
+        mListView.setLayoutManager(new SupetStaggeredGridLayoutManager(1, SupetStaggeredGridLayoutManager.VERTICAL));
         adapter = new MainAdapter(getContext());
         mListView.setAdapter(adapter);
 
