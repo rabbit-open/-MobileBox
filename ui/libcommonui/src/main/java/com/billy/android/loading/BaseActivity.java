@@ -9,7 +9,6 @@ public abstract class BaseActivity extends Activity {
     /**
      * make a Gloading.Holder wrap with current activity by default
      * override this method in subclass to do special initialization
-     *
      */
     protected void initLoadingStatusViewIfNeed() {
         if (mHolder == null) {
@@ -45,6 +44,18 @@ public abstract class BaseActivity extends Activity {
     public void showEmpty() {
         initLoadingStatusViewIfNeed();
         mHolder.showEmpty();
+    }
+
+    //TODO
+
+    public void showContentView() {
+        initLoadingStatusViewIfNeed();
+        mHolder.showContentView();
+    }
+
+    public void showOtherView() {
+        initLoadingStatusViewIfNeed();
+        mHolder.showOtherView();
     }
 
 }
