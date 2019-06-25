@@ -23,14 +23,12 @@
 
     <style name="DialogBaseTheme" parent="app_dialog_theme" />
 
-
-    <!--base-->
-    <!--疯狂桔子沉侵式主题-->
+    <!--沉侵式主题-->
     <style name="AppTranslucentTheme" parent="ImageTranslucentTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
-    <!--疯狂桔子主题-->
+    <!--主题-->
     <style name="SupetPetBaseTheme" parent="AppBaseTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>

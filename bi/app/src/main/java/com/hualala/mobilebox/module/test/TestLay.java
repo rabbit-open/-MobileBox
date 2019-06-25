@@ -2,10 +2,13 @@ package com.hualala.mobilebox.module.test;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PatternMatcher;
 import android.support.annotation.Nullable;
 
 import com.billy.android.loading.BaseActivity;
 import com.hualala.mobilebox.R;
+
+import java.util.regex.Pattern;
 
 public class TestLay extends BaseActivity {
 
@@ -40,5 +43,11 @@ public class TestLay extends BaseActivity {
                 showLoadSuccess();
             }
         }, 6000);
+    }
+
+    public static void main(String[] args) {
+        String test = "Z001";
+        boolean bool = Pattern.compile("[\u4E00-\u9FFF]+").matcher(test).lookingAt();
+        System.out.print(bool);
     }
 }
