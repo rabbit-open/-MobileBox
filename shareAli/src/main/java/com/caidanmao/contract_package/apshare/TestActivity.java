@@ -1,11 +1,11 @@
-package com.alipay.share.demo.apshare;
+package com.caidanmao.contract_package.apshare;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 
-import com.alipay.share.demo.R;
+import com.caidanmao.contract_package.R;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.supets.shop.wxapi;
+package com.caidanmao.contract_package.wxapi;
 
 public interface KeyAndSecrets {
     // 微信APP ID

@@ -1,9 +1,9 @@
-package com.supets.shop.wxapi;
+package com.caidanmao.contract_package.wxapi;
 
 
 import android.content.Context;
 
-import com.supets.shop.R;
+import com.caidanmao.contract_package.R;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 

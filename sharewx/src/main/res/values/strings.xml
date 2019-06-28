@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">shareWx</string>
+    <string name="app_name">彩蛋猫CMS</string>
 
     <string name="Weixin_share_success">分享成功</string>
     <string name="Weixin_share_fail">分享失败</string>

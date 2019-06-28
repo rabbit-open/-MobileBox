@@ -5,7 +5,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.supets.shop"
+        applicationId "com.caidanmao.contract_package"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
@@ -17,10 +17,10 @@ android {
 
     signingConfigs {
         sign_config {
-            storeFile file("./../sharewx/shop.keystore")
-            storePassword "xtxXTX123!@#"
-            keyAlias "supetsandroid"
-            keyPassword "xtxXTX123!@#"
+            storeFile file("./../sharewx/cdm.jks")
+            storePassword "caidanmao_cms"
+            keyAlias "caidanmao_cms"
+            keyPassword "caidanmao_cms"
             v1SigningEnabled true
             v2SigningEnabled true
         }

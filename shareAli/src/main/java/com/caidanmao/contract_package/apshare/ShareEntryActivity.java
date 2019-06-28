@@ -1,11 +1,11 @@
-package com.alipay.share.demo.apshare;
+package com.caidanmao.contract_package.apshare;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.alipay.share.demo.R;
+import com.caidanmao.contract_package.R;
 import com.alipay.share.sdk.openapi.BaseReq;
 import com.alipay.share.sdk.openapi.BaseResp;
 import com.alipay.share.sdk.openapi.IAPAPIEventHandler;

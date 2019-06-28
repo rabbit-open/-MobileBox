@@ -1,10 +1,10 @@
-package com.supets.shop.wxapi;
+package com.caidanmao.contract_package.wxapi;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.supets.shop.R;
+import com.caidanmao.contract_package.R;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;

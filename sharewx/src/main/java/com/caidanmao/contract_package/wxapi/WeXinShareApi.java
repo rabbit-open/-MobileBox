@@ -1,10 +1,10 @@
-package com.supets.shop.wxapi;
+package com.caidanmao.contract_package.wxapi;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.supets.shop.R;
+import com.caidanmao.contract_package.R;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXImageObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;

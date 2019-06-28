@@ -1,4 +1,4 @@
-package com.supets.shop.wxapi;
+package com.caidanmao.contract_package.wxapi;
 
 import android.graphics.Bitmap;
 

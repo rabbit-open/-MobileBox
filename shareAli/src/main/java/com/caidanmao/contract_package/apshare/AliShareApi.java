@@ -1,11 +1,10 @@
-package com.alipay.share.demo.apshare;
+package com.caidanmao.contract_package.apshare;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 
-import com.alipay.share.demo.R;
 import com.alipay.share.sdk.openapi.APAPIFactory;
 import com.alipay.share.sdk.openapi.APImageObject;
 import com.alipay.share.sdk.openapi.APMediaMessage;
@@ -13,6 +12,7 @@ import com.alipay.share.sdk.openapi.APTextObject;
 import com.alipay.share.sdk.openapi.IAPAPIEventHandler;
 import com.alipay.share.sdk.openapi.IAPApi;
 import com.alipay.share.sdk.openapi.SendMessageToZFB;
+import com.caidanmao.contract_package.R;
 
 import java.io.File;
 
