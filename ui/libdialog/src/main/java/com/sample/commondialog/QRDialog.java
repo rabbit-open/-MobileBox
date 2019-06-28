@@ -1,6 +1,8 @@
 package com.sample.commondialog;
 
 import android.graphics.Bitmap;
+import android.view.View;
+
 import com.sample.commondialog.widget.BaseDialog;
 import com.sample.commondialog.widget.ViewHolder;
 

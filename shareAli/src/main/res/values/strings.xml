@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">share</string>
+
+    <string name="Ali_errcode_success">发送成功</string>
+    <string name="Ali_errcode_cancel">发送取消</string>
+    <string name="Ali_">权限验证失败</string>
+    <string name="Ali_errcode_unknown">未知错误</string>
+    <string name="Ali_errcode_send_fail">发送失败</string>
+
+    <string name="Ali_register_fail">支付宝注册失败，请重启应用程序程序后再试。</string>
+    <string name="Ali_not_install_notify">您的手机未安装支付宝，安装后才能分享。</string>
+    <string name="Ali_not_support_API">您的手机支付宝版本太低，建议安装最新版支付宝。</string>
+
+</resources>

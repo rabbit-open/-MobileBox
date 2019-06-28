@@ -16,6 +16,7 @@ import com.hualala.domain.model.MVideo;
 import com.hualala.libutils.view.UIUtils;
 import com.hualala.mobilebox.R;
 import com.hualala.mobilebox.module.UINavgation;
+import com.hualala.mobilebox.module.share.ShareUtils;
 import com.hualala.mobilebox.module.zxing.QRCodeUtils;
 import com.hualala.ui.widget.fresco.FrescoUtils;
 import com.hualala.ui.widget.recyclelib.SupetRecyclerAdapter;
@@ -77,13 +78,14 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
                 public boolean onLongClick(View v) {
                     try {
                         String path = MBBusinessContractor.getShareFileBaseUrl() + data.getPath();
-                        QRDialog.newInstance()
-                                .setTitle("分享视频二维码")
-                                .setImage(QRCodeUtils.CreateTwoDCode(path))
-                                .setContent(path)
-                                .setMargin(60)
-                                .setOutCancel(true)
-                                .show(((FragmentActivity) getContext()).getSupportFragmentManager());
+                        //QRDialog.newInstance()
+                        //        .setTitle("分享视频二维码")
+                        //       .setImage(QRCodeUtils.CreateTwoDCode(path))
+                        //        .setContent(path)
+                        //        .setMargin(60)
+                        //        .setOutCancel(true)
+                        //        .show(((FragmentActivity) getContext()).getSupportFragmentManager());
+                        ShareUtils.shareImage(getContext(), ShareUtils.saveFile(QRCodeUtils.CreateTwoDCode(path)));
                     } catch (WriterException e) {
                         e.printStackTrace();
                     }
@@ -112,13 +114,14 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
                 public boolean onLongClick(View v) {
                     try {
                         String path = MBBusinessContractor.getShareFileBaseUrl() + data.getPath();
-                        QRDialog.newInstance()
-                                .setTitle("分享音乐二维码")
-                                .setImage(QRCodeUtils.CreateTwoDCode(path))
-                                .setContent(path)
-                                .setMargin(60)
-                                .setOutCancel(true)
-                                .show(((FragmentActivity) getContext()).getSupportFragmentManager());
+//                        QRDialog.newInstance()
+//                                .setTitle("分享音乐二维码")
+//                                .setImage(QRCodeUtils.CreateTwoDCode(path))
+//                                .setContent(path)
+//                                .setMargin(60)
+//                                .setOutCancel(true)
+//                                .show(((FragmentActivity) getContext()).getSupportFragmentManager());
+                        ShareUtils.shareImage(getContext(), ShareUtils.saveFile(QRCodeUtils.CreateTwoDCode(path)));
                     } catch (WriterException e) {
                         e.printStackTrace();
                     }
@@ -144,13 +147,14 @@ public class MainAdapter extends SupetRecyclerAdapter<MVideo> {
                 public boolean onLongClick(View v) {
                     try {
                         String path = MBBusinessContractor.getShareFileBaseUrl() + data.getPath();
-                        QRDialog.newInstance()
-                                .setTitle("分享图片二维码")
-                                .setImage(QRCodeUtils.CreateTwoDCode(path))
-                                .setContent(path)
-                                .setMargin(60)
-                                .setOutCancel(true)
-                                .show(((FragmentActivity) getContext()).getSupportFragmentManager());
+//                        QRDialog.newInstance()
+//                                .setTitle("分享图片二维码")
+//                                .setImage(QRCodeUtils.CreateTwoDCode(path))
+//                                .setContent(path)
+//                                .setMargin(60)
+//                                .setOutCancel(true)
+//                                .show(((FragmentActivity) getContext()).getSupportFragmentManager());
+                        ShareUtils.shareImage(getContext(), ShareUtils.saveFile(QRCodeUtils.CreateTwoDCode(path)));
                     } catch (WriterException e) {
                         e.printStackTrace();
                     }

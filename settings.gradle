@@ -17,3 +17,6 @@ include ':bi:bi_router'
 include ':bi:bi_widget'
 
 include ':bi:app'
+
+include ':shareAli'
+include ':sharewx'

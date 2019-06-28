@@ -1,11 +1,11 @@
-apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
 
 
-
     defaultConfig {
+        applicationId "com.alipay.share.demo"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
@@ -15,23 +15,35 @@ android {
 
     }
 
+    signingConfigs {
+        sign_config {
+            storeFile file("./../shareAli/keyStore.jks")
+            storePassword "android"
+            keyAlias "android"
+            keyPassword "android"
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+
+
     buildTypes {
+
+        debug {
+            signingConfig signingConfigs.sign_config
+        }
+
         release {
+            signingConfig signingConfigs.sign_config
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:support-compat:28.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    api "com.google.code.gson:gson:2.8.5"
 }
