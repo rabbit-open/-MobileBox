@@ -9,26 +9,29 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/px60"
         android:layout_height="wrap_content">
         <com.hualala.mobilebox.module.player.LedTextView
             android:id="@+id/songScreen"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px100"
-            android:text="歌词显示屏幕"
+            android:layout_height="64dp"
+            android:text=" 歌词显示屏幕"
             app:scroll="false"
+            app:spacing="@dimen/px1"
             app:dotcolormode="3"
             app:scrollDirection="left"
             app:speed="normal"
+            app:xdots="20"
             app:textColor="#FF2233" />
         <com.hualala.mobilebox.module.player.LedTextView
             android:id="@+id/songScreen2"
             android:layout_marginLeft="@dimen/px100"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px100"
-            android:text="歌词显示屏幕"
-            app:scroll="false"
+            android:layout_height="64dp"
+            android:text=" 歌词显示屏幕"
             app:dotcolormode="3"
+            app:spacing="@dimen/px1"
+            app:xdots="20"
+            app:scroll="false"
             app:scrollDirection="left"
             app:speed="normal"
             app:textColor="#ff8899" />
