@@ -102,7 +102,7 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
                                     if (i%2==0){
 
                                         songScreen.ForceupdateText(info.content+"");
-                                        songScreen.setColorMode(5);
+                                        songScreen.setColorMode(3);
                                         songScreen.startScroll();
                                         songScreen2.stopScroll();
                                         songScreen2.setColorMode(1);
@@ -116,7 +116,7 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
                                         songScreen2.ForceupdateText(info.content+"");
                                         songScreen2.startScroll();
                                         songScreen.stopScroll();
-                                        songScreen2.setColorMode(5);
+                                        songScreen2.setColorMode(3);
                                         songScreen.setColorMode(1);
                                         if (i + 1 >= lyricView.mLineCount) {
                                             songScreen.ForceupdateText("（音乐）"+"");
