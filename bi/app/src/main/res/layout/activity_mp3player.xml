@@ -1,39 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:background="@color/bg_page"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_page"
+    android:orientation="vertical">
+
+    <LinearLayout
         android:orientation="vertical"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/px60"
+        android:layout_height="wrap_content">
+        <com.hualala.mobilebox.module.player.LedTextView
+            android:id="@+id/songScreen"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px100"
+            android:text="歌词显示屏幕"
+            app:scroll="false"
+            app:dotcolormode="5"
+            app:scrollDirection="left"
+            app:speed="normal"
+            app:textColor="#FF2233" />
+        <com.hualala.mobilebox.module.player.LedTextView
+            android:id="@+id/songScreen2"
+            android:layout_marginLeft="@dimen/px100"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px100"
+            android:text="歌词显示屏幕"
+            app:scroll="false"
+            app:dotcolormode="5"
+            app:scrollDirection="left"
+            app:speed="normal"
+            app:textColor="#ff8899" />
+    </LinearLayout>
+
+    <View
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"/>
+
 
     <EditText
-            android:id="@+id/et_path"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/et_path"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    <Button
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
             android:id="@+id/btn_play"
-            android:text="播放"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="播放" />
+
+        <Button
             android:id="@+id/btn_pause"
-            android:text="暂停"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="暂停" />
+
+        <Button
             android:id="@+id/btn_replay"
-            android:text="重播"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="重播" />
+
+        <Button
             android:id="@+id/btn_stop"
-            android:text="停止"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="停止" />
+    </LinearLayout>
+
     <SeekBar
-            android:id="@+id/btn_process"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        android:id="@+id/btn_process"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"/>
 
 </LinearLayout>

@@ -7,13 +7,15 @@ import android.media.MediaPlayer.OnErrorListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
+
+import com.hualala.bi.framework.base.BaseContractorActivity;
 import com.hualala.libutils.view.ToastUtils;
 import com.hualala.mobilebox.R;
-import com.hualala.bi.framework.base.BaseContractorActivity;
 
 import java.io.File;
 import java.util.Timer;
@@ -24,11 +26,18 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
     private Button btn_play, btn_pause, btn_replay, btn_stop;
     private SeekBar btn_process;
     private MediaPlayer mediaPlayer;
+    private LedTextView songScreen;
+    private LedTextView songScreen2;
+    private LyricView lyricView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mp3player);
+
+        songScreen = findViewById(R.id.songScreen);
+        songScreen2 = findViewById(R.id.songScreen2);
+
 
         String path = getIntent().getStringExtra("path");
 
@@ -55,6 +64,9 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
         if (path.startsWith("file://")) {
             path = path.replaceFirst("file://", "");
         }
+        path = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "陈慧娴 - 千千阙歌.mp3").getAbsolutePath();
+        lyricView = new LyricView();
+        lyricView.setLyricFile(new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "陈慧娴 - 千千阙歌.lrc"));
 
         et_path.setText(path);
 
@@ -72,13 +84,61 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
         mTimerTask = new TimerTask() {
             @Override
             public void run() {
-                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
-                    btn_process.setProgress(mediaPlayer.getCurrentPosition());
+                try {
+                    if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                        btn_process.setProgress(mediaPlayer.getCurrentPosition());
+
+                        int pos = mediaPlayer.getCurrentPosition();
+
+                        if (lyricView.mLyricInfo != null && lyricView.mLineCount > 0) {
+                            for (int i = lyricView.mLineCount - 1; i >= 0; i--) {
+                                LyricView.LineInfo info = lyricView.mLyricInfo.songLines.get(i);
+                                if (pos >= info.start) {
+                                    if (currentPosition == i) {
+                                        break;
+                                    }
+
+                                    if (i%2==0){
+
+                                        songScreen.updateText(info.content);
+                                        songScreen.setColorMode(5);
+
+                                        if (i + 1 >= lyricView.mLineCount) {
+                                            songScreen2.updateText("end...");
+                                        } else {
+                                            songScreen2.updateText(lyricView.mLyricInfo.songLines.get(i+1).content);
+                                        }
+                                        songScreen2.setColorMode(1);
+
+                                    }else {
+                                        songScreen2.updateText(info.content);
+                                        songScreen2.setColorMode(5);
+                                        if (i + 1 >= lyricView.mLineCount) {
+                                            songScreen.updateText("end...");
+                                        } else {
+                                            songScreen.updateText(lyricView.mLyricInfo.songLines.get(i+1).content);
+                                        }
+                                        songScreen.setColorMode(1);
+                                    }
+                                    break;
+                                }
+                            }
+                        } else {
+                            currentPosition = -1;
+                        }
+                    } else {
+                        currentPosition = -1;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    currentPosition = -1;
                 }
             }
         };
-        mTimer.schedule(mTimerTask, 0, 1000);
+        mTimer.schedule(mTimerTask, 0, 120);
     }
+
+    public int currentPosition = 0;
 
     Timer mTimer;
     TimerTask mTimerTask;
@@ -87,10 +147,12 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
 
         @Override
         public void onClick(View v) {
+            currentPosition = -1;
 
             switch (v.getId()) {
                 case R.id.btn_play:
                     play();
+
                     break;
                 case R.id.btn_pause:
                     pause();
@@ -113,9 +175,9 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
     protected void play() {
         String path = et_path.getText().toString().trim();
 
-        if (!path.toLowerCase().startsWith("http") ) {
+        if (!path.toLowerCase().startsWith("http")) {
             File file = new File(path);
-            if (!(file.exists() && file.length() > 0)){
+            if (!(file.exists() && file.length() > 0)) {
                 ToastUtils.showToastCenter(this, "文件不存在");
                 return;
             }
