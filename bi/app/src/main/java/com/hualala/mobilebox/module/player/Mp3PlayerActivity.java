@@ -101,23 +101,27 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
 
                                     if (i%2==0){
 
-                                        songScreen.ForceupdateText(info.content+"                  ");
+                                        songScreen.ForceupdateText(info.content+"");
+                                        songScreen.setColorMode(5);
                                         songScreen.startScroll();
                                         songScreen2.stopScroll();
+                                        songScreen2.setColorMode(1);
                                         if (i + 1 >= lyricView.mLineCount) {
-                                            songScreen2.ForceupdateText("......."+"                  ");
+                                            songScreen2.ForceupdateText("......."+"");
                                         } else {
-                                            songScreen2.ForceupdateText(lyricView.mLyricInfo.songLines.get(i+1).content+"                  ");
+                                            songScreen2.ForceupdateText(lyricView.mLyricInfo.songLines.get(i+1).content+"");
                                         }
 
                                     }else {
-                                        songScreen2.ForceupdateText(info.content+"                  ");
+                                        songScreen2.ForceupdateText(info.content+"");
                                         songScreen2.startScroll();
                                         songScreen.stopScroll();
+                                        songScreen2.setColorMode(5);
+                                        songScreen.setColorMode(1);
                                         if (i + 1 >= lyricView.mLineCount) {
-                                            songScreen.ForceupdateText("（音乐）"+"                  ");
+                                            songScreen.ForceupdateText("（音乐）"+"");
                                         } else {
-                                            songScreen.ForceupdateText(lyricView.mLyricInfo.songLines.get(i+1).content+"                  ");
+                                            songScreen.ForceupdateText(lyricView.mLyricInfo.songLines.get(i+1).content+"");
                                         }
                                     }
                                     break;

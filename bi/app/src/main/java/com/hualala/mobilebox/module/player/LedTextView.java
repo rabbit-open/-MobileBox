@@ -15,7 +15,7 @@ import com.hualala.mobilebox.R;
 public class LedTextView extends android.support.v7.widget.AppCompatTextView {
 
     private final float xyratio = 1f / 1;//Y行数根据X列数定，每个字  屏幕宽高比
-    private int xdots = 16;//X点数
+    private int xdots = 40;//X点数
     private int dots = (int) (xdots * xyratio); //Y点数=行数
     private int centeroffset = (dots - 16) / 2;//Y偏移
     private int centerxoffset = (xdots % 8) / 2;//X偏移
