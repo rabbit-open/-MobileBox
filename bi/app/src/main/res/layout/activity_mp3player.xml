@@ -17,7 +17,7 @@
             android:layout_height="@dimen/px100"
             android:text="歌词显示屏幕"
             app:scroll="false"
-            app:dotcolormode="5"
+            app:dotcolormode="3"
             app:scrollDirection="left"
             app:speed="normal"
             app:textColor="#FF2233" />
@@ -28,7 +28,7 @@
             android:layout_height="@dimen/px100"
             android:text="歌词显示屏幕"
             app:scroll="false"
-            app:dotcolormode="5"
+            app:dotcolormode="3"
             app:scrollDirection="left"
             app:speed="normal"
             app:textColor="#ff8899" />

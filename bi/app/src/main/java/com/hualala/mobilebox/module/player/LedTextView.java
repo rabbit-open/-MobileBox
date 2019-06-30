@@ -101,7 +101,7 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
         selectPaint.setColor(paintColor);
 
         //随机色
-        if (mode == 5) {
+        if (mode == 3) {
             selectPaint.setColor(Color.rgb((int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1)));
         }
         normalPaint = new Paint();
@@ -253,7 +253,7 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
     private void drawText(Canvas canvas, int xoffset, int yoffset, boolean[][] matrix) {
         radius = (getHeight() - (dots + 1) * spacing) / (2 * dots);
         //随机色
-        if (mode == 5) {
+        if (mode == 3) {
             selectPaint.setColor(Color.rgb((int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1)));
         }
 
@@ -269,7 +269,7 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
             while (getXPosition(column, xoffset) < getWidth()) {
                 if (row < matrix.length && column < matrix[0].length && matrix[row][column]) {
                     //随机色
-                    if (mode == 3) {
+                    if (mode == 5) {
                         selectPaint.setColor(Color.rgb((int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1)));
                     }
                     if (isCircle) {
