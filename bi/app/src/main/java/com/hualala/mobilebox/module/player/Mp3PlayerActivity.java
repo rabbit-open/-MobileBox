@@ -108,12 +108,12 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
                                         songScreen.ForceupdateText(info.content+"");
                                         songScreen.setColorMode(3);
                                         songScreen.startScroll();
-                                        songScreenL.setVisibility(View.VISIBLE);
-                                        songScreen2L.setVisibility(View.INVISIBLE);
+                                        songScreenL.ForceupdateText("->");
+                                        songScreen2L.ForceupdateText("");
                                         songScreen2.stopScroll();
                                         songScreen2.setColorMode(1);
                                         if (i + 1 >= lyricView.mLineCount) {
-                                            songScreen2.ForceupdateText("......."+"");
+                                            songScreen2.ForceupdateText("（音乐）end");
                                         } else {
                                             songScreen2.ForceupdateText(lyricView.mLyricInfo.songLines.get(i+1).content+"");
                                         }
@@ -121,13 +121,13 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
                                     }else {
                                         songScreen2.ForceupdateText(info.content+"");
                                         songScreen2.startScroll();
-                                        songScreen2L.setVisibility(View.VISIBLE);
-                                        songScreenL.setVisibility(View.INVISIBLE);
+                                        songScreenL.ForceupdateText("");
+                                        songScreen2L.ForceupdateText("->");
                                         songScreen.stopScroll();
                                         songScreen2.setColorMode(3);
                                         songScreen.setColorMode(1);
                                         if (i + 1 >= lyricView.mLineCount) {
-                                            songScreen.ForceupdateText("（音乐）"+"");
+                                            songScreen.ForceupdateText("（音乐）end");
                                         } else {
                                             songScreen.ForceupdateText(lyricView.mLyricInfo.songLines.get(i+1).content+"");
                                         }

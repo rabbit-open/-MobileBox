@@ -6,86 +6,74 @@
     android:background="#000000"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <com.hualala.mobilebox.module.player.LedTextView
+            android:id="@+id/songScreenL"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:text="->"
+            app:dotcolormode="3"
+            app:isCircle="true"
+            app:scroll="false"
+            app:spacing="1px"
+            app:speed="normal"
+            app:textColor="#FF2233"
+            app:xdots="32" />
+
+        <com.hualala.mobilebox.module.player.LedTextView
+            android:id="@+id/songScreen"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="KTV"
+            app:dotcolormode="3"
+            app:isCircle="true"
+            app:scroll="false"
+            app:scrollDirection="left"
+            app:spacing="1px"
+            app:speed="normal"
+            app:textColor="#FF2233"
+            app:xdots="32" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <com.hualala.mobilebox.module.player.LedTextView
+            android:id="@+id/songScreen2L"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:text=""
+            app:dotcolormode="3"
+            app:isCircle="true"
+            app:scroll="false"
+            app:spacing="1px"
+            app:speed="normal"
+            app:textColor="#FF2233"
+            app:xdots="32" />
+
+        <com.hualala.mobilebox.module.player.LedTextView
+            android:id="@+id/songScreen2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <com.hualala.mobilebox.module.player.LedTextView
-                android:id="@+id/songScreenL"
-                android:layout_width="100dp"
-                android:layout_height="80dp"
-                android:text="->"
-                android:visibility="invisible"
-                app:dotcolormode="3"
-                app:isCircle="true"
-                app:scroll="false"
-                app:spacing="1px"
-                app:speed="normal"
-                app:textColor="#FF2233"
-                app:xdots="32" />
-
-            <com.hualala.mobilebox.module.player.LedTextView
-                android:id="@+id/songScreen"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="KTV"
-                app:dotcolormode="3"
-                app:isCircle="true"
-                app:scroll="false"
-                app:scrollDirection="left"
-                app:spacing="1px"
-                app:speed="normal"
-                app:textColor="#FF2233"
-                app:xdots="32" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <com.hualala.mobilebox.module.player.LedTextView
-                android:id="@+id/songScreen2L"
-                android:layout_width="100dp"
-                android:layout_height="80dp"
-                android:text="->"
-                android:visibility="invisible"
-                app:dotcolormode="3"
-                app:isCircle="true"
-                app:scroll="false"
-                app:spacing="1px"
-                app:speed="normal"
-                app:textColor="#FF2233"
-                app:xdots="32" />
-
-            <com.hualala.mobilebox.module.player.LedTextView
-                android:id="@+id/songScreen2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/px20"
-                android:layout_weight="1"
-                android:text="Welcome"
-                app:dotcolormode="3"
-                app:isCircle="false"
-                app:scroll="false"
-                app:scrollDirection="left"
-                app:spacing="1px"
-                app:speed="normal"
-                app:textColor="#ff8899"
-                app:xdots="32" />
-        </LinearLayout>
-
+            android:text="Welcome"
+            app:dotcolormode="3"
+            app:isCircle="false"
+            app:scroll="false"
+            app:scrollDirection="left"
+            app:spacing="1px"
+            app:speed="normal"
+            app:textColor="#ff8899"
+            app:xdots="32" />
     </LinearLayout>
 
     <EditText

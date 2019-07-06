@@ -281,11 +281,11 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
      * 主要是想处理AT_MOST的情况，我觉得View默认的情况就挺好的，由于继承自TextView，而TextView重
      * 写了onMeasure，因此这里参考View#onMeasure函数的写法即可
      */
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
-                getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
-    }
+//    @Override
+//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
+//                getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
+//    }
 
     private int maxDian = 0;
     private int count = 0;
@@ -457,10 +457,4 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
 
     }
 
-
-    @Override
-    public void setVisibility(int visibility) {
-        super.setVisibility(visibility);
-        postInvalidate();
-    }
 }

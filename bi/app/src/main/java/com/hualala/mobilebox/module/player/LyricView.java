@@ -84,6 +84,13 @@ public class LyricView {
             lineInfo.start = measureStartTimeMillis(line.substring(0, index));
             lyricInfo.songLines.add(lineInfo);
         }
+        if (index >= 9 && line.trim().length() == index + 1) {
+            // lyrics
+            LineInfo lineInfo = new LineInfo();
+            lineInfo.content = "(音乐)";
+            lineInfo.start = measureStartTimeMillis(line.substring(0, index));
+            lyricInfo.songLines.add(lineInfo);
+        }
     }
 
     /**
