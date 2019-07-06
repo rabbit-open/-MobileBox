@@ -101,35 +101,39 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
                                     if (currentPosition == i) {
                                         break;
                                     }
-                                    currentPosition=i;
+                                    currentPosition = i;
 
-                                    if (i%2==0){
+                                    if (i % 2 == 0) {
 
-                                        songScreen.ForceupdateText(info.content+"");
+                                        songScreen.ForceupdateText(info.content + "");
                                         songScreen.setColorMode(3);
                                         songScreen.startScroll();
                                         songScreenL.ForceupdateText("->");
                                         songScreen2L.ForceupdateText("");
                                         songScreen2.stopScroll();
                                         songScreen2.setColorMode(1);
-                                        if (i + 1 >= lyricView.mLineCount) {
-                                            songScreen2.ForceupdateText("（音乐）end");
+                                        if (i + 1 > lyricView.mLineCount) {
+                                            songScreen2.ForceupdateText("");
+                                        } else if (i + 1 == lyricView.mLineCount) {
+                                            songScreen2.ForceupdateText(" music");
                                         } else {
-                                            songScreen2.ForceupdateText(lyricView.mLyricInfo.songLines.get(i+1).content+"");
+                                            songScreen2.ForceupdateText(lyricView.mLyricInfo.songLines.get(i + 1).content + "");
                                         }
 
-                                    }else {
-                                        songScreen2.ForceupdateText(info.content+"");
+                                    } else {
+                                        songScreen2.ForceupdateText(info.content + "");
                                         songScreen2.startScroll();
                                         songScreenL.ForceupdateText("");
                                         songScreen2L.ForceupdateText("->");
                                         songScreen.stopScroll();
                                         songScreen2.setColorMode(3);
                                         songScreen.setColorMode(1);
-                                        if (i + 1 >= lyricView.mLineCount) {
-                                            songScreen.ForceupdateText("（音乐）end");
+                                        if (i + 1 > lyricView.mLineCount) {
+                                            songScreen.ForceupdateText("");
+                                        } else if (i + 1 == lyricView.mLineCount) {
+                                            songScreen.ForceupdateText(" music");
                                         } else {
-                                            songScreen.ForceupdateText(lyricView.mLyricInfo.songLines.get(i+1).content+"");
+                                            songScreen.ForceupdateText(lyricView.mLyricInfo.songLines.get(i + 1).content + "");
                                         }
                                     }
                                     break;
