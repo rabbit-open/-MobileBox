@@ -67,7 +67,7 @@
             android:layout_weight="1"
             android:text="Welcome"
             app:dotcolormode="3"
-            app:isCircle="false"
+            app:isCircle="true"
             app:scroll="false"
             app:scrollDirection="left"
             app:spacing="1px"
