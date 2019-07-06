@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_page"
+    android:background="#000000"
     android:orientation="vertical">
 
     <LinearLayout
@@ -17,10 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text=" 歌词显示屏幕"
+            android:text="歌词显示屏幕"
             app:dotcolormode="3"
+            app:isCircle="true"
             app:scroll="false"
             app:scrollDirection="left"
+            app:spacing="1px"
             app:speed="normal"
             app:textColor="#FF2233"
             app:xdots="32" />
@@ -29,12 +31,14 @@
             android:id="@+id/songScreen2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginLeft="@dimen/px100"
+            android:layout_marginLeft="@dimen/px20"
             android:layout_weight="1"
-            android:text=" 歌词显示屏幕"
+            android:text="歌词显示屏幕"
             app:dotcolormode="3"
+            app:isCircle="false"
             app:scroll="false"
             app:scrollDirection="left"
+            app:spacing="1px"
             app:speed="normal"
             app:textColor="#ff8899"
             app:xdots="32" />
