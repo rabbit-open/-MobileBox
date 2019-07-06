@@ -457,4 +457,10 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
 
     }
 
-}  
+
+    @Override
+    public void setVisibility(int visibility) {
+        super.setVisibility(visibility);
+        postInvalidate();
+    }
+}
