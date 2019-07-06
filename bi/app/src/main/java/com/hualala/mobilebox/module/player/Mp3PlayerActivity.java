@@ -27,7 +27,9 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
     private SeekBar btn_process;
     private MediaPlayer mediaPlayer;
     private LedTextView songScreen;
+    private LedTextView songScreen2L;
     private LedTextView songScreen2;
+    private LedTextView songScreenL;
     private LyricView lyricView;
 
     @Override
@@ -36,7 +38,9 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
         setContentView(R.layout.activity_mp3player);
 
         songScreen = findViewById(R.id.songScreen);
+        songScreenL = findViewById(R.id.songScreenL);
         songScreen2 = findViewById(R.id.songScreen2);
+        songScreen2L = findViewById(R.id.songScreen2L);
 
 
         String path = getIntent().getStringExtra("path");
@@ -101,9 +105,11 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
 
                                     if (i%2==0){
 
-                                        songScreen.ForceupdateText(info.content+"");
+                                        songScreen.ForceupdateText("》》 "+info.content+"");
                                         songScreen.setColorMode(3);
                                         songScreen.startScroll();
+                                        songScreenL.setVisibility(View.VISIBLE);
+                                        songScreen2L.setVisibility(View.GONE);
                                         songScreen2.stopScroll();
                                         songScreen2.setColorMode(1);
                                         if (i + 1 >= lyricView.mLineCount) {
@@ -113,8 +119,10 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
                                         }
 
                                     }else {
-                                        songScreen2.ForceupdateText(info.content+"");
+                                        songScreen2.ForceupdateText("》》 "+info.content+"");
                                         songScreen2.startScroll();
+                                        songScreen2L.setVisibility(View.VISIBLE);
+                                        songScreenL.setVisibility(View.GONE);
                                         songScreen.stopScroll();
                                         songScreen2.setColorMode(3);
                                         songScreen.setColorMode(1);
