@@ -140,6 +140,8 @@ public class Mp3PlayerActivity extends BaseContractorActivity {
             }
         };
         mTimer.schedule(mTimerTask, 0, 120);
+
+        play();
     }
 
     public int currentPosition = 0;

@@ -7,51 +7,50 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
         <com.hualala.mobilebox.module.player.LedTextView
             android:id="@+id/songScreen"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px128"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:text=" 歌词显示屏幕"
-            app:scroll="false"
-            app:spacing="@dimen/px1"
             app:dotcolormode="3"
+            app:scroll="false"
             app:scrollDirection="left"
             app:speed="normal"
-            app:xdots="16"
-            app:textColor="#FF2233" />
+            app:textColor="#FF2233"
+            app:xdots="32" />
+
         <com.hualala.mobilebox.module.player.LedTextView
             android:id="@+id/songScreen2"
-            android:layout_marginLeft="@dimen/px100"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/px129"
+            android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/px100"
+            android:layout_weight="1"
             android:text=" 歌词显示屏幕"
             app:dotcolormode="3"
-            app:spacing="@dimen/px1"
-            app:xdots="16"
             app:scroll="false"
             app:scrollDirection="left"
             app:speed="normal"
-            app:textColor="#ff8899" />
+            app:textColor="#ff8899"
+            app:xdots="32" />
     </LinearLayout>
-
-    <View
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"/>
-
 
     <EditText
         android:id="@+id/et_path"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <Button
             android:id="@+id/btn_play"
@@ -85,11 +84,7 @@
     <SeekBar
         android:id="@+id/btn_process"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <View
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"/>
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
 </LinearLayout>

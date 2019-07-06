@@ -14,8 +14,8 @@ import com.hualala.mobilebox.R;
 
 public class LedTextView extends android.support.v7.widget.AppCompatTextView {
 
-    private final float xyratio = 1f / 1;//Y行数根据X列数定，每个字  屏幕宽高比
-    private int xdots = 40;//X点数
+    private final float xyratio = 9f / 16;//Y行数根据X列数定，每个字  屏幕宽高比
+    private int xdots = 32;//X点数
     private int dots = (int) (xdots * xyratio); //Y点数=行数
     private int centeroffset = (dots - 16) / 2;//Y偏移
     private int centerxoffset = (xdots % 8) / 2;//X偏移
@@ -38,8 +38,8 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
     /*
      * 用来调整滚动速度
      */
-    private static int maxsleep = 500;
-    private static int minsleep = 100;
+    private static int maxsleep = 100;
+    private static int minsleep = 50;
 
     private int sleepTime = minsleep;
 
@@ -53,7 +53,7 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
      */
     private boolean[][] matrix;
     private Handler handler;
-    private boolean isCircle = true;
+    private boolean isCircle = false;
 
     public LedTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -69,7 +69,7 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
                     paintColor = typedArray.getColor(R.styleable.LedTextView_textColor, Color.GREEN);
                     break;
                 case R.styleable.LedTextView_spacing:
-                    spacing = typedArray.getDimension(R.styleable.LedTextView_spacing, 10);
+                    spacing = typedArray.getDimension(R.styleable.LedTextView_spacing, 0);
                     break;
                 case R.styleable.LedTextView_scroll:
                     scroll = typedArray.getBoolean(R.styleable.LedTextView_scroll, true);
@@ -166,6 +166,7 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
         return sb.toString();
     }
 
+
     /*
      * 用于控制滚动，仅在开启滚动时启动。
      */
@@ -176,7 +177,47 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
             int m = 0;
             while (scrollText) {
 
-                if (m == matrix[0].length) {
+                if (getXPosition(matrix[0].length, centerxoffset) <= getWidth()) {
+                    m = 0;
+                    continue;
+                }
+
+                if (m >= matrix[0].length - maxDian - 1) {
+                    //m = 0;
+                    return;
+                    // onScrollEnd();
+                }
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (0 == scrollDirection) {
+                    matrixLeftMove(matrix);
+                } else {
+                    matrixRightMove(matrix);
+                }
+                m++;
+
+                handler.sendEmptyMessage(0);
+            }
+            matrix = ChatUtils.convert(changeContent(), getContext());
+            handler.sendEmptyMessage(0);
+        }
+    }
+
+
+    /*
+     * 用于控制滚动，仅在开启滚动时启动。
+     */
+    private class MultiScrollThread extends Thread {
+        @Override
+        public void run() {
+
+            int m = 0;
+            while (scrollText) {
+
+                if (m >= matrix[0].length) {
                     m = 0;
                     onScrollEnd();
                 }
@@ -191,7 +232,6 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
                     matrixRightMove(matrix);
                 }
                 m++;
-
                 handler.sendEmptyMessage(0);
             }
             matrix = ChatUtils.convert(changeContent(), getContext());
@@ -244,6 +284,8 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
                 getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
     }
 
+    private int maxDian = 0;
+    private int count = 0;
 
     private void drawText(Canvas canvas, int xoffset, int yoffset, boolean[][] matrix) {
         radius = (getHeight() - (dots + 1) * spacing) / (2 * dots);
@@ -256,16 +298,39 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
         while (getYPosition(row, yoffset) < getHeight()) {
             while (getXPosition(column, xoffset) < getWidth()) {
                 if (row < matrix.length && column < matrix[0].length && matrix[row][column]) {
-                    //随机色
-                    if (mode == 5) {
-                        selectPaint.setColor(Color.rgb((int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1)));
-                    }
-                    if (isCircle) {
-                        canvas.drawCircle(getXPosition(column, xoffset), getYPosition(row, yoffset), radius, selectPaint);
+
+
+                    if (scrollText && count >= column) {
+
+                        Paint selectPaint = new Paint();
+                        selectPaint.setStyle(Paint.Style.STROKE);
+                        selectPaint.setColor(Color.BLACK);
+
+                        selectPaint.setColor(Color.parseColor("#ffffff"));
+
+                        if (isCircle) {
+                            canvas.drawCircle(getXPosition(column, xoffset), getYPosition(row, yoffset), radius, selectPaint);
+                        } else {
+                            canvas.drawRect(getXPosition(column, xoffset), getYPosition(row, yoffset), getXPosition(column, xoffset) + 2 * radius, getYPosition(row, yoffset) + 2 * radius, selectPaint);
+                        }
                     } else {
-                        canvas.drawRect(getXPosition(column, xoffset), getYPosition(row, yoffset), getXPosition(column, xoffset) + 2 * radius, getYPosition(row, yoffset) + 2 * radius, selectPaint);
+
+                        //随机色
+                        if (mode == 5) {
+                            selectPaint.setColor(Color.rgb((int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1)));
+                        }
+
+                        if (isCircle) {
+                            canvas.drawCircle(getXPosition(column, xoffset), getYPosition(row, yoffset), radius, selectPaint);
+                        } else {
+                            canvas.drawRect(getXPosition(column, xoffset), getYPosition(row, yoffset), getXPosition(column, xoffset) + 2 * radius, getYPosition(row, yoffset) + 2 * radius, selectPaint);
+                        }
                     }
+
+                } else {
+                    maxDian = column;
                 }
+
 //                else {
 //                    if (isCircle) {
 //                        canvas.drawCircle(getXPosition(column, xoffset), getYPosition(row, yoffset), radius, normalPaint);

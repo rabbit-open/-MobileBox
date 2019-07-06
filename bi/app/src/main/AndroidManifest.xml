@@ -55,7 +55,8 @@
             android:theme="@style/CustomAppTheme.FullScreen.Transparent" />
         <activity
             android:screenOrientation="landscape"
-            android:name=".module.player.Mp3PlayerActivity" />
+            android:name=".module.player.Mp3PlayerActivity"
+            android:theme="@style/CustomAppTheme.FullScreen.Transparent" />
         <activity android:name=".module.devices.DevicesListActivity" />
         <activity
             android:name=".module.guide.AppStartActivity"
