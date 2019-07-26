@@ -9,6 +9,15 @@ public class WifiBean implements Comparable<WifiBean>{
     private String capabilities;//加密方式
     private String password;
     private ScanResult scanResult;
+    private boolean isCurrent=false;
+
+    public boolean isCurrent() {
+        return isCurrent;
+    }
+
+    public void setCurrent(boolean current) {
+        isCurrent = current;
+    }
 
     @Override
     public String toString() {

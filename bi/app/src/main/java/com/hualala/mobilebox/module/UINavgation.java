@@ -9,6 +9,7 @@ import com.hualala.mobilebox.module.boot.view.MainActivity;
 import com.hualala.mobilebox.module.devices.DevicesListActivity;
 import com.hualala.mobilebox.module.player.Mp3PlayerActivity;
 import com.hualala.mobilebox.module.player.VideoPlayerActivity;
+import com.hualala.mobilebox.module.wifi.WifiSettingsActivity;
 import com.hualala.mobilebox.module.zxing.CodeScanActivity;
 
 public class UINavgation {
@@ -59,14 +60,14 @@ public class UINavgation {
 
     public static void startWifiSettingsActivity(Context context) {
 
-        //Intent intent = new Intent(context, WifiSettingsActivity.class);
-        //context.startActivity(intent);
+        Intent intent = new Intent(context, WifiSettingsActivity.class);
+        context.startActivity(intent);
 
-        Intent intent = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
-        intent.putExtra("extra_prefs_show_button_bar", true);
-        intent.putExtra("extra_prefs_set_next_text", "");
-        intent.putExtra("extra_prefs_set_back_text", "<-MobileBox");
-        ((Activity) context).startActivityForResult(intent, 1);
+//        Intent intent = new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS);
+//        intent.putExtra("extra_prefs_show_button_bar", true);
+//        intent.putExtra("extra_prefs_set_next_text", "");
+//        intent.putExtra("extra_prefs_set_back_text", "<-MobileBox");
+//        ((Activity) context).startActivityForResult(intent, 1);
     }
 
     public static void startLivePlayerActivity(Context context, String path) {

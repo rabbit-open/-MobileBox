@@ -8,10 +8,24 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <com.hualala.ui.widget.CommonHeader
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleText="wifi设置" />
+        android:layout_height="wrap_content">
+
+        <com.hualala.ui.widget.CommonHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleText="wifi设置" />
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginRight="@dimen/px20"
+            android:checked="false"
+            android:text="wifi开关" />
+    </FrameLayout>
 
     <com.hualala.ui.widget.recyclelib.SupetRecyclerView
         android:id="@+id/recycler_view"
