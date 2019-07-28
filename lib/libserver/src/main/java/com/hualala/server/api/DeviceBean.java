@@ -5,10 +5,19 @@ package com.hualala.server.api;
  * 只要IP一样，则认为是同一个设备
  */
 public class DeviceBean {
-    String ip; // IP地址
-    int port; // 端口
-    String name; // 设备名称
-    String room; // 设备所在房间
+    public String ip; // IP地址
+    public int port; // 端口
+    public String name; // 设备名称
+    public String room; // 设备所在房间
+
+    public DeviceBean(String ip, int port) {
+        super();
+        this.ip = ip;
+        this.port = port;
+    }
+
+    public DeviceBean() {
+    }
 
     @Override
     public int hashCode() {

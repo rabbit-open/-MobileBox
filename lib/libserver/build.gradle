@@ -56,4 +56,8 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:1.16.14"
     //javax注解
     api "org.glassfish:javax.annotation:10.0-b28"
+
+    //事件框架
+    implementation "org.greenrobot:eventbus:3.1.1"
+    annotationProcessor "org.greenrobot:eventbus:3.1.1"
 }

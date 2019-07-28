@@ -55,8 +55,12 @@
             android:name=".module.player.VideoPlayerActivity"
             android:theme="@style/CustomAppTheme.FullScreen.Transparent" />
         <activity
-            android:screenOrientation="landscape"
             android:name=".module.player.Mp3PlayerActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/CustomAppTheme.FullScreen.Transparent" />
+        <activity
+            android:name=".module.player.Mp3PlayerActivity2"
+            android:screenOrientation="landscape"
             android:theme="@style/CustomAppTheme.FullScreen.Transparent" />
         <activity android:name=".module.devices.DevicesListActivity" />
         <activity

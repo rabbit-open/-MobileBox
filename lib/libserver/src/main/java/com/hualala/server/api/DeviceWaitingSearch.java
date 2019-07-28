@@ -5,6 +5,10 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
+import com.hualala.server.event.LRCEvent;
+
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -14,7 +18,6 @@ import java.nio.charset.Charset;
 
 /**
  * 设备等待搜索类
- *
  */
 public abstract class DeviceWaitingSearch extends Thread {
     private final String TAG = DeviceWaitingSearch.class.getSimpleName();
@@ -63,6 +66,9 @@ public abstract class DeviceWaitingSearch extends Thread {
                     }
                     socket.setSoTimeout(0); // 连接超时还原成无穷大，阻塞式接收
                 }
+
+                parseLrc(pack);
+
             }
         } catch (
                 IOException e) {
@@ -71,6 +77,32 @@ public abstract class DeviceWaitingSearch extends Thread {
             if (socket != null) {
                 socket.close();
             }
+        }
+
+    }
+
+    protected void parseLrc(DatagramPacket pack) {
+
+        if (pack.getLength() < 6) {
+            return;
+        }
+        byte[] data = pack.getData();
+        int offset = pack.getOffset();
+        int sendSeq;
+        if (data[offset++] != '$' || data[offset++] != 0x20) {
+            return;
+        }
+        sendSeq = data[offset++] & 0xFF;
+        sendSeq |= (data[offset++] << 8);
+        sendSeq |= (data[offset++] << 16);
+        sendSeq |= (data[offset++] << 24);
+
+        if (sendSeq > 0) {
+            String content = new String(data, offset, pack.getLength() - offset, Charset.forName("UTF-8"));
+            Log.v("LRC:", content);
+            EventBus.getDefault().post(new LRCEvent(content));
+        } else {
+            EventBus.getDefault().post(new LRCEvent(""));
         }
 
     }
