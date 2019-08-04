@@ -165,11 +165,15 @@ public class Mp3LrcPlayer extends BaseContractorActivity {
     @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
     public void lrcCallBack(LRCEvent lrcEvent) {
         LRCContent lrcContent = new Gson().fromJson(lrcEvent.content, LRCContent.class);
+        songScreen.stopScroll();
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         songScreen.ForceupdateText(lrcContent.content);
         if (lrcContent.isScroll) {
             songScreen.startScroll();
-        }else {
-            songScreen.stopScroll();
         }
     }
 
@@ -207,7 +211,7 @@ public class Mp3LrcPlayer extends BaseContractorActivity {
 
         } else {
             if (right != null) {
-                new LRCDeviceSend(left, new Gson().toJson(new LRCContent(info.content + "", true))).start();
+                new LRCDeviceSend(right, new Gson().toJson(new LRCContent(info.content + "", true))).start();
             } else {
                 for (DeviceBean deviceBean : mDeviceList) {
                     new LRCDeviceSend(deviceBean, new Gson().toJson(new LRCContent(info.content + "", true))).start();

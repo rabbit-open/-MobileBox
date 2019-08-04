@@ -13,7 +13,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public class Mp3LRCActivity extends BaseContractorActivity {
 
-    private LedTextView songScreen;
+    private LedTextView2 songScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,13 @@ public class Mp3LRCActivity extends BaseContractorActivity {
     @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
     public void lrcCallBack(LRCEvent lrcEvent) {
         LRCContent lrcContent = new Gson().fromJson(lrcEvent.content, LRCContent.class);
-        songScreen.ForceupdateText(lrcContent.content);
         songScreen.stopScroll();
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        songScreen.ForceupdateText(lrcContent.content);
         if (lrcContent.isScroll) {
             songScreen.startScroll();
         }
