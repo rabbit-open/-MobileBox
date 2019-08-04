@@ -7,7 +7,9 @@ import android.media.MediaPlayer.OnErrorListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,24 +20,36 @@ import com.hualala.bi.framework.base.BaseContractorActivity;
 import com.hualala.libutils.view.ToastUtils;
 import com.hualala.mobilebox.R;
 import com.hualala.server.api.DeviceBean;
+import com.hualala.server.api.DeviceSearcher;
 import com.hualala.server.api.LRCDeviceSend;
 import com.hualala.server.event.LRCEvent;
+import com.hualala.ui.widget.PullLoadMoreView;
+import com.hualala.ui.widget.recyclelib.SupetRecyclerView;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Mp3PlayerActivity2 extends BaseContractorActivity {
+public class Mp3LrcPlayer extends BaseContractorActivity {
     private EditText et_path;
     private Button btn_play, btn_pause, btn_replay, btn_stop;
     private SeekBar btn_process;
     private MediaPlayer mediaPlayer;
     private LedTextView songScreen;
     private LyricView lyricView;
+
+    private SupetRecyclerView recyclerView;
+    private LrcDevicesAdapter devicesAdapter;
+    private PullLoadMoreView pullLoadMoreView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +84,8 @@ public class Mp3PlayerActivity2 extends BaseContractorActivity {
         if (path.startsWith("file://")) {
             path = path.replaceFirst("file://", "");
         }
-        path = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "陈慧娴 - 千千阙歌.mp3").getAbsolutePath();
         lyricView = new LyricView();
-        lyricView.setLyricFile(new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "陈慧娴 - 千千阙歌.lrc"));
+        lyricView.setLyricFile(new File(path.substring(0, path.lastIndexOf(".")) + ".lrc"));
 
         et_path.setText(path);
 
@@ -80,6 +93,7 @@ public class Mp3PlayerActivity2 extends BaseContractorActivity {
         btn_pause = findViewById(R.id.btn_pause);
         btn_replay = findViewById(R.id.btn_replay);
         btn_stop = findViewById(R.id.btn_stop);
+
 
         btn_play.setOnClickListener(click);
         btn_pause.setOnClickListener(click);
@@ -104,33 +118,7 @@ public class Mp3PlayerActivity2 extends BaseContractorActivity {
                                         break;
                                     }
                                     currentPosition = i;
-                                    if (i % 2 == 0) {
-                                        new LRCDeviceSend(new DeviceBean("192.168.1.100", 9000),
-                                                new Gson().toJson(new LRCContent(info.content + "" + "", true))).start();
-                                        String content = "";
-                                        if (i + 1 > lyricView.mLineCount) {
-                                            content = "";
-                                        } else if (i + 1 == lyricView.mLineCount) {
-                                            content = "music";
-                                        } else {
-                                            content = lyricView.mLyricInfo.songLines.get(i + 1).content;
-                                        }
-                                        new LRCDeviceSend(new DeviceBean("192.168.1.104", 9000),
-                                                new Gson().toJson(new LRCContent(content + "", false))).start();
-                                    } else {
-                                        new LRCDeviceSend(new DeviceBean("192.168.1.104", 9000),
-                                                new Gson().toJson(new LRCContent(info.content + "", true))).start();
-
-                                        String content = "";
-                                        if (i + 1 > lyricView.mLineCount) {
-                                            content = "";
-                                        } else if (i + 1 == lyricView.mLineCount) {
-                                            content = "music";
-                                        } else {
-                                            content = lyricView.mLyricInfo.songLines.get(i + 1).content;
-                                        }
-                                        new LRCDeviceSend(new DeviceBean("192.168.1.100", 9000), new Gson().toJson(new LRCContent(content, false))).start();
-                                    }
+                                    lrcdispatch(i, info);
                                     break;
                                 }
                             }
@@ -145,34 +133,131 @@ public class Mp3PlayerActivity2 extends BaseContractorActivity {
                     currentPosition = -1;
                 }
             }
+
+
         };
+
+
         mTimer.schedule(mTimerTask, 0, 120);
 
         EventBus.getDefault().register(this);
 
-        play();
-    }
+
+        pullLoadMoreView = findViewById(R.id.pullLoadView);
+        recyclerView = findViewById(R.id.list);
 
 
-    public static class LRCContent {
-        public String content;
-        public boolean isScroll;
+        pullLoadMoreView.setContentView(recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        devicesAdapter = new LrcDevicesAdapter(this);
+        recyclerView.setAdapter(devicesAdapter);
+        pullLoadMoreView.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                searchDevices();
+            }
+        });
+        pullLoadMoreView.showLoading();
+        searchDevices();
 
-        public LRCContent(String content, boolean isScroll) {
-            this.content = content;
-            this.isScroll = isScroll;
-        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN_ORDERED)
     public void lrcCallBack(LRCEvent lrcEvent) {
         LRCContent lrcContent = new Gson().fromJson(lrcEvent.content, LRCContent.class);
-        songScreen.stopScroll();
         songScreen.ForceupdateText(lrcContent.content);
         if (lrcContent.isScroll) {
             songScreen.startScroll();
+        }else {
+            songScreen.stopScroll();
         }
     }
+
+    private void lrcdispatch(int i, LyricView.LineInfo info) {
+
+        DeviceBean left = null;
+        DeviceBean right = null;
+
+        if (mDeviceList.size() == 2) {
+            left = mDeviceList.get(0);
+            right = mDeviceList.get(1);
+        }
+
+        if (i % 2 == 0) {
+            if (left != null) {
+                new LRCDeviceSend(left, new Gson().toJson(new LRCContent(info.content + "" + "", true))).start();
+            } else {
+                for (DeviceBean deviceBean : mDeviceList) {
+                    new LRCDeviceSend(deviceBean, new Gson().toJson(new LRCContent(info.content + "", true))).start();
+                }
+            }
+
+            String content = "";
+            if (i + 1 > lyricView.mLineCount) {
+                content = "";
+            } else if (i + 1 == lyricView.mLineCount) {
+                content = "music";
+            } else {
+                content = lyricView.mLyricInfo.songLines.get(i + 1).content;
+            }
+
+            if (right != null) {
+                new LRCDeviceSend(right, new Gson().toJson(new LRCContent(content + "", false))).start();
+            }
+
+        } else {
+            if (right != null) {
+                new LRCDeviceSend(left, new Gson().toJson(new LRCContent(info.content + "", true))).start();
+            } else {
+                for (DeviceBean deviceBean : mDeviceList) {
+                    new LRCDeviceSend(deviceBean, new Gson().toJson(new LRCContent(info.content + "", true))).start();
+                }
+            }
+
+            String content = "";
+            if (i + 1 > lyricView.mLineCount) {
+                content = "";
+            } else if (i + 1 == lyricView.mLineCount) {
+                content = "music";
+            } else {
+                content = lyricView.mLyricInfo.songLines.get(i + 1).content;
+            }
+
+            if (left != null) {
+                new LRCDeviceSend(left,
+                        new Gson().toJson(new LRCContent(content, false))).start();
+            }
+
+        }
+    }
+
+    private List<DeviceBean> mDeviceList = new ArrayList<>();
+
+    private Handler mHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            pullLoadMoreView.showContent();
+            pullLoadMoreView.onRefreshCompleted();
+            devicesAdapter.addHomePage(mDeviceList);
+            return false;
+        }
+    });
+
+    private void searchDevices() {
+        new DeviceSearcher() {
+            @Override
+            public void onSearchStart() {
+            }
+
+            @Override
+            public void onSearchFinish(Set deviceSet) {
+                mDeviceList.clear();
+                mDeviceList.addAll(deviceSet);
+                mHandler.sendEmptyMessage(0);
+            }
+        }.start();
+    }
+
 
     public int currentPosition = 0;
 
@@ -235,7 +320,7 @@ public class Mp3PlayerActivity2 extends BaseContractorActivity {
                 public void onPrepared(MediaPlayer mp) {
                     // 装载完毕 开始播放流媒体
                     mediaPlayer.start();
-                    ToastUtils.showToastCenter(Mp3PlayerActivity2.this, "开始播放");
+                    ToastUtils.showToastCenter(Mp3LrcPlayer.this, "开始播放");
                     // 避免重复播放，把播放按钮设置为不可用
                     btn_play.setEnabled(false);
                     btn_process.setMax(mediaPlayer.getDuration());
@@ -265,7 +350,7 @@ public class Mp3PlayerActivity2 extends BaseContractorActivity {
             });
         } catch (Exception e) {
             e.printStackTrace();
-            ToastUtils.showToastCenter(Mp3PlayerActivity2.this, "播放失败");
+            ToastUtils.showToastCenter(Mp3LrcPlayer.this, "播放失败");
         }
 
 
@@ -278,13 +363,13 @@ public class Mp3PlayerActivity2 extends BaseContractorActivity {
         if (btn_pause.getText().toString().trim().equals("继续")) {
             btn_pause.setText("暂停");
             mediaPlayer.start();
-            ToastUtils.showToastCenter(Mp3PlayerActivity2.this, "继续播放");
+            ToastUtils.showToastCenter(Mp3LrcPlayer.this, "继续播放");
             return;
         }
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
             btn_pause.setText("继续");
-            ToastUtils.showToastCenter(Mp3PlayerActivity2.this, "暂停播放");
+            ToastUtils.showToastCenter(Mp3LrcPlayer.this, "暂停播放");
         }
 
     }
@@ -296,7 +381,7 @@ public class Mp3PlayerActivity2 extends BaseContractorActivity {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.seekTo(0);
             btn_process.setProgress(0);
-            ToastUtils.showToastCenter(Mp3PlayerActivity2.this, "重新播放");
+            ToastUtils.showToastCenter(Mp3LrcPlayer.this, "重新播放");
             btn_pause.setText("暂停");
             return;
         }
@@ -313,7 +398,7 @@ public class Mp3PlayerActivity2 extends BaseContractorActivity {
             mediaPlayer = null;
             btn_play.setEnabled(true);
             btn_process.setProgress(0);
-            ToastUtils.showToastCenter(Mp3PlayerActivity2.this, "停止播放");
+            ToastUtils.showToastCenter(Mp3LrcPlayer.this, "停止播放");
         }
 
     }

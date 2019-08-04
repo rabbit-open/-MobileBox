@@ -59,10 +59,25 @@
             android:screenOrientation="landscape"
             android:theme="@style/CustomAppTheme.FullScreen.Transparent" />
         <activity
-            android:name=".module.player.Mp3PlayerActivity2"
-            android:screenOrientation="landscape"
+            android:name=".module.player.Mp3LrcPlayer"
+            android:screenOrientation="portrait"
             android:theme="@style/CustomAppTheme.FullScreen.Transparent" />
+
+        <activity
+            android:name=".module.player.Mp3LRCActivity"
+            android:label="LRC歌词显示屏幕"
+            android:screenOrientation="landscape"
+            android:theme="@style/CustomAppTheme.FullScreen.Transparent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".module.devices.DevicesListActivity" />
+
+
         <activity
             android:name=".module.guide.AppStartActivity"
             android:label="@string/app_name">

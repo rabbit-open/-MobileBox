@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#000000"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp">
+
+        <com.hualala.mobilebox.module.player.LedTextView
+            android:id="@+id/songScreen"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text=" LRC显示屏 QQ:254608684 TEL:17710247608"
+            app:dotcolormode="3"
+            app:isCircle="true"
+            app:scroll="true"
+            app:scrollDirection="left"
+            app:spacing="1px"
+            app:speed="slow"
+            app:textColor="#FF2233"
+            app:xdots="32" />
+    </LinearLayout>
+
+</LinearLayout>

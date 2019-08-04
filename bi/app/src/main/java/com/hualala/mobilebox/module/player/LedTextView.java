@@ -58,8 +58,6 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
     public LedTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        boolean scroll = false;
-
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.LedTextView);
         int n = typedArray.getIndexCount();
         for (int i = 0; i < n; i++) {
@@ -72,7 +70,7 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
                     spacing = typedArray.getDimension(R.styleable.LedTextView_spacing, 0);
                     break;
                 case R.styleable.LedTextView_scroll:
-                    scroll = typedArray.getBoolean(R.styleable.LedTextView_scroll, true);
+                    scrollText = typedArray.getBoolean(R.styleable.LedTextView_scroll, true);
                     break;
                 case R.styleable.LedTextView_isCircle:
                     isCircle = typedArray.getBoolean(R.styleable.LedTextView_isCircle, true);
@@ -130,19 +128,16 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
             }
         });
 
-        if (scroll) {
-            startScroll();
+        if (scrollText) {
+            new ScrollThread().start();
         }
 
     }
 
-
     public void startScroll() {
         scrollText = true;
-        Thread thread = new ScrollThread();
-        thread.start();
+        new ScrollThread().start();
     }
-
 
     public void stopScroll() {
         scrollText = false;
@@ -169,27 +164,30 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
         return sb.toString();
     }
 
-
-    /*
-     * 用于控制滚动，仅在开启滚动时启动。
-     */
     private class ScrollThread extends Thread {
         @Override
         public void run() {
 
+
             int m = 0;
+
             while (scrollText) {
 
-                if (getXPosition(matrix[0].length, centerxoffset) <= getWidth()) {
-                    m = 0;
-                    continue;
+                if (isCircle) {
+                    if (m >= matrix[0].length) {
+                        m = 0;
+                        // onScrollEnd();
+                    }
+                } else {
+                    if (getXPosition(matrix[0].length, centerxoffset) <= getWidth()) {
+                        m = 0;
+                        continue;
+                    }
+                    if (m >= matrix[0].length - maxDian - 1) {
+                        return;
+                    }
                 }
 
-                if (m >= matrix[0].length - maxDian - 1) {
-                    //m = 0;
-                    return;
-                    // onScrollEnd();
-                }
                 try {
                     Thread.sleep(sleepTime);
                 } catch (InterruptedException e) {
@@ -204,15 +202,12 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
 
                 handler.sendEmptyMessage(0);
             }
+
             matrix = ChatUtils.convert(changeContent(), getContext());
             handler.sendEmptyMessage(0);
         }
     }
 
-
-    /*
-     * 用于控制滚动，仅在开启滚动时启动。
-     */
     private class MultiScrollThread extends Thread {
         @Override
         public void run() {
@@ -318,16 +313,16 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
 //                        }
 //                    } else {
 
-                        //随机色
-                        if (mode == 5) {
-                            selectPaint.setColor(Color.rgb((int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1)));
-                        }
+                    //随机色
+                    if (mode == 5) {
+                        selectPaint.setColor(Color.rgb((int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1), (int) (Math.random() * 255 + 1)));
+                    }
 
-                        if (isCircle) {
-                            canvas.drawCircle(getXPosition(column, xoffset), getYPosition(row, yoffset), radius, selectPaint);
-                        } else {
-                            canvas.drawRect(getXPosition(column, xoffset), getYPosition(row, yoffset), getXPosition(column, xoffset) + 2 * radius, getYPosition(row, yoffset) + 2 * radius, selectPaint);
-                        }
+                    if (isCircle) {
+                        canvas.drawCircle(getXPosition(column, xoffset), getYPosition(row, yoffset), radius, selectPaint);
+                    } else {
+                        canvas.drawRect(getXPosition(column, xoffset), getYPosition(row, yoffset), getXPosition(column, xoffset) + 2 * radius, getYPosition(row, yoffset) + 2 * radius, selectPaint);
+                    }
                     //}
 
                 } else {
@@ -412,7 +407,7 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
 
     //手动更新数据
     public void updateText(String text) {
-        count=0;
+        count = 0;
         this.text = text;
         if (1 == scrollDirection) {
             this.text = reverseString(text);
@@ -435,13 +430,13 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
         }
         matrix = ChatUtils.convert(this.text, getContext());
         postInvalidate();
-        count=0;
+        count = 0;
     }
 
     public void ForceupdateText(boolean[][] text) {
         matrix = text;
         postInvalidate();
-        count=0;
+        count = 0;
     }
 
 
@@ -453,8 +448,6 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
         if (mode == 1) {
             selectPaint.setColor(paintColor);
         }
-
-
     }
 
 }

@@ -8,20 +8,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:background="#000000"
         android:orientation="horizontal">
 
         <com.hualala.mobilebox.module.player.LedTextView
             android:id="@+id/songScreen"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="200dp"
             android:layout_weight="1"
-            android:text="KTV"
+            android:text=" LRC Display Screen"
             app:dotcolormode="3"
-            app:isCircle="true"
-            app:scroll="false"
+            app:isCircle="false"
+            app:scroll="true"
             app:scrollDirection="left"
             app:spacing="1px"
             app:speed="normal"
@@ -29,17 +28,15 @@
             app:xdots="32" />
     </LinearLayout>
 
-    <EditText  android:visibility="gone"
+    <EditText
         android:id="@+id/et_path"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
-    <LinearLayout  android:visibility="gone"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-      >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_play"
@@ -71,10 +68,27 @@
     </LinearLayout>
 
     <SeekBar
-        android:visibility="gone"
         android:id="@+id/btn_process"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        />
+        android:layout_weight="1"
+        android:text="设备查找" />
+
+    <com.hualala.ui.widget.PullLoadMoreView
+        android:id="@+id/pullLoadView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.hualala.ui.widget.recyclelib.SupetRecyclerView
+        android:id="@+id/list"
+        style="@style/pull_refresh_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
