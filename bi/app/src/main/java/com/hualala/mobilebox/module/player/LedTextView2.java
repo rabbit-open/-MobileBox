@@ -170,8 +170,6 @@ public class LedTextView2 extends android.support.v7.widget.AppCompatTextView {
                     if (m >= matrix[0].length) {
                         m = 0;
                         onScrollEnd();
-                        matrix = ChatUtils.convert(changeContent(), getContext());
-                        handler.sendEmptyMessage(0);
                     }
                     try {
                         Thread.sleep(sleepTime);

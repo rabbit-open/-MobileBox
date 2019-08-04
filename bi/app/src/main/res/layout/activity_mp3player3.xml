@@ -27,7 +27,7 @@
             app:scroll="true"
             app:scrollDirection="left"
             app:spacing="1px"
-            app:speed="slow"
+            app:speed="normal"
             app:textColor="#FF2233"
             app:xdots="32" />
     </LinearLayout>
