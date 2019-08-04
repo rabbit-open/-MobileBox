@@ -182,51 +182,46 @@ public class Mp3LrcPlayer extends BaseContractorActivity {
         DeviceBean left = null;
         DeviceBean right = null;
 
-        if (mDeviceList.size() == 2) {
+        if (mDeviceList.size() ==2) {
             left = mDeviceList.get(0);
             right = mDeviceList.get(1);
         }
-
         if (i % 2 == 0) {
             if (left != null) {
-                new LRCDeviceSend(left, new Gson().toJson(new LRCContent(info.content + "" + "", true))).start();
+                new LRCDeviceSend(left, new Gson().toJson(new LRCContent(info.content, true))).start();
             } else {
                 for (DeviceBean deviceBean : mDeviceList) {
-                    new LRCDeviceSend(deviceBean, new Gson().toJson(new LRCContent(info.content + "", true))).start();
+                    new LRCDeviceSend(deviceBean, new Gson().toJson(new LRCContent(info.content, true))).start();
                 }
             }
 
             String content = "";
             if (i + 1 > lyricView.mLineCount) {
-                content = "";
+                content = "(over)";
             } else if (i + 1 == lyricView.mLineCount) {
                 content = "music";
             } else {
                 content = lyricView.mLyricInfo.songLines.get(i + 1).content;
             }
-
             if (right != null) {
-                new LRCDeviceSend(right, new Gson().toJson(new LRCContent(content + "", false))).start();
+                new LRCDeviceSend(right, new Gson().toJson(new LRCContent(content, false))).start();
             }
-
         } else {
             if (right != null) {
-                new LRCDeviceSend(right, new Gson().toJson(new LRCContent(info.content + "", true))).start();
+                new LRCDeviceSend(right, new Gson().toJson(new LRCContent(info.content, true))).start();
             } else {
                 for (DeviceBean deviceBean : mDeviceList) {
-                    new LRCDeviceSend(deviceBean, new Gson().toJson(new LRCContent(info.content + "", true))).start();
+                    new LRCDeviceSend(deviceBean, new Gson().toJson(new LRCContent(info.content , true))).start();
                 }
             }
-
             String content = "";
             if (i + 1 > lyricView.mLineCount) {
-                content = "";
+                content = "(over)";
             } else if (i + 1 == lyricView.mLineCount) {
                 content = "music";
             } else {
                 content = lyricView.mLyricInfo.songLines.get(i + 1).content;
             }
-
             if (left != null) {
                 new LRCDeviceSend(left,
                         new Gson().toJson(new LRCContent(content, false))).start();
