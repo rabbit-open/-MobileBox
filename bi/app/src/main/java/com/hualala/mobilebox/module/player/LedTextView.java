@@ -164,6 +164,8 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
         return sb.toString();
     }
 
+    boolean isCycle=false;
+
     private class ScrollThread extends Thread {
         @Override
         public void run() {
@@ -173,10 +175,10 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
 
             while (scrollText) {
 
-                if (isCircle) {
+                if (isCycle) {
                     if (m >= matrix[0].length) {
                         m = 0;
-                        // onScrollEnd();
+                        onScrollEnd();
                     }
                 } else {
                     if (getXPosition(matrix[0].length, centerxoffset) <= getWidth()) {
@@ -203,8 +205,8 @@ public class LedTextView extends android.support.v7.widget.AppCompatTextView {
                 handler.sendEmptyMessage(0);
             }
 
-            matrix = ChatUtils.convert(changeContent(), getContext());
-            handler.sendEmptyMessage(0);
+//            matrix = ChatUtils.convert(changeContent(), getContext());
+//            handler.sendEmptyMessage(0);
         }
     }
 

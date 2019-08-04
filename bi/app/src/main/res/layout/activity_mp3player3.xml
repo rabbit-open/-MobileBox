@@ -16,7 +16,7 @@
         android:paddingTop="30dp"
         android:paddingBottom="30dp">
 
-        <com.hualala.mobilebox.module.player.LedTextView2
+        <com.hualala.mobilebox.module.player.LedTextView
             android:id="@+id/songScreen"
             android:layout_width="0dp"
             android:layout_height="match_parent"

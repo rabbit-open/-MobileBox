@@ -13,7 +13,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 public class Mp3LRCActivity extends BaseContractorActivity {
 
-    private LedTextView2 songScreen;
+    private LedTextView songScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
