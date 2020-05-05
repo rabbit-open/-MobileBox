@@ -1,10 +1,7 @@
 include ':test'
 
-include ':lib:libmvp'
 include ':lib:libserver'
 include ':lib:libutils'
-include ':lib:librouter'
-include ':lib:libstorge'
 include ':lib:libpermission'
 
 include ':ui:libdialog'
@@ -13,7 +10,6 @@ include ':ui:libtheme'
 include ':ui:libcommonui'
 
 include ':bi:bi_framework'
-include ':bi:bi_router'
 include ':bi:bi_widget'
 
 include ':bi:app'

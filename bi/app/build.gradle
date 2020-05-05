@@ -89,5 +89,4 @@ dependencies {
     //UI
     implementation project(":bi:bi_widget")
     implementation project(":bi:bi_framework")
-    implementation project(":bi:bi_router")
 }

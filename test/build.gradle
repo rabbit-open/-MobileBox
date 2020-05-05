@@ -1,7 +1,9 @@
 apply plugin: 'java-library'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/comm-win32_all-2.0.1.jar')
+    implementation files('libs/comm-2.0.jar')
 }
 
 jar {

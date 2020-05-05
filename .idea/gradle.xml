@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <compositeConfiguration>
-          <compositeBuild compositeDefinitionSource="SCRIPT" />
-        </compositeConfiguration>
+        <option name="delegatedBuild" value="false" />
+        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/bi" />
+            <option value="$PROJECT_DIR$/bi/app" />
+            <option value="$PROJECT_DIR$/bi/bi_framework" />
+            <option value="$PROJECT_DIR$/bi/bi_widget" />
+            <option value="$PROJECT_DIR$/lib" />
+            <option value="$PROJECT_DIR$/lib/libpermission" />
+            <option value="$PROJECT_DIR$/lib/libserver" />
+            <option value="$PROJECT_DIR$/lib/libutils" />
+            <option value="$PROJECT_DIR$/shareAli" />
+            <option value="$PROJECT_DIR$/sharewx" />
+            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/libcommonui" />
+            <option value="$PROJECT_DIR$/ui/libdialog" />
+            <option value="$PROJECT_DIR$/ui/libres" />
+            <option value="$PROJECT_DIR$/ui/libtheme" />
+          </set>
+        </option>
         <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
