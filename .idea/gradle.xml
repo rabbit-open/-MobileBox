@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/lib/libpermission" />
             <option value="$PROJECT_DIR$/lib/libserver" />
             <option value="$PROJECT_DIR$/lib/libutils" />
+            <option value="$PROJECT_DIR$/librealm" />
             <option value="$PROJECT_DIR$/shareAli" />
             <option value="$PROJECT_DIR$/sharewx" />
             <option value="$PROJECT_DIR$/test" />
