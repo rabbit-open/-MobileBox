@@ -57,17 +57,20 @@
         <activity
             android:name=".module.player.Mp3PlayerActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/CustomAppTheme.FullScreen.Transparent" />
+            android:theme="@style/CustomAppTheme.FullScreen.Transparent"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".module.player.Mp3LrcPlayer"
-            android:screenOrientation="portrait"
-            android:theme="@style/CustomAppTheme.FullScreen.Transparent" />
+            android:screenOrientation="landscape"
+            android:theme="@style/CustomAppTheme.FullScreen.Transparent"
+            tools:ignore="LockedOrientationActivity" />
 
         <activity
             android:name=".module.player.Mp3LRCActivity"
             android:label="LRC歌词显示屏幕"
             android:screenOrientation="landscape"
-            android:theme="@style/CustomAppTheme.FullScreen.Transparent">
+            android:theme="@style/CustomAppTheme.FullScreen.Transparent"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -16,3 +16,5 @@ include ':bi:app'
 
 include ':shareAli'
 include ':sharewx'
+
+include ':librealm'
